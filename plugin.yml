@@ -1,0 +1,8 @@
+name: BosterParticles
+main: net.Boster.particles.main.BosterParticles
+author: Bosternike
+version: 1.0.0
+api-version: 1.16
+commands:
+  bosterparticles:
+    aliases: [bostertrails, particles, effects, trail, trails]
