@@ -29,20 +29,8 @@
   </p>
 </div>
 
-
-
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>About</summary>
-  <ol>
-    <li><a href="#api">API</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ol>
-</details>
-
 <!-- API -->
-## API ![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)
+## API [awesome-shield]https://github.com/Bosternike/BosterParticles/examples
 
 See examples [here](https://github.com/Bosternike/BosterParticles/examples)
 
@@ -52,6 +40,7 @@ See examples [here](https://github.com/Bosternike/BosterParticles/examples)
 <li>LinkedIn: <a href="https://www.linkedin.com/in/andrew-vlasov-9a37a21bb/">Andrew</a></li>
 <li>Project Link: <a href="https://github.com/Bosternike/BosterParticles">source code</a></li>
 
+[awesome-shield]: https://img.shields.io/badge/AWESOME-https://github.com/Bosternike/BosterParticles/tree/main/examples-yellow
 [contributors-shield]: https://img.shields.io/github/contributors/Bosternike/BosterParticles.svg?style=for-the-badge
 [contributors-url]: https://github.com/Bosternike/BosterParticles/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/Bosternike/BosterParticles.svg?style=for-the-badge
