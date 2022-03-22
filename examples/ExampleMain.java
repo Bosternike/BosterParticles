@@ -1,4 +1,4 @@
-package net.Boster.example;
+package examples;
 
 import net.Boster.particles.main.BosterParticles;
 import org.bukkit.plugin.java.JavaPlugin;
