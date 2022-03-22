@@ -30,7 +30,7 @@
 </div>
 
 <!-- API -->
-## API [awesome-shield]
+## API [![AWESOME][awesome-shield]][examples-url]
 
 See examples [here](https://github.com/Bosternike/BosterParticles/examples)
 
@@ -38,8 +38,9 @@ See examples [here](https://github.com/Bosternike/BosterParticles/examples)
 ## Contact
 
 <li>LinkedIn: <a href="https://www.linkedin.com/in/andrew-vlasov-9a37a21bb/">Andrew</a></li>
-<li>Project Link: <a href="https://github.com/Bosternike/BosterParticles">source code</a></li>
+<li>Project Link: <a href=[examples-url]>source code</a></li>
 
+[examples-url]: https://github.com/Bosternike/BosterParticles/tree/main/examples
 [awesome-shield]: https://img.shields.io/badge/AWESOME-https://github.com/Bosternike/BosterParticles/tree/main/examples-yellow
 [contributors-shield]: https://img.shields.io/github/contributors/Bosternike/BosterParticles.svg?style=for-the-badge
 [contributors-url]: https://github.com/Bosternike/BosterParticles/graphs/contributors
