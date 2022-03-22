@@ -44,9 +44,9 @@
 </details>
 
 <!-- API -->
-## API [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)]
+## API ![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)
 
-See examples here [open issues](https://github.com/Bosternike/BosterParticles/examples)
+See examples [here](https://github.com/Bosternike/BosterParticles/examples)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -63,8 +63,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-LinkedIn: [Andrew](https://www.linkedin.com/in/andrew-vlasov-9a37a21bb/)
-Project Link: [source code](https://github.com/Bosternike/BosterParticles)
+<li>LinkedIn: [Andrew](https://www.linkedin.com/in/andrew-vlasov-9a37a21bb/)</li>
+<li>Project Link: [source code](https://github.com/Bosternike/BosterParticles)</li>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
