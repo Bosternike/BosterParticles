@@ -52,8 +52,6 @@ See examples [here](https://github.com/Bosternike/BosterParticles/examples)
 <li>LinkedIn: <a href="https://www.linkedin.com/in/andrew-vlasov-9a37a21bb/">Andrew</a></li>
 <li>Project Link: <a href="https://github.com/Bosternike/BosterParticles">source code</a></li>
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 [contributors-shield]: https://img.shields.io/github/contributors/Bosternike/BosterParticles.svg?style=for-the-badge
 [contributors-url]: https://github.com/Bosternike/BosterParticles/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/Bosternike/BosterParticles.svg?style=for-the-badge
