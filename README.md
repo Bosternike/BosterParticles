@@ -13,7 +13,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Bosternike/BosterParticles">
-    <img src="images/BosterParticles.png" alt="Logo" width="220" height="120">
+    <img src="images/BosterParticles.png" alt="Logo" width="220" height="220">
   </a>
 
 <h3 align="center">project_title</h3>
