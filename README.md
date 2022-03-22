@@ -46,23 +46,11 @@
 
 See examples [here](https://github.com/Bosternike/BosterParticles/examples)
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
 <!-- CONTACT -->
 ## Contact
 
-<li>LinkedIn: [Andrew](https://www.linkedin.com/in/andrew-vlasov-9a37a21bb/)</li>
-<li>Project Link: [source code](https://github.com/Bosternike/BosterParticles)</li>
+<li>LinkedIn: <a href="https://www.linkedin.com/in/andrew-vlasov-9a37a21bb/">Andrew</a></li>
+<li>Project Link: <a href="https://github.com/Bosternike/BosterParticles">source code</a></li>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
