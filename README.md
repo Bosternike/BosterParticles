@@ -40,8 +40,8 @@ See examples [here](https://github.com/Bosternike/BosterParticles/examples)
 <li>LinkedIn: <a href="https://www.linkedin.com/in/andrew-vlasov-9a37a21bb/">Andrew</a></li>
 <li>Project Link: <a href=[examples-url]>source code</a></li>
 
-[examples-url]: https://github.com/Bosternike/BosterParticles/tree/main/examples
-[awesome-shield]: https://img.shields.io/badge/AWESOME-https://github.com/Bosternike/BosterParticles/tree/main/examples-yellow
+[examples-url]: https://github.com/Bosternike/BosterParticles/examples
+[awesome-shield]: https://img.shields.io/badge/AWESOME-https://github.com/Bosternike/BosterParticles/examples-yellow
 [contributors-shield]: https://img.shields.io/github/contributors/Bosternike/BosterParticles.svg?style=for-the-badge
 [contributors-url]: https://github.com/Bosternike/BosterParticles/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/Bosternike/BosterParticles.svg?style=for-the-badge
