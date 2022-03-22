@@ -30,7 +30,7 @@
 </div>
 
 <!-- API -->
-## API [![Contributors][awesome-shield]][https://github.com/Bosternike/BosterParticles/examples]
+## API [![AWESOME][https://github.com/Bosternike/BosterParticles/examples]][awesome-shield]
 
 See examples [here](https://github.com/Bosternike/BosterParticles/examples)
 
