@@ -23,8 +23,6 @@
     <a href="https://github.com/Bosternike/BosterParticles"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/Bosternike/BosterParticles">View Demo</a>
-    ·
     <a href="https://github.com/Bosternike/BosterParticles/issues">Report Bug</a>
     ·
     <a href="https://github.com/Bosternike/BosterParticles/issues">Request Feature</a>
