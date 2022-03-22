@@ -29,6 +29,12 @@
   </p>
 </div>
 
+<!-- DEPENDENCIES -->
+## Dependencies
+
+<li>PAPI: https://www.spigotmc.org/resources/placeholderapi.6245/</li>
+<li>Spigot: https://getbukkit.org/get/bf44510c50ddefccbaee1379c1f751de</li>
+
 <!-- API -->
 ## API [![AWESOME][awesome-shield]][examples-url]
 
