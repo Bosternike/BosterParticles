@@ -1,4 +1,4 @@
-package net.Boster.example;
+package examples;
 
 import net.Boster.particles.main.data.PlayerData;
 import net.Boster.particles.main.utils.ParticleUtils;
