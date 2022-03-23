@@ -1,7 +1,7 @@
 package examples;
 
-import net.Boster.particles.main.data.PlayerData;
-import net.Boster.particles.main.utils.ParticleUtils;
+import net.boster.particles.main.data.PlayerData;
+import net.boster.particles.main.utils.ParticleUtils;
 import org.bukkit.Color;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
