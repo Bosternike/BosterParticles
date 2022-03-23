@@ -1,6 +1,6 @@
 package examples;
 
-import net.Boster.particles.main.BosterParticles;
+import net.boster.particles.main.BosterParticles;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class ExampleMain extends JavaPlugin {
