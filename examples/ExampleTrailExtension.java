@@ -1,7 +1,7 @@
 package examples;
 
-import net.Boster.particles.main.data.PlayerData;
-import net.Boster.particles.main.particle.CraftTrail;
+import net.boster.particles.main.data.PlayerData;
+import net.boster.particles.main.particle.CraftTrail;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.configuration.ConfigurationSection;
