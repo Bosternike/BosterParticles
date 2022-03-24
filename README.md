@@ -59,7 +59,7 @@ See examples [here](https://github.com/Bosternike/BosterParticles/tree/main/exam
 [issues-shield]: https://img.shields.io/github/issues/Bosternike/BosterParticles.svg?style=for-the-badge
 [issues-url]: https://github.com/Bosternike/BosterParticles/issues
 [license-shield]: https://img.shields.io/github/license/Bosternike/BosterParticles.svg?style=for-the-badge
-[license-url]: https://github.com/Bosternike/BosterParticles/blob/master/LICENSE.txt
+[license-url]: https://github.com/Bosternike/BosterParticles/blob/main/LICENSE.md
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/andrew-vlasov-9a37a21bb
 [product-screenshot]: images/BosterParticles.png
