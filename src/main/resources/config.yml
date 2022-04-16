@@ -1,0 +1,66 @@
+# This plugin has been created by Bosternike (Discord: Bosternike#7428).
+#
+# Permission to use admin commands (/bosterparticles) - bosterparticles.commands.admin
+
+MySql:
+  Enabled: false
+  host: 'localhost'
+  port: 3306
+  user: ''
+  password: ''
+  database: ''
+
+Settings:
+  Prefix: '&d&lBosterParticles &8&l|'
+  CheckForUpdates: true
+  RunnableDelay: 0
+  # User key types:
+  # - UUID
+  # - NAME
+  userKeyType: NAME
+  # Do you want player data to be loaded asynchronously?
+  # Set to "false" if you want to disable this.
+  LoadPlayerTrailsAsync: true
+
+Messages:
+  noPermission: "%prefix% &cYou don't have permission to use this command!"
+  reload: '%prefix% &fThe plugin has been reloaded!'
+  help:
+  - '&f'
+  - '&f Reload the plugin &7- &d/bosterparticles reload'
+  - '&f List of particles &7- &d/bosterparticles list [classes&7/&dextensions&7/&dparticles]'
+  - '&f Set custom trail &7- &d/bosterparticles set [user] [trail]'
+  - '&f'
+  list:
+    noSuchHelp: '%prefix% &fHelp page &c%name% &fcould not be found.'
+    classes:
+      dot: '&7, &e'
+      format:
+      - '%prefix% &fRegistered classes&7: &e%classes%'
+    extensions:
+      dot: '&7, &d'
+      format:
+      - '%prefix% &fRegistered extensions&7: &d%extensions%'
+    particles:
+      dot: '&7, &b'
+      format:
+      - '%prefix% &fParticles list&7: &b%particles%'
+  set:
+    usage: '%prefix% &fUsage &7- &d/bosterparticles set [user] [trail]'
+    nullTrail: '%prefix% &fTrail &c%name% &fdoes not exist.'
+    success: '%prefix% &fTrail &a%name% &fwas set for player &b%player%&f!'
+
+# You can use these trails for command (/bosterparticles set [user] [trail])
+CustomTrails:
+  example:
+    ClearSections:
+    - 'Particles'
+    SetToFile:
+      Items:
+        1:
+          Material: EMERALD
+          Amount: 1
+          PickupAble: false
+          LifeTime: 40
+
+      
