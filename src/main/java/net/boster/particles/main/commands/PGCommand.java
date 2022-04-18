@@ -27,23 +27,18 @@ public class PGCommand extends BosterCommand {
 
     @Override
     public boolean execute(@NotNull CommandSender sender, @NotNull String label, @NotNull String[] args) {
-        boolean b = gui.getPermission() != null;
         if(args.length == 0) {
             if(!checkPlayer(sender)) return false;
 
-            if(b && !sender.hasPermission(gui.getPermission())) {
-                if(gui.getNoPermissionMessage() != null) {
-                    sender.sendMessage(BosterParticles.toColor(gui.getNoPermissionMessage()));
-                }
+            if(gui.getPermission() != null && !sender.hasPermission(gui.getPermission())) {
+                sendNoPerms(sender);
             }
 
             gui.open((Player) sender);
             return true;
         } else {
-            if(b && !sender.hasPermission(gui.getPermission() + ".others")) {
-                if(gui.getNoPermissionMessage() != null) {
-                    sender.sendMessage(BosterParticles.toColor(gui.getNoPermissionMessage()));
-                }
+            if(gui.getPermission() != null && !sender.hasPermission(gui.getPermission() + ".others")) {
+                sendNoPerms(sender);
             }
 
             Player p = Bukkit.getPlayer(args[0]);
@@ -66,5 +61,11 @@ public class PGCommand extends BosterCommand {
         }
 
         return createDefaultTabComplete(Bukkit.getOnlinePlayers().stream().map(Player::getName).collect(Collectors.toList()), args, 0);
+    }
+
+    public void sendNoPerms(CommandSender sender) {
+        if(gui.getNoPermissionMessage() != null) {
+            sender.sendMessage(BosterParticles.toColor(gui.getNoPermissionMessage()));
+        }
     }
 }
