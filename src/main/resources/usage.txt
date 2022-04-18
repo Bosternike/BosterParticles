@@ -1,0 +1,49 @@
+● IF YOU NEED HELP
+GitHub: https://github.com/Bosternike
+Discord: Bosternike#7428
+
+### ### ### ### ### ### ### ### ### ### ### ### ###
+● Everything following is going about item section:
+
+● HOW TO SET MATERIAL?
+  ● Material fields:
+      - skull: 'here should be the name of minecraft premium player'
+      - head: 'here should be custom minecraft head (for instance, you can find something here: https://minecraft-heads.com/)'
+      - material: READ TUTORIAL BELOW.
+  ● My minecraft server version is 1.12 or below:
+      Format - material: <material>:<value>
+      Example - material: WOOL:14
+      Example link with IDs: https://minecraft-ids.grahamedgecombe.com/
+  ● My minecraft server version is 1.13 or above:
+      Format - material: <material>
+      Example - material: RED_WOOL
+      Example link with IDs: https://www.digminecraft.com/lists/item_id_list_pc_1_13.php
+  ● NOTE: Material must be typed with CAPS.
+
+● HOW TO MAKE INVISIBLE ITEM?
+  If you want to make invisible item, use "blank: true", otherwise use "blank: false".
+  Default value is "false", that's why item will be visible by default.
+
+● HOW TO SET CUSTOM MODEL DATA?
+  Use - CustomModelData: <number>
+  For instance - CustomModelData: 1
+
+
+### ### ### ### ### ### ### ### ### ### ### ### ### ###
+● Everything following is going about particle section:
+
+  ● Type
+      ● NOTE: Particle must be typed with CAPS. Also consider that some particles require DustOptions/BlockData.
+      List types: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html
+  ● X, Y, Z
+      These values are something like spread.
+  ● DustOptions
+      ● NOTE: If you want to disable dust options, use "none"
+      Format: <r>, <g>, <b>, <amount>
+      Example format: 127, 29, 96, 1
+  ● BlockData
+      Format: <material> (Material tutorial is above)
+      Example: GOLD_BLOCK
+
+
+
