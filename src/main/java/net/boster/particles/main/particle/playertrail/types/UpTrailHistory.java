@@ -1,7 +1,5 @@
 package net.boster.particles.main.particle.playertrail.types;
 
-import org.jetbrains.annotations.NotNull;
-
 public class UpTrailHistory extends BodyTrailHistory {
 
     public UpTrailHistory() {
