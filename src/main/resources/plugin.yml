@@ -1,0 +1,5 @@
+name: BosterParticles
+main: net.boster.particles.main.BosterParticles
+author: Bosternike
+version: 1.0.7
+api-version: 1.13
