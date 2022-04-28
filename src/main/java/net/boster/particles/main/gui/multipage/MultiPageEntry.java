@@ -12,6 +12,7 @@ public interface MultiPageEntry extends MultiPageFunctionalEntry {
         return item(p);
     }
 
+    @SuppressWarnings("PMD.UncommentedEmptyMethodBody")
     default void onClick(MultiPageGUI gui, Player p) {
 
     }
