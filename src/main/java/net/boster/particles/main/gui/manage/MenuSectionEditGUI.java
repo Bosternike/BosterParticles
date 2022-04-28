@@ -36,7 +36,7 @@ public class MenuSectionEditGUI {
 
     public static void open(@NotNull Player p, @NotNull ParticlesGUI particlesGUI, @NotNull ConfigurationSection section) {
         MultiPageGUI gui = new MultiPageGUI(Utils.toColor("&8Section editor: &b&l" + section.getName()), 54, p,
-                createButtons(p, particlesGUI, section), MenusListGUI.slots);
+                createButtons(particlesGUI, section), MenusListGUI.slots);
         for(int i : Utils.createBorder(54)) {
             gui.getButtons().put(i, new GUIButton() {
                 @Override
@@ -54,7 +54,7 @@ public class MenuSectionEditGUI {
         gui.open();
     }
 
-    private static List<MultiPageFunctionalEntry> createButtons(@NotNull Player p, @NotNull ParticlesGUI particlesGUI, @NotNull ConfigurationSection section) {
+    private static List<MultiPageFunctionalEntry> createButtons(@NotNull ParticlesGUI particlesGUI, @NotNull ConfigurationSection section) {
         List<MultiPageFunctionalEntry> list = new ArrayList<>();
 
         list.add(getEntry(particlesGUI, section, "permission", null));
