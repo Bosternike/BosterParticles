@@ -90,10 +90,6 @@ public class BosterParticles extends JavaPlugin {
         return Utils.toColor(s);
     }
 
-    public boolean isOldVersion() {
-        return loader.isOldVersion();
-    }
-
     public void log(String s, LogType log) {
         if(log.isToggleAble() && !loader.enabledLoggers.contains(log)) return;
 
