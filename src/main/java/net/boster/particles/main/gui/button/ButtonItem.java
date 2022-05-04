@@ -5,9 +5,10 @@ import net.boster.particles.main.data.PlayerData;
 import net.boster.particles.main.gui.ParticlesGUI;
 import net.boster.particles.main.lib.PAPISupport;
 import net.boster.particles.main.lib.VaultSupport;
+import net.boster.particles.main.utils.item.ItemManager;
 import net.boster.particles.main.utils.sound.BosterSound;
 import net.boster.particles.main.utils.CachedSetSection;
-import net.boster.particles.main.utils.LogType;
+import net.boster.particles.main.utils.log.LogType;
 import net.boster.particles.main.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
@@ -36,9 +37,6 @@ public class ButtonItem implements GUIButton {
     public @Nullable String itemName;
     public @Nullable List<String> lore;
 
-    public boolean hasCustomModelData;
-    public int customModelData;
-
     public @Nullable ButtonAction successfulActions;
     public @Nullable ButtonAction noPermissionActions;
     public @Nullable ButtonAction notEnoughMoneyActions;
@@ -61,6 +59,8 @@ public class ButtonItem implements GUIButton {
         if(!checkSize(gui, item, slot)) return null;
         if(!checkOverrides(gui, item, slot, allowOverride)) return null;
 
+        ItemManager manager = BosterParticles.getInstance().getLoader().getItemManager();
+
         ItemStack material = null;
         if(!item.getBoolean("blank", false)) {
             if(item.getString("head") != null) {
@@ -68,18 +68,30 @@ public class ButtonItem implements GUIButton {
             } else if(item.getString("skull") != null) {
                 material = Utils.SKULL.clone();
                 SkullMeta meta = (SkullMeta) material.getItemMeta();
-                meta.setOwningPlayer(Bukkit.getOfflinePlayer(item.getString("skull")));
+                manager.setOwner(meta, item.getString("skull"));
                 material.setItemMeta(meta);
             } else {
                 String m = item.getString("material");
                 try {
-                    material = BosterParticles.getInstance().getLoader().getItemCreator().createItem(m);
+                    material = BosterParticles.getInstance().getLoader().getItemManager().createItem(m);
                 } catch (Exception e) {
                     gui.log("Item \"&6" + item.getName() + "&7\" has invalid material type \"&c" + m + "&7\"", LogType.WARNING);
                     return null;
                 }
             }
         }
+
+        ItemMeta meta = material.getItemMeta();
+        if(item.get("CustomModelData") != null) {
+            manager.setCustomModelData(meta, item.getInt("CustomModelData"));
+        }
+
+        int damage = item.getInt("damage", -1);
+        if(damage > -1) {
+            material.setDurability((short) damage);
+        }
+
+        material.setItemMeta(meta);
 
         ButtonItem b = new ButtonItem(gui, item, slot, material);
 
@@ -88,11 +100,6 @@ public class ButtonItem implements GUIButton {
 
         b.itemName = item.getString("name");
         b.lore = item.getStringList("lore");
-
-        b.hasCustomModelData = item.getString("CustomModelData") != null;
-        if(b.hasCustomModelData) {
-            b.customModelData = item.getInt("CustomModelData");
-        }
 
         b.successfulActions = ClickActions.load(item.getConfigurationSection("success_actions"), b);
         b.noPermissionActions = ClickActions.load(item.getConfigurationSection("no_permission_actions"), b);
@@ -105,7 +112,7 @@ public class ButtonItem implements GUIButton {
         if(!allowOverride) {
             for(GUIButton i : gui.getGui().getButtons()) {
                 if(i.getSlot() == slot) {
-                    String name = i instanceof ButtonItem b ? b.name : "id not found";
+                    String name = i instanceof ButtonItem ? ((ButtonItem) i).name : "id not found";
                     gui.log("Item \"&6" + item.getName() + "&7\" tried to override slot of item \"&e" + name + "&7\"", LogType.WARNING);
                     return false;
                 }
@@ -171,10 +178,6 @@ public class ButtonItem implements GUIButton {
                 List<String> lr = new ArrayList<>();
                 lore.forEach(l -> lr.add(toReplaces(p, l)));
                 meta.setLore(lr);
-            }
-
-            if(hasCustomModelData) {
-                meta.setCustomModelData(customModelData);
             }
 
             item.setItemMeta(meta);

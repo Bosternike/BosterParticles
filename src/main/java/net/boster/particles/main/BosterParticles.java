@@ -12,10 +12,12 @@ import net.boster.particles.main.lib.PAPISupport;
 import net.boster.particles.main.lib.VaultSupport;
 import net.boster.particles.main.listeners.Events;
 import net.boster.particles.main.listeners.InventoryListener;
-import net.boster.particles.main.particle.CraftTrail;
-import net.boster.particles.main.utils.LogType;
-import net.boster.particles.main.utils.Utils;
+import net.boster.particles.main.listeners.pickup.NewPickupListener;
+import net.boster.particles.main.listeners.pickup.OldPickupListener;
+import net.boster.particles.main.trail.CraftTrail;
 import net.boster.particles.main.utils.Version;
+import net.boster.particles.main.utils.log.LogType;
+import net.boster.particles.main.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -25,8 +27,6 @@ public class BosterParticles extends JavaPlugin {
 
     @Getter private static BosterParticles instance;
 
-    public String PREFIX = "\u00a76+\u00a7a---------------- \u00a7dBosterParticles \u00a7a------------------\u00a76+";
-
     @Getter private BPLoader loader;
     @Getter private FileManager fileManager;
     @Getter @Setter @NotNull private DataSetter dataSetter;
@@ -34,9 +34,14 @@ public class BosterParticles extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
-        if(Version.getCurrentVersion().getVersionInteger() < 4) {
-            log("&7Unsupported core version: &c" + Version.getCurrentVersion().name(), LogType.ERROR);
-            log("&7Version support starts with: &a1.9", LogType.ERROR);
+        String PREFIX = "\u00a76+\u00a7a---------------- \u00a7dBosterParticles \u00a7a------------------\u00a76+";
+
+        if(Version.getCurrentVersion() == Version.OLD_VERSION) {
+            Bukkit.getConsoleSender().sendMessage(PREFIX);
+            log("Plugin could not be enabled!", LogType.ERROR);
+            log("Your core version is too old!", LogType.ERROR);
+            log("Version support starts from: &a1.8", LogType.ERROR);
+            Bukkit.getConsoleSender().sendMessage(PREFIX);
             return;
         }
 
@@ -52,8 +57,7 @@ public class BosterParticles extends JavaPlugin {
 
         saveDefaultConfig();
 
-        getServer().getPluginManager().registerEvents(new Events(this), this);
-        getServer().getPluginManager().registerEvents(new InventoryListener(), this);
+        registerListeners();
 
         loader.load();
         Bukkit.getConsoleSender().sendMessage("\u00a7d[\u00a7bBosterParticles\u00a7d] \u00a7fThe plugin has been \u00a7dEnabled\u00a7f!");
@@ -69,6 +73,16 @@ public class BosterParticles extends JavaPlugin {
         }
         if(loader.getConnectedDatabase() != null) {
             loader.getConnectedDatabase().closeConnection();
+        }
+    }
+
+    private void registerListeners() {
+        getServer().getPluginManager().registerEvents(new Events(this), this);
+        getServer().getPluginManager().registerEvents(new InventoryListener(), this);
+        if(Version.getCurrentVersion().getVersionInteger() < 8) {
+            getServer().getPluginManager().registerEvents(new OldPickupListener(), this);
+        } else {
+            getServer().getPluginManager().registerEvents(new NewPickupListener(), this);
         }
     }
 

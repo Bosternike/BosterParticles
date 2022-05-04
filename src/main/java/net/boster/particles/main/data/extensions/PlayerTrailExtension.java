@@ -3,7 +3,7 @@ package net.boster.particles.main.data.extensions;
 import lombok.Getter;
 import net.boster.particles.main.BosterParticles;
 import net.boster.particles.main.data.PlayerData;
-import net.boster.particles.main.particle.playertrail.CraftPlayerTrail;
+import net.boster.particles.main.trail.playertrail.CraftPlayerTrail;
 import org.bukkit.Location;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
@@ -63,9 +63,7 @@ public class PlayerTrailExtension extends PlayerDataExtension {
 
     public void clearOtherTasks() {
         for(BukkitTask task : otherTasks) {
-            if(!task.isCancelled()) {
-                task.cancel();
-            }
+            task.cancel();
         }
         otherTasks.clear();
     }

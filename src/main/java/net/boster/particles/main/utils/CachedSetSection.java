@@ -2,6 +2,7 @@ package net.boster.particles.main.utils;
 
 import lombok.AllArgsConstructor;
 import net.boster.particles.main.BosterParticles;
+import net.boster.particles.main.utils.log.LogType;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;

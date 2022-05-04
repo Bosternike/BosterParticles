@@ -1,5 +1,6 @@
 package net.boster.particles.main.gui.manage;
 
+import com.google.common.collect.Lists;
 import net.boster.particles.main.BosterParticles;
 import net.boster.particles.main.files.MenuFile;
 import net.boster.particles.main.gui.ParticlesGUI;
@@ -76,7 +77,7 @@ public class MenuSectionEditGUI {
         ItemStack item = getPathItem();
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName("\u00a7fPath: \u00a7d" + path);
-        meta.setLore(List.of("",
+        meta.setLore(Lists.newArrayList("",
                 Utils.toColor("&fCurrent value&7: " + section.getString(path, "&cnull")),
                 "",
                 Utils.toColor("&cLeft click &7-&f to delete this path"),
@@ -141,7 +142,7 @@ public class MenuSectionEditGUI {
                         if(translator != null) {
                             Optional<T> o = translator.translate(p, input);
 
-                            if(o.isEmpty()) {
+                            if(!o.isPresent()) {
                                 p.sendMessage(Utils.toColor("%prefix% &fArgument &c" + input + "&f is not a valid value."));
                                 return;
                             }

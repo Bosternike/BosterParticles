@@ -1,5 +1,6 @@
 package net.boster.particles.main.utils;
 
+import com.google.common.collect.Lists;
 import net.boster.particles.main.files.CustomFile;
 import org.bukkit.configuration.ConfigurationSection;
 import org.jetbrains.annotations.NotNull;
@@ -20,7 +21,7 @@ public class ConfigUtils {
         f.getConfiguration().set("Title", "No title yet");
         f.getConfiguration().set("Permission", "no.permission.set.yet");
         f.getConfiguration().set("NoPermission", "No message set yet");
-        f.getConfiguration().set("Commands", List.of("no-commands-set-yet"));
+        f.getConfiguration().set("Commands", Lists.newArrayList("no-commands-set-yet"));
         f.getConfiguration().set("Placeholders.ClickToActivate", "&aClick to activate!");
         f.getConfiguration().set("Placeholders.NotPermitted", "&cYou don't have permission for this particle.");
         f.getConfiguration().set("Placeholders.AllowedStatus", "&aAble");
@@ -131,9 +132,9 @@ public class ConfigUtils {
                 list.addAll(readSection(c, currentTreePath != null ? currentTreePath + "." + s : s, cs, s, spacesFun, path, value));
             } else {
                 String ps = cs + path.apply(s);
-                if(section.get(s) instanceof List l) {
+                if(section.get(s) instanceof List) {
                     list.add(ps);
-                    for(Object o : l) {
+                    for(Object o : (List<Object>) section.get(s)) {
                         String ls = value.apply(o.toString());
                         if(!(o instanceof Number)) {
                             if(ls.contains("'")) {

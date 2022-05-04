@@ -5,15 +5,14 @@ import net.boster.particles.main.data.PlayerData;
 import net.boster.particles.main.data.extensions.DeathEffects;
 import net.boster.particles.main.data.extensions.KillEffects;
 import net.boster.particles.main.gui.manage.chat.TypingUser;
-import net.boster.particles.main.particle.CraftItemTrail;
-import net.boster.particles.main.particle.CraftTrail;
+import net.boster.particles.main.trail.CraftItemTrail;
+import net.boster.particles.main.trail.CraftTrail;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.inventory.InventoryPickupItemEvent;
@@ -81,7 +80,8 @@ public class Events implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onLaunch(ProjectileLaunchEvent e) {
-        if(e.getEntity().getShooter() instanceof Player p) {
+        if(e.getEntity().getShooter() instanceof Player) {
+            Player p = (Player) e.getEntity().getShooter();
             Entity ent = e.getEntity();
             PlayerData data = PlayerData.get(p);
             if(data != null && !data.trails.isEmpty()) {
@@ -99,13 +99,6 @@ public class Events implements Listener {
                     }
                 }.runTaskTimer(plugin, 0, plugin.getLoader().RunnableDelay);
             }
-        }
-    }
-
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void onPickup(EntityPickupItemEvent e) {
-        if(e.getItem().getCustomName() != null && e.getItem().getCustomName().equalsIgnoreCase(CraftItemTrail.NO_PICKUP)) {
-            e.setCancelled(true);
         }
     }
 

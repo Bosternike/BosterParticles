@@ -3,7 +3,7 @@ package net.boster.particles.main.data.database.setter;
 import lombok.RequiredArgsConstructor;
 import net.boster.particles.main.BosterParticles;
 import net.boster.particles.main.data.database.ConnectedDatabase;
-import net.boster.particles.main.utils.LogType;
+import net.boster.particles.main.utils.log.LogType;
 import net.boster.particles.main.utils.Utils;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;

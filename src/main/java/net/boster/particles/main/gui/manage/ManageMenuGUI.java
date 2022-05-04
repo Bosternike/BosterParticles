@@ -1,5 +1,6 @@
 package net.boster.particles.main.gui.manage;
 
+import com.google.common.collect.Lists;
 import net.boster.particles.main.BosterParticles;
 import net.boster.particles.main.files.MenuFile;
 import net.boster.particles.main.gui.ParticlesGUI;
@@ -29,7 +30,7 @@ public class ManageMenuGUI {
     private static final ItemStack PERMISSION;
     private static final ItemStack SIZE;
     private static final ItemStack PLACEHOLDERS;
-    private static final List<String> MENU_ITEM_LORE = List.of("",
+    private static final List<String> MENU_ITEM_LORE = Lists.newArrayList("",
             "&cLeft click &7- &fto delete this item",
             "&aRight click &7- &fto manage this item",
             "",

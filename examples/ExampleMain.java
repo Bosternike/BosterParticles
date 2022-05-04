@@ -1,5 +1,3 @@
-package examples;
-
 import net.boster.particles.main.BosterParticles;
 import org.bukkit.plugin.java.JavaPlugin;
 

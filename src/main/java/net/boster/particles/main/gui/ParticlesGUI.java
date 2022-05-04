@@ -8,7 +8,7 @@ import net.boster.particles.main.files.MenuFile;
 import net.boster.particles.main.gui.button.ButtonItem;
 import net.boster.particles.main.gui.craft.CraftCustomGUI;
 import net.boster.particles.main.gui.placeholders.GUIPlaceholders;
-import net.boster.particles.main.utils.LogType;
+import net.boster.particles.main.utils.log.LogType;
 import net.boster.particles.main.utils.ReflectionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;

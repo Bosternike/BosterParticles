@@ -82,7 +82,7 @@ public class CustomGUI {
         Bukkit.getScheduler().runTaskLater(BosterParticles.getInstance(), () -> {
             closed = false;
             closedTask = null;
-            if(!player.isOnline() || inventory != player.getOpenInventory().getTopInventory()) {
+            if(!player.isOnline()) {
                 clear();
             }
         }, ticks);

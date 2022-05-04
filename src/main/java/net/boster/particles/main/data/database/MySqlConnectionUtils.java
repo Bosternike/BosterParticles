@@ -1,7 +1,7 @@
 package net.boster.particles.main.data.database;
 
 import net.boster.particles.main.BosterParticles;
-import net.boster.particles.main.utils.LogType;
+import net.boster.particles.main.utils.log.LogType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 

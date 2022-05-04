@@ -1,5 +1,6 @@
 package net.boster.particles.main.gui.manage;
 
+import com.google.common.collect.Lists;
 import net.boster.particles.main.gui.CustomGUI;
 import net.boster.particles.main.gui.ParticlesGUI;
 import net.boster.particles.main.gui.button.GUIButton;
@@ -19,7 +20,7 @@ import java.util.Map;
 public class ManagePlaceholdersGUI {
 
     private static final ItemStack PLACEHOLDER;
-    private static final List<String> PLACEHOLDER_LORE = List.of("",
+    private static final List<String> PLACEHOLDER_LORE = Lists.newArrayList("",
             "&fCurrent text: &f%text%",
             "&fPlaceholder: &b%placeholder%",
             "",

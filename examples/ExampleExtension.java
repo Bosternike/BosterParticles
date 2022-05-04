@@ -1,9 +1,11 @@
-package examples;
-
 import net.boster.particles.main.data.PlayerData;
-import net.boster.particles.main.utils.ParticleUtils;
-import org.bukkit.Color;
-import org.bukkit.Particle;
+import net.boster.particles.main.data.extensions.DeathEffects;
+import net.boster.particles.main.data.extensions.KillEffects;
+import net.boster.particles.main.data.extensions.PlayerDataExtension;
+import net.boster.particles.main.particle.BosterParticle;
+import net.boster.particles.main.particle.EnumBosterParticle;
+import net.boster.particles.main.particle.ParticleUtils;
+import net.boster.particles.main.particle.dust.DustOptionsUtils;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -21,7 +23,8 @@ public class ExampleExtension extends PlayerDataExtension implements DeathEffect
     @Override
     public void onDeath(@NotNull PlayerData data) {
         if(hasDeathEffect) {
-            ParticleUtils.playCircularEffect(data.p.getLocation(), Particle.REDSTONE, new Particle.DustOptions(Color.PURPLE, 1));
+            BosterParticle particle = new BosterParticle(EnumBosterParticle.REDSTONE, DustOptionsUtils.create(252, 14, 197, 1));
+            ParticleUtils.playCircularEffect(data.p.getLocation(), particle);
         }
     }
 

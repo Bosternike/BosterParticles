@@ -1,7 +1,7 @@
 package net.boster.particles.main.data.database;
 
 import net.boster.particles.main.BosterParticles;
-import net.boster.particles.main.utils.LogType;
+import net.boster.particles.main.utils.log.LogType;
 
 import java.io.File;
 import java.net.MalformedURLException;

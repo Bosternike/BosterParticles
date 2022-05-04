@@ -18,7 +18,7 @@ Items:
     blank: false
     # Instead of using default minecraft items, you can use player skull. Example:
     #
-    # skull: 'Bosternik'
+    # skull: 'Bosternike'
     #
     # or you can use custom minecraft head. Example:
     #
@@ -27,6 +27,11 @@ Items:
     # You can also set the custom model data.
     # Remove "#" from the next line to see the example of custom model data.
     #CustomModelData: 1
+    #
+    # You can set item damage. See example:
+    #
+    # Damage: 10
+    #
     name: '&fCloud'
     lore:
       - ''

@@ -1,8 +1,11 @@
 package net.boster.particles.main.files;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.boster.particles.main.BosterParticles;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,25 +15,18 @@ public class UserFile {
 
     private static final HashMap<String, UserFile> hash = new HashMap<>();
 
-    private FileConfiguration configuration;
-    private File file;
-    private final String name;
+    @Getter @Setter @NotNull private FileConfiguration configuration = new YamlConfiguration();
+    @Getter @Setter @NotNull private File file;
+    @Getter @NotNull private final String name;
 
-    public UserFile(String name) {
+    public UserFile(@NotNull String name) {
         hash.put(name, this);
         this.name = name;
+        this.file = new File(BosterParticles.getInstance().getDataFolder() + "/users", name + ".yml");
     }
 
     public static UserFile get(String file) {
         return hash.get(file);
-    }
-
-    public File getFile() {
-        return file;
-    }
-
-    public FileConfiguration getConfiguration() {
-        return configuration;
     }
 
     public void reload() {
@@ -46,7 +42,6 @@ public class UserFile {
     }
 
     public void create() {
-        file = new File(BosterParticles.getInstance().getDataFolder() + "/users", name + ".yml");
         if(!file.exists()) {
             File fd = new File(BosterParticles.getInstance().getDataFolder() + "/users");
             if(!fd.exists()) {
@@ -60,10 +55,6 @@ public class UserFile {
         }
 
         configuration = YamlConfiguration.loadConfiguration(file);
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void clear() {

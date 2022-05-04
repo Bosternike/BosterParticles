@@ -1,5 +1,6 @@
 package net.boster.particles.main.commands;
 
+import com.google.common.collect.Lists;
 import net.boster.particles.main.BosterParticles;
 import net.boster.particles.main.gui.ParticlesGUI;
 import org.bukkit.Bukkit;
@@ -19,7 +20,7 @@ public class PGCommand extends BosterCommand {
         super(BosterParticles.getInstance(), gui.getCommands().get(0));
         this.gui = gui;
         if(gui.getCommands().size() > 1) {
-            List<String> aliases = List.copyOf(gui.getCommands());
+            List<String> aliases = Lists.newCopyOnWriteArrayList(gui.getCommands());
             setAliases(aliases.subList(1, aliases.size()));
         }
         register();

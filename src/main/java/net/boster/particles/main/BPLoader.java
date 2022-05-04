@@ -17,10 +17,9 @@ import net.boster.particles.main.files.MenuFile;
 import net.boster.particles.main.gui.ParticlesGUI;
 import net.boster.particles.main.utils.ConfigUtils;
 import net.boster.particles.main.utils.CustomTrailsUtils;
-import net.boster.particles.main.utils.LogType;
-import net.boster.particles.main.utils.creator.ItemCreator;
-import net.boster.particles.main.utils.creator.NewItemCreator;
-import net.boster.particles.main.utils.creator.OldItemCreator;
+import net.boster.particles.main.utils.log.LogType;
+import net.boster.particles.main.utils.item.ItemManager;
+import net.boster.particles.main.utils.item.ItemManagerImpl;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -42,8 +41,7 @@ public class BPLoader {
     public int RunnableDelay = 0;
     public boolean LoadPlayerTrailsAsync = true;
 
-    @Getter private final boolean oldVersion;
-    @Getter @NotNull private final ItemCreator itemCreator;
+    @Getter @Setter @NotNull private ItemManager itemManager;
 
     public final Set<LogType> enabledLoggers = new HashSet<>();
 
@@ -54,12 +52,7 @@ public class BPLoader {
     public BPLoader(BosterParticles plugin) {
         this.plugin = plugin;
         String ver = Bukkit.getServer().getClass().getPackage().getName();
-        this.oldVersion = Integer.parseInt(ver.substring(ver.lastIndexOf('.') + 1).split("_")[1]) < 13;
-        if(this.oldVersion) {
-            this.itemCreator = new OldItemCreator();
-        } else {
-            this.itemCreator = new NewItemCreator();
-        }
+        this.itemManager = new ItemManagerImpl();
 
         if(plugin.getConfig().getBoolean("Settings.CheckForUpdates", false)) {
             plugin.enabledUpdater();

@@ -1,5 +1,6 @@
 package net.boster.particles.main.gui.multipage;
 
+import com.google.common.collect.Lists;
 import lombok.Getter;
 import lombok.Setter;
 import net.boster.particles.main.BosterParticles;
@@ -34,7 +35,7 @@ public class MultiPageGUI {
 
     @Getter @Setter @Nullable private String title;
     @Getter final private int size;
-    @Getter @Nullable Inventory gui;
+    @Getter @Nullable private Inventory gui;
     @Getter @NotNull private final Player p;
     @Getter private final int pages;
     @Getter private int pageNumber = 1;
@@ -194,7 +195,7 @@ public class MultiPageGUI {
         Bukkit.getScheduler().runTaskLater(BosterParticles.getInstance(), () -> {
             closed = false;
             closedTask = null;
-            if(!p.isOnline() || gui != p.getOpenInventory().getTopInventory()) {
+            if(!p.isOnline()) {
                 clear();
             }
         }, ticks);
@@ -215,7 +216,7 @@ public class MultiPageGUI {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(Utils.toColor(text));
         item.setItemMeta(meta);
-        return List.of(new MultiPageButton() {
+        return Lists.newArrayList(new MultiPageButton() {
             @Override
             public int getSlot() {
                 return slot;
@@ -234,12 +235,12 @@ public class MultiPageGUI {
             @Override
             public void performPage(MultiPageGUI gui) {
                 boolean b;
-                if(next) {
+                if (next) {
                     b = gui.newPage();
                 } else {
                     b = gui.pastPage();
                 }
-                if(b) {
+                if (b) {
                     gui.open();
                 }
             }

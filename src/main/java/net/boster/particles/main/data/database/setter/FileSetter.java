@@ -1,6 +1,7 @@
 package net.boster.particles.main.data.database.setter;
 
 import net.boster.particles.main.BosterParticles;
+import net.boster.particles.main.files.UserFile;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.jetbrains.annotations.NotNull;
 
@@ -31,7 +32,9 @@ public class FileSetter implements DataSetter {
 
     @Override
     public void save(String uuid, FileConfiguration file) {
-        BosterParticles.getInstance().getFileManager().getUserFile(uuid).save();
+        UserFile f = BosterParticles.getInstance().getFileManager().getUserFile(uuid);
+        f.setConfiguration(file);
+        f.save();
     }
 
     @Override

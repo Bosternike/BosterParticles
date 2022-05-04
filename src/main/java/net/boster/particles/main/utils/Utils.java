@@ -6,10 +6,11 @@ import net.boster.particles.main.BosterParticles;
 import net.boster.particles.main.utils.colorutils.ColorUtils;
 import net.boster.particles.main.utils.colorutils.NewColorUtils;
 import net.boster.particles.main.utils.colorutils.OldColorUtils;
+import net.boster.particles.main.utils.item.ItemManager;
 import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -20,10 +21,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class Utils {
 
@@ -134,17 +132,19 @@ public class Utils {
     public static ItemStack getItemStack(ConfigurationSection section, String... replaces) {
         if(section == null) return null;
 
+        ItemManager manager = BosterParticles.getInstance().getLoader().getItemManager();
+
         ItemStack item;
         if(section.getString("head") != null) {
             item = getCustomSkull(toReplaces(section.getString("head"), replaces));
         } else if(section.getString("skull") != null) {
             item = SKULL.clone();
             SkullMeta meta = (SkullMeta) item.getItemMeta();
-            meta.setOwningPlayer(Bukkit.getOfflinePlayer(toReplaces(section.getString("skull"), replaces)));
+            manager.setOwner(meta, toReplaces(section.getString("skull"), replaces));
             item.setItemMeta(meta);
         } else {
             try {
-                item = BosterParticles.getInstance().getLoader().getItemCreator().createItem(toReplaces(section.getString("material"), replaces));
+                item = manager.createItem(toReplaces(section.getString("material"), replaces));
             } catch (Exception e) {
                 return null;
             }
@@ -156,9 +156,17 @@ public class Utils {
         List<String> lore = new ArrayList<>();
         section.getStringList("lore").forEach(s -> lore.add(toColor(toReplaces(s, replaces))));
         meta.setLore(lore);
-        if(section.getString("CustomModelData") != null) {
-            meta.setCustomModelData(section.getInt("CustomModelData"));
+        if(section.get("CustomModelData") != null) {
+            manager.setCustomModelData(meta, section.getInt("CustomModelData"));
         }
+
+        int damage = section.getInt("damage", -1);
+        if(damage > -1) {
+            item.setDurability((short) damage);
+        }
+
+        meta.addItemFlags(ItemFlag.values());
+
         item.setItemMeta(meta);
         return item;
     }

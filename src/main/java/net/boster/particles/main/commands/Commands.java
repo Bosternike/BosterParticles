@@ -1,13 +1,16 @@
 package net.boster.particles.main.commands;
 
+import com.google.common.collect.Lists;
 import net.boster.particles.main.BosterParticles;
 import net.boster.particles.main.data.PlayerData;
 import net.boster.particles.main.data.database.DataConverter;
 import net.boster.particles.main.data.extensions.PlayerDataExtension;
 import net.boster.particles.main.gui.manage.MenusListGUI;
-import net.boster.particles.main.particle.CraftTrail;
+import net.boster.particles.main.trail.CraftTrail;
 import net.boster.particles.main.utils.CustomTrailsUtils;
 import net.boster.particles.main.utils.Utils;
+import net.boster.particles.main.utils.Version;
+import net.boster.particles.main.particle.EnumBosterParticle;
 import org.bukkit.*;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.HumanEntity;
@@ -20,7 +23,7 @@ import java.util.stream.Collectors;
 
 public class Commands extends BosterCommand {
 
-    private final List<String> subCommands = List.of("reload", "set", "menus", "list");
+    private final List<String> subCommands = Lists.newArrayList("reload", "set", "menus", "list");
 
     public Commands(BosterParticles plugin) {
         super(plugin, "bosterparticles", "bostertrails");
@@ -114,9 +117,11 @@ public class Commands extends BosterCommand {
         }
         dt = "";
         String particles = "";
-        for(Particle particle : Particle.values()) {
-            particles += dt + particle.name();
-            dt = dot;
+        for(EnumBosterParticle particle : EnumBosterParticle.values()) {
+            if(particle.getVersion().getVersionInteger() <= Version.getCurrentVersion().getVersionInteger()) {
+                particles += dt + particle.name();
+                dt = dot;
+            }
         }
         for(String s : plugin.getConfig().getStringList("Messages.list." + path + ".format")) {
             sender.sendMessage(BosterParticles.toColor(s.replace("%classes%", classes)

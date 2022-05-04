@@ -1,6 +1,6 @@
 package net.boster.particles.main;
 
-import net.boster.particles.main.utils.LogType;
+import net.boster.particles.main.utils.log.LogType;
 import org.bukkit.Bukkit;
 
 import java.io.IOException;
