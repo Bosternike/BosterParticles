@@ -27,7 +27,7 @@
     <br />
     <a href="https://github.com/Bosternike/BosterParticles/issues">Report Bug</a>
     ·
-    <a href="https://github.com/Bosternike/BosterParticles/issues">Request Feature</a>
+    <a href="https://discord.gg/vAkXjrsf3E">Request Feature</a>
   </p>
 </div>
 
