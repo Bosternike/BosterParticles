@@ -48,7 +48,7 @@ Messages:
   help:
   - '&f'
   - '&f Reload the plugin &7- &d/bosterparticles reload'
-  - '&f List of particles &7- &d/bosterparticles list [classes&7/&dextensions&7/&dparticles]'
+  - '&f List &7- &d/bosterparticles list [classes&7/&dextensions&7/&dparticles]'
   - '&f Set custom trail &7- &d/bosterparticles set [user] [trail]'
   - '&f List menus and managing them &7- &d/bosterparticles menus'
   - '&f'

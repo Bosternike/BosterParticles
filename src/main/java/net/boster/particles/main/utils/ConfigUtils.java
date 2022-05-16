@@ -42,8 +42,11 @@ public class ConfigUtils {
         return name;
     }
 
-    public static boolean hasAllStrings(@NotNull ConfigurationSection instance, @NotNull ConfigurationSection toCheck) {
+    public static boolean hasAllStrings(@NotNull ConfigurationSection instance, @NotNull ConfigurationSection toCheck, List<String> skip) {
+        String parent = instance.getCurrentPath() != null && !instance.getCurrentPath().isEmpty() ? instance.getCurrentPath() + "." : "";
+
         for(String k : instance.getKeys(false)) {
+            if(skip.contains(parent + k)) continue;
             if(toCheck.get(k) == null) return false;
 
             ConfigurationSection ns = instance.getConfigurationSection(k);
@@ -52,7 +55,7 @@ public class ConfigUtils {
                 if(nc == null) {
                     return false;
                 } else {
-                    if(!hasAllStrings(ns, nc)) {
+                    if(!hasAllStrings(ns, nc, skip)) {
                         return false;
                     }
                 }

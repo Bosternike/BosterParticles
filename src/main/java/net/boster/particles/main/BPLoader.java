@@ -1,5 +1,6 @@
 package net.boster.particles.main;
 
+import com.google.common.collect.Lists;
 import lombok.Getter;
 import lombok.Setter;
 import net.boster.particles.main.commands.BosterCommand;
@@ -85,7 +86,7 @@ public class BPLoader {
     public void loadFiles() {
         FileConfiguration cfg = YamlConfiguration.loadConfiguration(new InputStreamReader(plugin.getResource("config.yml")));
         File cf = new File(plugin.getDataFolder(), "config.yml");
-        if(!ConfigUtils.hasAllStrings(cfg, YamlConfiguration.loadConfiguration(cf))) {
+        if(!ConfigUtils.hasAllStrings(cfg, YamlConfiguration.loadConfiguration(cf), Lists.newArrayList("CustomTrails"))) {
             ConfigUtils.replaceOldConfig(cf, cf, plugin.getResource("config.yml"));
         }
         File usage = new File(plugin.getDataFolder(), "usage_" + plugin.getDescription().getVersion() + ".txt");
