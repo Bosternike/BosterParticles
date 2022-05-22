@@ -1,7 +1,6 @@
 <div id="top"></div>
 
-[![Codacy grade](https://img.shields.io/codacy/grade/91ad505649d04852adf09c91af776106?color=CD019E&style=for-the-badge)](https://www.codacy.com/gh/Bosternike/BosterParticles/dashboard)
-<br />
+[![Codacy grade](https://img.shields.io/codacy/grade/91ad505649d04852adf09c91af776106?color=A8009E&style=for-the-badge)](https://www.codacy.com/gh/Bosternike/BosterParticles/dashboard)
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
