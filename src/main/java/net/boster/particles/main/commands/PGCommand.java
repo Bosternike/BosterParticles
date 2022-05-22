@@ -2,6 +2,7 @@ package net.boster.particles.main.commands;
 
 import com.google.common.collect.Lists;
 import net.boster.particles.main.BosterParticles;
+import net.boster.particles.main.data.PlayerData;
 import net.boster.particles.main.gui.ParticlesGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -31,8 +32,9 @@ public class PGCommand extends BosterCommand {
         if(args.length == 0) {
             if(!checkPlayer(sender)) return false;
 
-            if(gui.getPermission() != null && !sender.hasPermission(gui.getPermission())) {
+            if(gui.getPermission() != null && !PlayerData.get((Player) sender).hasPermission(gui.getPermission())) {
                 sendNoPerms(sender);
+                return false;
             }
 
             gui.open((Player) sender);

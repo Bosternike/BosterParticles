@@ -37,6 +37,7 @@ public class ReflectionUtils {
                 classCache.put("PacketPlayOutWorldParticles", Class.forName("net.minecraft.server." + version + ".PacketPlayOutWorldParticles"));
                 classCache.put("Packet", Class.forName("net.minecraft.server." + version + ".Packet"));
                 classCache.put("EntityPlayer", Class.forName("net.minecraft.server." + version + ".EntityPlayer"));
+                classCache.put("PlayerConnection", Class.forName("net.minecraft.server." + version + ".PlayerConnection"));
 
                 classCache.put("CraftServer", Class.forName("org.bukkit.craftbukkit." + version + ".CraftServer"));
                 classCache.put("CraftPlayer", Class.forName("org.bukkit.craftbukkit." + version + ".entity.CraftPlayer"));
@@ -78,7 +79,7 @@ public class ReflectionUtils {
         try {
             Object np = playerHandle.invoke(p);
             Object c = playerConnection.get(np);
-            c.getClass().getMethod("sendPacket", classCache.get("Packet")).invoke(c, packet);
+            classCache.get("PlayerConnection").getMethod("sendPacket", classCache.get("Packet")).invoke(c, packet);
         } catch (Exception e) {
             e.printStackTrace();
         }

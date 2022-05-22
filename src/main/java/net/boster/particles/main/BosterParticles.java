@@ -6,7 +6,6 @@ import net.boster.particles.main.data.FileManager;
 import net.boster.particles.main.data.PlayerData;
 import net.boster.particles.main.data.database.DatabaseRunnable;
 import net.boster.particles.main.data.database.setter.DataSetter;
-import net.boster.particles.main.data.extensions.PlayerDataExtension;
 import net.boster.particles.main.data.extensions.PlayerTrailExtension;
 import net.boster.particles.main.lib.PAPISupport;
 import net.boster.particles.main.lib.VaultSupport;
@@ -14,14 +13,15 @@ import net.boster.particles.main.listeners.Events;
 import net.boster.particles.main.listeners.InventoryListener;
 import net.boster.particles.main.listeners.pickup.NewPickupListener;
 import net.boster.particles.main.listeners.pickup.OldPickupListener;
-import net.boster.particles.main.trail.CraftTrail;
 import net.boster.particles.main.utils.Version;
 import net.boster.particles.main.utils.log.LogType;
 import net.boster.particles.main.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class BosterParticles extends JavaPlugin {
 
@@ -30,6 +30,7 @@ public class BosterParticles extends JavaPlugin {
     @Getter private BPLoader loader;
     @Getter private FileManager fileManager;
     @Getter @Setter @NotNull private DataSetter dataSetter;
+    @Getter @Nullable private BukkitTask updaterTask;
 
     public void onEnable() {
         instance = this;
@@ -50,7 +51,7 @@ public class BosterParticles extends JavaPlugin {
         DatabaseRunnable.enable();
         PAPISupport.load();
         VaultSupport.load();
-        registerPlayerDataExtension("player_trail_extension", PlayerTrailExtension.class);
+        PlayerData.registerExtension("player_trail_extension", PlayerTrailExtension.class);
 
         loader = new BPLoader(this);
         fileManager = new FileManager(this);
@@ -86,9 +87,13 @@ public class BosterParticles extends JavaPlugin {
         }
     }
 
-    public void enabledUpdater() {
+    public void enableUpdater(int delay) {
+        if(updaterTask != null) {
+            updaterTask.cancel();
+        }
+
         UpdateChecker c = new UpdateChecker(this, 100933);
-        getServer().getScheduler().runTaskTimer(this, () -> {
+        updaterTask = getServer().getScheduler().runTaskTimer(this, () -> {
             c.getVersion(version -> {
                 if(!getDescription().getVersion().equals(version)) {
                     log("There is a new update available!", LogType.UPDATER);
@@ -97,7 +102,7 @@ public class BosterParticles extends JavaPlugin {
                     log("Download link:&a https://www.spigotmc.org/resources/bosterparticles.100933/", LogType.UPDATER);
                 }
             });
-        }, 0, 3600 * 20);
+        }, 0, delay * 20L);
     }
 
     public static String toColor(String s) {
@@ -108,13 +113,5 @@ public class BosterParticles extends JavaPlugin {
         if(log.isToggleAble() && !loader.enabledLoggers.contains(log)) return;
 
         Bukkit.getConsoleSender().sendMessage(log.getFormat() + log.getColor() + toColor(s));
-    }
-
-    public static void registerTrailsExtension(@NotNull Class<? extends CraftTrail> clazz) {
-        CraftTrail.register(clazz);
-    }
-
-    public static boolean registerPlayerDataExtension(@NotNull String id, @NotNull Class<? extends PlayerDataExtension> clazz) {
-        return PlayerData.registerExtension(id, clazz);
     }
 }

@@ -1,16 +1,21 @@
 package net.boster.particles.main.data;
 
 import net.boster.particles.main.BosterParticles;
+import net.boster.particles.main.api.extension.EconomyExtension;
+import net.boster.particles.main.api.extension.PermissionsExtension;
 import net.boster.particles.main.data.database.DataConverter;
 import net.boster.particles.main.data.database.DatabaseRunnable;
 import net.boster.particles.main.data.database.setter.FileSetter;
 import net.boster.particles.main.data.extensions.PlayerDataExtension;
 import net.boster.particles.main.files.UserFile;
+import net.boster.particles.main.lib.VaultSupport;
 import net.boster.particles.main.trail.CraftTrail;
 import net.boster.particles.main.utils.log.LogType;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
@@ -25,7 +30,10 @@ public class PlayerData {
 
     public final Player p;
 
-    public FileConfiguration data;
+    @NotNull public FileConfiguration data = new YamlConfiguration();
+
+    @Nullable public EconomyExtension economyExtension;
+    @Nullable public PermissionsExtension permissionsExtension;
 
     public PlayerData(@NotNull Player p) {
         this.p = p;
@@ -137,5 +145,43 @@ public class PlayerData {
             registeredExtensions.put(id, clazz);
             return true;
         }
+    }
+
+    public double requestBalance() {
+        double originalAmount = VaultSupport.getBalance(p);
+
+        if(economyExtension != null) {
+            Optional<Double> o = economyExtension.requestBalance(p, originalAmount);
+            return o.orElse(originalAmount);
+        } else {
+            return originalAmount;
+        }
+    }
+
+    public void withdrawMoney(double amount) {
+        if(economyExtension != null) {
+            Optional<Double> o = economyExtension.withdrawMoney(p, amount);
+            if(o == null) {
+                return;
+            } else {
+                if(o.isPresent()) {
+                    VaultSupport.withdrawMoney(p, o.get());
+                    return;
+                }
+            }
+        }
+
+        VaultSupport.withdrawMoney(p, amount);
+    }
+
+    public boolean hasPermission(@NotNull String permission) {
+        if(permissionsExtension != null) {
+            Optional<Boolean> o = permissionsExtension.hasPermission(p, permission);
+            if(o.isPresent()) {
+                return o.get();
+            }
+        }
+
+        return p.hasPermission(permission);
     }
 }

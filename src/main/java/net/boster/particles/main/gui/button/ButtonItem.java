@@ -146,19 +146,25 @@ public class ButtonItem implements GUIButton {
 
     @Override
     public void onClick(Player p) {
-        if(permission != null && !p.hasPermission(permission)) {
+        PlayerData d = PlayerData.get(p);
+
+        if(permission != null && !d.hasPermission(permission)) {
             if(noPermissionActions != null) {
                 noPermissionActions.act(p);
             }
             return;
         }
 
-        double bal = VaultSupport.getBalance(p);
-        if(price > -1 && bal < price) {
-            if(notEnoughMoneyActions != null) {
-                notEnoughMoneyActions.act(p, "%cost%", Integer.toString((int) price), "%need%", Integer.toString((int) (price - bal)));
+        if(price > -1) {
+            double bal = d.requestBalance();
+            if(bal < price) {
+                if(notEnoughMoneyActions != null) {
+                    notEnoughMoneyActions.act(p, "%cost%", Integer.toString((int) price), "%need%", Integer.toString((int) (price - bal)));
+                }
+                return;
             }
-            return;
+
+            d.withdrawMoney(price);
         }
 
         if(successfulActions != null) {

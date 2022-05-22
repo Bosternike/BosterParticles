@@ -52,27 +52,12 @@ public class BPLoader {
 
     public BPLoader(BosterParticles plugin) {
         this.plugin = plugin;
-        String ver = Bukkit.getServer().getClass().getPackage().getName();
         this.itemManager = new ItemManagerImpl();
-
-        if(plugin.getConfig().getBoolean("Settings.CheckForUpdates", false)) {
-            plugin.enabledUpdater();
-        }
-
-        try {
-            storage = EnumStorage.valueOf(plugin.getConfig().getString("Storage"));
-        } catch (Exception e) {
-            storage = EnumStorage.YAML;
-        }
     }
 
     public void load() {
         new Commands(plugin);
-        for(String l : plugin.getConfig().getStringList("Settings.EnabledLoggers")) {
-            try {
-                enabledLoggers.add(LogType.valueOf(l));
-            } catch (Exception ignored) {}
-        }
+
         loadFiles();
         loadMenusFiles();
         loadMenus();
@@ -81,6 +66,21 @@ public class BPLoader {
         CustomTrailsUtils.load();
         plugin.getServer().getScheduler().runTaskLater(plugin, this::loadPlayers, 20);
         BosterCommand.load();
+
+        for(String l : plugin.getConfig().getStringList("Settings.EnabledLoggers")) {
+            try {
+                enabledLoggers.add(LogType.valueOf(l));
+            } catch (Exception ignored) {}
+        }
+        if(plugin.getConfig().getBoolean("Updater.Enabled", false)) {
+            plugin.enableUpdater(plugin.getConfig().getInt("Updater.Delay", 3600));
+        }
+
+        try {
+            storage = EnumStorage.valueOf(plugin.getConfig().getString("Storage"));
+        } catch (Exception e) {
+            storage = EnumStorage.YAML;
+        }
     }
 
     public void loadFiles() {

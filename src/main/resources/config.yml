@@ -20,9 +20,13 @@ MySql:
   password: ''
   database: ''
 
+Updater:
+  Enabled: true
+  # Delay in seconds.
+  Delay: 3600
+
 Settings:
   Prefix: '&d&lBosterParticles &8&l|'
-  CheckForUpdates: true
   RunnableDelay: 0
   # User key types:
   # - UUID

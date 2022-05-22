@@ -1,10 +1,10 @@
-import net.boster.particles.main.BosterParticles;
+import net.boster.particles.main.api.BosterParticlesAPI;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class ExampleMain extends JavaPlugin {
 
     public void onEnable() {
-        BosterParticles.registerPlayerDataExtension("example_extension", ExampleExtension.class);
-        BosterParticles.registerTrailsExtension(ExampleTrailExtension.class);
+        BosterParticlesAPI.registerPlayerDataExtension("example_extension", ExampleExtension.class);
+        BosterParticlesAPI.registerTrailsExtension(ExampleTrailExtension.class);
     }
 }
