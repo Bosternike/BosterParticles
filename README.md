@@ -1,6 +1,6 @@
 <div id="top"></div>
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/bf425571a86e4691a172e2b61ba40956)](https://www.codacy.com/gh/Bosternike/BosterParticles/dashboard)
+[![Codacy grade](https://img.shields.io/codacy/grade/91ad505649d04852adf09c91af776106?color=CD019E&style=for-the-badge)](https://www.codacy.com/gh/Bosternike/BosterParticles/dashboard)
 <br />
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
