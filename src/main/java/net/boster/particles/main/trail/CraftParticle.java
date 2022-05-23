@@ -39,14 +39,14 @@ public class CraftParticle extends CraftTrail {
     @Override
     public void spawn(@NotNull Location loc) {
         if(particle == null) {
-            BosterParticles.getInstance().log("&7Could not spawn Particle because it's null. (Location = " + loc.toString() + "; Player = " + player + ")", LogType.ERROR);
+            BosterParticles.getInstance().log("&7Could not spawn Particle because it's null. (Location = " + loc + "; Player = " + player + ")", LogType.ERROR);
             return;
         }
 
         try {
             particle.defaultSpawn(loc);
         } catch (Exception e) {
-            BosterParticles.getInstance().log("&7Could not spawn BosterParticle \"&e" + particle + "&7\". (Location = " + loc.toString() + "; Player = " + player + ")", LogType.ERROR);
+            BosterParticles.getInstance().log("&7Could not spawn BosterParticle \"&e" + particle + "&7\". (Location = " + loc + "; Player = " + player + ")", LogType.ERROR);
         }
     }
 }

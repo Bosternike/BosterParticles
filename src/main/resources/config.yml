@@ -83,12 +83,23 @@ CustomTrails:
   example:
     ClearSections:
     - 'Particles'
+    - 'Items'
     SetToFile:
       Items:
         1:
-          Material: EMERALD
+          ItemStack:
+            material: EMERALD
+            name: '&aEmerald'
+            lore:
+              - ''
+              - '&eExample lore'
           Amount: 1
-          PickupAble: false
-          LifeTime: 40
+          PickupAble: true
+          LifeTime: -1
+      Particles:
+        1:
+          Type: HEART
+          Amount: 1
+          DustOptions: none
 
       

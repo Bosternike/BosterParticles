@@ -11,8 +11,10 @@ import net.boster.particles.main.lib.PAPISupport;
 import net.boster.particles.main.lib.VaultSupport;
 import net.boster.particles.main.listeners.Events;
 import net.boster.particles.main.listeners.InventoryListener;
+import net.boster.particles.main.listeners.merge.ItemMergeListener;
 import net.boster.particles.main.listeners.pickup.NewPickupListener;
 import net.boster.particles.main.listeners.pickup.OldPickupListener;
+import net.boster.particles.main.nms.NMSProvider;
 import net.boster.particles.main.utils.Version;
 import net.boster.particles.main.utils.log.LogType;
 import net.boster.particles.main.utils.Utils;
@@ -48,6 +50,7 @@ public class BosterParticles extends JavaPlugin {
 
         Bukkit.getConsoleSender().sendMessage(PREFIX);
 
+        NMSProvider.load();
         DatabaseRunnable.enable();
         PAPISupport.load();
         VaultSupport.load();
@@ -84,6 +87,9 @@ public class BosterParticles extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new OldPickupListener(), this);
         } else {
             getServer().getPluginManager().registerEvents(new NewPickupListener(), this);
+        }
+        if(Version.getCurrentVersion().getVersionInteger() > 3) {
+            getServer().getPluginManager().registerEvents(new ItemMergeListener(), this);
         }
     }
 

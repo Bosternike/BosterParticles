@@ -506,7 +506,12 @@ Items:
       SetToFile:
         Items:
           1:
-            Material: IRON_INGOT
+            ItemStack:
+              material: IRON_INGOT
+              name: '&7Iron ingot'
+              lore:
+                - ''
+                - '&eExample lore'
             Amount: 1
             PickupAble: false
             LifeTime: 40 # Time in ticks until the item is removed. 20 ticks = 1 second.
