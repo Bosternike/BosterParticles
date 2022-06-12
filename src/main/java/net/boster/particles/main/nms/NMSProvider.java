@@ -8,6 +8,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class NMSProvider {
 
+    public static final String NO_MERGE = "§bBosterParticles §eitem, that can't be merged!";
+
     private static EntityItemNMS entityItemNMS;
 
     public static void load() {
@@ -31,7 +33,13 @@ public class NMSProvider {
         if(entityItemNMS != null) {
             return entityItemNMS.create(loc, item);
         } else {
-            return loc.getWorld().dropItemNaturally(loc, item.clone());
+            return setMergeLess(loc.getWorld().dropItemNaturally(loc, item.clone()));
         }
+    }
+
+    public static Item setMergeLess(@NotNull Item ent) {
+        ent.setCustomNameVisible(false);
+        ent.setCustomName(NO_MERGE);
+        return ent;
     }
 }

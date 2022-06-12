@@ -19,7 +19,7 @@ public class MySqlConnectionUtils implements ConnectedDatabase {
                 return false;
             }
             BosterParticles.getInstance().log("Connecting to database...", LogType.INFO);
-            connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database + "", user, password);
+            connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, user, password);
             createTableIfNotExists();
             startAntiTimeOut();
             BosterParticles.getInstance().log("Database connection done!", LogType.FINE);
@@ -47,8 +47,9 @@ public class MySqlConnectionUtils implements ConnectedDatabase {
     }
 
     public void stopAntiTimeOut() {
-        if(antiTimeOut != null && !antiTimeOut.isCancelled()) {
+        if(antiTimeOut != null) {
             antiTimeOut.cancel();
+            antiTimeOut = null;
         }
     }
 

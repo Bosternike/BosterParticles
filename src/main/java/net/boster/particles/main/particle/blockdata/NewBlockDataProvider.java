@@ -7,7 +7,7 @@ import org.jetbrains.annotations.Nullable;
 public class NewBlockDataProvider implements BlockDataProvider {
 
     @Override
-    public @Nullable Object create(@NotNull Material material) {
-        return material.createBlockData();
+    public @Nullable BPBlockData create(@NotNull Material material) {
+        return material::createBlockData;
     }
 }

@@ -3,6 +3,9 @@ package net.boster.particles.main.particle;
 import lombok.Getter;
 import lombok.Setter;
 import net.boster.particles.main.BosterParticles;
+import net.boster.particles.main.particle.blockdata.BPBlockData;
+import net.boster.particles.main.particle.dust.BPDustOptions;
+import net.boster.particles.main.utils.Utils;
 import net.boster.particles.main.utils.log.LogType;
 import net.boster.particles.main.utils.Version;
 import net.boster.particles.main.particle.blockdata.BlockDataUtils;
@@ -14,6 +17,9 @@ import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.io.IOException;
+import java.util.Objects;
 
 public class BosterParticle {
 
@@ -31,14 +37,14 @@ public class BosterParticle {
     @Getter @Setter @NotNull private Object object;
     @Getter @Setter private int amount;
     @Getter @Setter private double options;
-    @Getter @Setter @Nullable private Object dustOptions;
-    @Getter @Setter @Nullable private Object blockData;
+    @Getter @Setter @Nullable private BPDustOptions dustOptions;
+    @Getter @Setter @Nullable private BPBlockData blockData;
 
     @Getter @Setter private double x,
             y,
             z;
 
-    public BosterParticle(@NotNull EnumBosterParticle particle, int amount, double options, @Nullable Object dustOptions, @Nullable Object blockData, double x, double y, double z) {
+    public BosterParticle(@NotNull EnumBosterParticle particle, int amount, double options, @Nullable BPDustOptions dustOptions, @Nullable BPBlockData blockData, double x, double y, double z) {
         this.particle = particle;
         this.object = provider.prepareObject(particle);
         this.amount = amount;
@@ -50,12 +56,16 @@ public class BosterParticle {
         this.z = z;
     }
 
-    public BosterParticle(@NotNull EnumBosterParticle particle, int amount, double options, @Nullable Object dustOptions, @Nullable Object blockData) {
+    public BosterParticle(@NotNull EnumBosterParticle particle, int amount, double options, @Nullable BPDustOptions dustOptions, @Nullable BPBlockData blockData) {
         this(particle, amount, options, dustOptions, blockData, 0, 0, 0);
     }
 
-    public BosterParticle(@NotNull EnumBosterParticle particle, int amount, double options, @Nullable Object dustOptions) {
+    public BosterParticle(@NotNull EnumBosterParticle particle, int amount, double options, @Nullable BPDustOptions dustOptions) {
         this(particle, amount, options, dustOptions, null, 0, 0, 0);
+    }
+
+    public BosterParticle(@NotNull EnumBosterParticle particle, int amount, double options, @Nullable BPBlockData blockData) {
+        this(particle, amount, options, null, blockData, 0, 0, 0);
     }
 
     public BosterParticle(@NotNull EnumBosterParticle particle, int amount, double options) {
@@ -70,10 +80,17 @@ public class BosterParticle {
         this(particle, 1, 0, null, null, 0, 0, 0);
     }
 
-    public BosterParticle(@NotNull EnumBosterParticle particle, @Nullable Object dustOptions) {
+    public BosterParticle(@NotNull EnumBosterParticle particle, @Nullable BPDustOptions dustOptions) {
         this(particle, 1, 0, dustOptions, null, 0, 0, 0);
     }
 
+    public BosterParticle(@NotNull EnumBosterParticle particle, @Nullable BPBlockData blockData) {
+        this(particle, 1, 0, null, blockData, 0, 0, 0);
+    }
+
+    /**
+     * This method includes catching thrown exception.
+     */
     public void spawn(Location loc) {
         try {
             defaultSpawn(loc);
@@ -82,11 +99,14 @@ public class BosterParticle {
         }
     }
 
+    /**
+     * This method can throw an exception.
+     */
     public void defaultSpawn(@NotNull Location loc) {
         if(blockData != null) {
-            provider.play(object, loc, amount, x, y, z, options, blockData);
+            provider.play(object, loc, amount, x, y, z, options, blockData.get());
         } else if(dustOptions != null) {
-            provider.play(object, loc, amount, x, y, z, options, dustOptions);
+            provider.play(object, loc, amount, x, y, z, options, dustOptions.get());
         } else {
             provider.play(object, loc, amount, x, y, z, options);
         }
@@ -146,5 +166,13 @@ public class BosterParticle {
         bp.setY(particle.getDouble("Y", 0));
         bp.setZ(particle.getDouble("Z", 0));
         return bp;
+    }
+
+    public @NotNull String serialize() {
+        return Objects.requireNonNull(Utils.encode(this));
+    }
+
+    public static @NotNull BosterParticle deserialize(@NotNull String s) throws IOException, ClassNotFoundException {
+        return Utils.decode(s, BosterParticle.class);
     }
 }

@@ -17,7 +17,6 @@ import org.jetbrains.annotations.NotNull;
 public class CraftItemTrail extends CraftTrail {
 
     public static final String NO_PICKUP = "§bBosterParticles §eitem, that can't be picked up!";
-    public static final String NO_MERGE = "§bBosterParticles §eitem, that can't be merged!";
 
     public final Player p;
     public final String player;
@@ -81,8 +80,6 @@ public class CraftItemTrail extends CraftTrail {
             ent.setCustomNameVisible(false);
             if(!pickupAble) {
                 ent.setCustomName(NO_PICKUP);
-            } else {
-                ent.setCustomName(NO_MERGE);
             }
 
             if(lifeTime > -1) {

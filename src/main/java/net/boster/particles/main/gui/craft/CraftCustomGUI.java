@@ -18,7 +18,7 @@ public class CraftCustomGUI {
 
     private final HashMap<Integer, GUIButton> buttons = new HashMap<>();
 
-    @Getter private int size;
+    @Getter private int size = 9;
     @Getter @Setter @Nullable private String title;
 
     @Getter @Setter @Nullable private CraftGUIActions actions;

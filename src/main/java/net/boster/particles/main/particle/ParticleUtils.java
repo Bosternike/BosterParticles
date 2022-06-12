@@ -102,6 +102,12 @@ public class ParticleUtils {
 
     public static void runDampenedRadialWaves(Location location) {
         Location loc = location.clone();
+        BosterParticle particle = new BosterParticle(EnumBosterParticle.FIREWORKS_SPARK);
+        particle.setAmount(0);
+        particle.setOptions(1);
+        BosterParticle spell_particle = new BosterParticle(EnumBosterParticle.SPELL_WITCH);
+        spell_particle.setAmount(0);
+        spell_particle.setOptions(1);
         new BukkitRunnable() {
             double t = Math.PI / 4;
 
@@ -112,7 +118,7 @@ public class ParticleUtils {
                     double y = 2 * Math.exp(-0.1 * t) * Math.sin(t) + 1.5;
                     double z = t * Math.sin(theta);
                     loc.add(x, y, z);
-                    loc.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, loc, 0, 0, 0, 0, 1);
+                    particle.spawn(loc);
                     loc.subtract(x, y, z);
 
                     theta = theta + Math.PI / 64;
@@ -121,7 +127,7 @@ public class ParticleUtils {
                     y = 2 * Math.exp(-0.1*t) * Math.sin(t) + 1.5;
                     z = t * Math.sin(theta);
                     loc.add(x, y, z);
-                    loc.getWorld().spawnParticle(Particle.SPELL_WITCH, loc, 0, 0, 0, 0, 1);
+                    spell_particle.spawn(loc);
                     loc.subtract(x, y, z);
                 }
                 if(t > 20) {

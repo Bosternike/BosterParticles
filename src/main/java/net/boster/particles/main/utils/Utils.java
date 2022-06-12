@@ -16,6 +16,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.util.io.BukkitObjectInputStream;
 import org.bukkit.util.io.BukkitObjectOutputStream;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -47,7 +48,6 @@ public class Utils {
     public static String toColor(String s) {
         if(s == null) return null;
 
-
         return colorUtils.toColor(s.replace("%prefix%", BosterParticles.getInstance().getLoader().getPrefix()));
     }
 
@@ -69,7 +69,7 @@ public class Utils {
         return pages;
     }
 
-    public static int getGUIFirstSlotOfLastRaw(int slots) {
+    public static int getGUIFirstSlotOfLastRow(int slots) {
         if(slots < 9) {
             return 0;
         } else {
@@ -183,14 +183,25 @@ public class Utils {
         }
     }
 
-    public static String decode(String s) {
+    public static <T> T decode(@NotNull String s, @NotNull Class<T> clazz) throws IOException, ClassNotFoundException {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(Base64.getDecoder().decode(s));
+        BukkitObjectInputStream inputStream = new BukkitObjectInputStream(byteArrayInputStream);
+        Object r = inputStream.readObject();
+        inputStream.close();
+        if(r.getClass() == clazz) {
+            return (T) r;
+        } else {
+            throw new ClassCastException("Class " + r.getClass().getName() + " can't be cast to " + clazz.getName());
+        }
+    }
+
+    public static String decode(String s) {
+        if(s == null) return null;
+
         try {
-            BukkitObjectInputStream inputStream = new BukkitObjectInputStream(byteArrayInputStream);
-            String r = inputStream.readObject().toString();
-            inputStream.close();
-            return r;
+            return decode(s, String.class);
         } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
             return null;
         }
     }

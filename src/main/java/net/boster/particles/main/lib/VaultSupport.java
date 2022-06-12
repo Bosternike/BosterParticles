@@ -4,6 +4,7 @@ import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
+import org.jetbrains.annotations.NotNull;
 
 public class VaultSupport {
 	
@@ -13,26 +14,30 @@ public class VaultSupport {
 	
 	public static void load() {
 		try {
-			try {
-				Class.forName("net.milkbowl.vault.permission.Permission");
-				RegisteredServiceProvider<Economy> rsp = Bukkit.getServer().getServicesManager().getRegistration(Economy.class);
-				eco = rsp.getProvider();
-				isLoaded = true;
-			} catch (ClassNotFoundException | NoClassDefFoundError | NullPointerException ignored) {}
-		} catch (Exception ignored) {}
+			Class.forName("net.milkbowl.vault.economy.Economy");
+			RegisteredServiceProvider<Economy> rsp = Bukkit.getServer().getServicesManager().getRegistration(Economy.class);
+			eco = rsp.getProvider();
+			isLoaded = true;
+		} catch (ClassNotFoundException | NoClassDefFoundError | NullPointerException ignored) {}
     }
 
-	public static double getBalance(Player p) {
+	public static double getBalance(@NotNull Player p) {
 		if(isLoaded) {
-			return eco.getBalance(Bukkit.getOfflinePlayer(p.getUniqueId()));
+			return eco.getBalance(p);
 		}
 
 		return 0;
 	}
 
-	public static void withdrawMoney(Player p, double d) {
+	public static void withdrawMoney(@NotNull Player p, double d) {
 		if(isLoaded) {
-			eco.withdrawPlayer(Bukkit.getOfflinePlayer(p.getUniqueId()), d);
+			eco.withdrawPlayer(p, d);
+		}
+	}
+
+	public static void depositMoney(@NotNull Player p, double d) {
+		if(isLoaded) {
+			eco.depositPlayer(p, d);
 		}
 	}
 }

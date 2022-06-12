@@ -20,6 +20,7 @@ public class ReflectionUtils {
 
     private static Method playerHandle;
     private static Field playerConnection;
+    private static Method sendPacket;
 
     private static SimpleCommandMap commandMap;
 
@@ -44,6 +45,7 @@ public class ReflectionUtils {
 
                 playerHandle = classCache.get("CraftPlayer").getMethod("getHandle");
                 playerConnection = classCache.get("EntityPlayer").getField("playerConnection");
+                sendPacket = classCache.get("PlayerConnection").getMethod("sendPacket", classCache.get("Packet"));
             }
         } catch (ReflectiveOperationException e) {
             e.printStackTrace();
@@ -79,7 +81,7 @@ public class ReflectionUtils {
         try {
             Object np = playerHandle.invoke(p);
             Object c = playerConnection.get(np);
-            classCache.get("PlayerConnection").getMethod("sendPacket", classCache.get("Packet")).invoke(c, packet);
+            sendPacket.invoke(c, packet);
         } catch (Exception e) {
             e.printStackTrace();
         }

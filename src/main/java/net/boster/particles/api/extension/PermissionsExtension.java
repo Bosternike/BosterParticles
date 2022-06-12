@@ -1,4 +1,4 @@
-package net.boster.particles.main.api.extension;
+package net.boster.particles.api.extension;
 
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;

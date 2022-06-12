@@ -15,7 +15,7 @@ public class DustOptionsUtils {
         }
     }
 
-    public static @NotNull Object create(int r, int g, int b, int amount) {
+    public static @NotNull BPDustOptions create(int r, int g, int b, int amount) {
         return provider.create(r, g, b, amount);
     }
 }

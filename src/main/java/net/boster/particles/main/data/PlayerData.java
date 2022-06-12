@@ -1,8 +1,9 @@
 package net.boster.particles.main.data;
 
 import net.boster.particles.main.BosterParticles;
-import net.boster.particles.main.api.extension.EconomyExtension;
-import net.boster.particles.main.api.extension.PermissionsExtension;
+import net.boster.particles.api.extension.EconomyExtension;
+import net.boster.particles.api.extension.PermissionsExtension;
+import net.boster.particles.api.extension.PlaceholdersExtension;
 import net.boster.particles.main.data.database.DataConverter;
 import net.boster.particles.main.data.database.DatabaseRunnable;
 import net.boster.particles.main.data.database.setter.FileSetter;
@@ -34,6 +35,7 @@ public class PlayerData {
 
     @Nullable public EconomyExtension economyExtension;
     @Nullable public PermissionsExtension permissionsExtension;
+    @Nullable public PlaceholdersExtension placeholdersExtension;
 
     public PlayerData(@NotNull Player p) {
         this.p = p;
@@ -112,9 +114,8 @@ public class PlayerData {
         for(PlayerDataExtension e : extensions.values()) {
             e.saveData();
         }
-        if(data != null) {
-            BosterParticles.getInstance().getDataSetter().save(DataConverter.convert(p), data);
-        }
+
+        BosterParticles.getInstance().getDataSetter().save(DataConverter.convert(p), data);
     }
 
     public void clearSection(String name) {
@@ -151,8 +152,14 @@ public class PlayerData {
         double originalAmount = VaultSupport.getBalance(p);
 
         if(economyExtension != null) {
-            Optional<Double> o = economyExtension.requestBalance(p, originalAmount);
-            return o.orElse(originalAmount);
+            try {
+                Optional<Double> o = economyExtension.requestBalance(p, originalAmount);
+                return o.orElse(originalAmount);
+            } catch (Throwable e) {
+                BosterParticles.getInstance().log("Generated an exception:", "EconomyExtension", economyExtension, LogType.ERROR);
+                e.printStackTrace();
+                return originalAmount;
+            }
         } else {
             return originalAmount;
         }
@@ -160,14 +167,19 @@ public class PlayerData {
 
     public void withdrawMoney(double amount) {
         if(economyExtension != null) {
-            Optional<Double> o = economyExtension.withdrawMoney(p, amount);
-            if(o == null) {
-                return;
-            } else {
-                if(o.isPresent()) {
-                    VaultSupport.withdrawMoney(p, o.get());
+            try {
+                Optional<Double> o = economyExtension.withdrawMoney(p, amount);
+                if(o == null) {
                     return;
+                } else {
+                    if(o.isPresent()) {
+                        VaultSupport.withdrawMoney(p, o.get());
+                        return;
+                    }
                 }
+            } catch (Throwable e) {
+                BosterParticles.getInstance().log("Generated an exception:", "EconomyExtension", economyExtension, LogType.ERROR);
+                e.printStackTrace();
             }
         }
 
@@ -176,12 +188,30 @@ public class PlayerData {
 
     public boolean hasPermission(@NotNull String permission) {
         if(permissionsExtension != null) {
-            Optional<Boolean> o = permissionsExtension.hasPermission(p, permission);
-            if(o.isPresent()) {
-                return o.get();
+            try {
+                Optional<Boolean> o = permissionsExtension.hasPermission(p, permission);
+                if(o.isPresent()) {
+                    return o.get();
+                }
+            } catch (Throwable e) {
+                BosterParticles.getInstance().log("Generated an exception:", "PermissionsExtension", permissionsExtension, LogType.ERROR);
+                e.printStackTrace();
             }
         }
 
         return p.hasPermission(permission);
+    }
+
+    public @NotNull String setPlaceholders(@NotNull String s) {
+        if(placeholdersExtension != null) {
+            try {
+                return placeholdersExtension.setPlaceholders(p, s);
+            } catch (Throwable e) {
+                BosterParticles.getInstance().log("Generated an exception:", "PlaceholdersExtension", placeholdersExtension, LogType.ERROR);
+                e.printStackTrace();
+            }
+        }
+
+        return s;
     }
 }

@@ -26,8 +26,9 @@ public class PlayerTrailExtension extends PlayerDataExtension {
     }
 
     public void stopTrailTask() {
-        if(trailTask != null && !trailTask.isCancelled()) {
+        if(trailTask != null) {
             trailTask.cancel();
+            trailTask = null;
         }
     }
 

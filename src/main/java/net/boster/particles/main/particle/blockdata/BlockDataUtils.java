@@ -17,7 +17,7 @@ public class BlockDataUtils {
         }
     }
 
-    public static @Nullable Object createBlockData(@NotNull Material material) {
+    public static @Nullable BPBlockData createBlockData(@NotNull Material material) {
         return provider.create(material);
     }
 }

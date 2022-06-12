@@ -10,15 +10,7 @@ public class PAPISupport {
     }
 
     public static String setPlaceholders(OfflinePlayer p, String s) {
-        if(PlaceholderAPISupport.isLoaded()) {
-            return PlaceholderAPISupport.setPlaceholders(p, s);
-        } else {
-            return s;
-        }
-    }
-
-    public static String setPlaceholders(Player p, String s) {
-        if(PlaceholderAPISupport.isLoaded()) {
+        if (PlaceholderAPISupport.isLoaded()) {
             return PlaceholderAPISupport.setPlaceholders(p, s);
         } else {
             return s;

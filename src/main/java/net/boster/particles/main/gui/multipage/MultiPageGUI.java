@@ -75,7 +75,7 @@ public class MultiPageGUI {
 
     public MultiPageGUI(@Nullable String title, int size, @NotNull Player p, @NotNull List<MultiPageFunctionalEntry> items, int[] slots) {
         this(title, size, p, items, slots, createSwitchItemByDefault(size - 1, "&6Next page", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzg2MTg1YjFkNTE5YWRlNTg1ZjE4NGMzNGYzZjNlMjBiYjY0MWRlYjg3OWU4MTM3OGU0ZWFmMjA5Mjg3In19fQ==", true),
-                createSwitchItemByDefault(Utils.getGUIFirstSlotOfLastRaw(size), "&6Next page", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWQ3M2NmNjZkMzFiODNjZDhiODY0NGMxNTk1OGMxYjczYzhkOTczMjNiODAxMTcwYzFkODg2NGJiNmE4NDZkIn19fQ==", false));
+                createSwitchItemByDefault(Utils.getGUIFirstSlotOfLastRow(size), "&6Next page", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWQ3M2NmNjZkMzFiODNjZDhiODY0NGMxNTk1OGMxYjczYzhkOTczMjNiODAxMTcwYzFkODg2NGJiNmE4NDZkIn19fQ==", false));
     }
 
     public MultiPageGUI(@Nullable String title, @NotNull Player p, @NotNull List<MultiPageFunctionalEntry> items, int[] slots) {

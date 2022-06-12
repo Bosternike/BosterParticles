@@ -6,5 +6,5 @@ import org.jetbrains.annotations.Nullable;
 
 public interface BlockDataProvider {
 
-    @Nullable Object create(@NotNull Material material);
+    @Nullable BPBlockData create(@NotNull Material material);
 }

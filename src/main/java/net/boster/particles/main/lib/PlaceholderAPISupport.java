@@ -22,8 +22,4 @@ public class PlaceholderAPISupport {
     public static String setPlaceholders(OfflinePlayer p, String s) {
         return PlaceholderAPI.setPlaceholders(p, s);
     }
-
-    public static String setPlaceholders(Player p, String s) {
-        return PlaceholderAPI.setPlaceholders(p, s);
-    }
 }

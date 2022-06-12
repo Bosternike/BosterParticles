@@ -1,4 +1,4 @@
-import net.boster.particles.main.api.BosterParticlesAPI;
+import net.boster.particles.api.BosterParticlesAPI;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class ExampleMain extends JavaPlugin {

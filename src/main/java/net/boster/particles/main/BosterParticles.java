@@ -2,6 +2,7 @@ package net.boster.particles.main;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.boster.particles.api.extension.BPExtension;
 import net.boster.particles.main.data.FileManager;
 import net.boster.particles.main.data.PlayerData;
 import net.boster.particles.main.data.database.DatabaseRunnable;
@@ -14,6 +15,7 @@ import net.boster.particles.main.listeners.InventoryListener;
 import net.boster.particles.main.listeners.merge.ItemMergeListener;
 import net.boster.particles.main.listeners.pickup.NewPickupListener;
 import net.boster.particles.main.listeners.pickup.OldPickupListener;
+import net.boster.particles.main.loader.BPLoader;
 import net.boster.particles.main.nms.NMSProvider;
 import net.boster.particles.main.utils.Version;
 import net.boster.particles.main.utils.log.LogType;
@@ -48,8 +50,6 @@ public class BosterParticles extends JavaPlugin {
             return;
         }
 
-        Bukkit.getConsoleSender().sendMessage(PREFIX);
-
         NMSProvider.load();
         DatabaseRunnable.enable();
         PAPISupport.load();
@@ -63,6 +63,7 @@ public class BosterParticles extends JavaPlugin {
 
         registerListeners();
 
+        Bukkit.getConsoleSender().sendMessage(PREFIX);
         loader.load();
         Bukkit.getConsoleSender().sendMessage("\u00a7d[\u00a7bBosterParticles\u00a7d] \u00a7fThe plugin has been \u00a7dEnabled\u00a7f!");
         Bukkit.getConsoleSender().sendMessage("\u00a7d[\u00a7bBosterParticles\u00a7d] \u00a7fPlugin creator: \u00a7dBosternike");
@@ -115,9 +116,19 @@ public class BosterParticles extends JavaPlugin {
         return Utils.toColor(s);
     }
 
-    public void log(String s, LogType log) {
+    public void log(@NotNull String s, @NotNull LogType log) {
         if(log.isToggleAble() && !loader.enabledLoggers.contains(log)) return;
 
+        Bukkit.getConsoleSender().sendMessage(log.getFormat() + log.getColor() + toColor(s));
+    }
+
+    public void log(@NotNull String s, @NotNull String extensionID, @NotNull BPExtension extension, @NotNull LogType log) {
+        if(log.isToggleAble() && !loader.enabledLoggers.contains(log)) return;
+
+        Bukkit.getConsoleSender().sendMessage(log.getFormat() + "§7Extension: " + log.getColor() + extensionID);
+        Bukkit.getConsoleSender().sendMessage(log.getFormat() + "§7Provider: " + log.getColor() + extension.getPlugin().getName());
+        Bukkit.getConsoleSender().sendMessage(log.getFormat() + "§7Version: " + log.getColor() + extension.getVersion());
+        Bukkit.getConsoleSender().sendMessage(log.getFormat() + "§7Authors: " + log.getColor() + extension.getAuthors());
         Bukkit.getConsoleSender().sendMessage(log.getFormat() + log.getColor() + toColor(s));
     }
 }

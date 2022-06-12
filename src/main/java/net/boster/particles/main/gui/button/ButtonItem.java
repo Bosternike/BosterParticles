@@ -4,7 +4,6 @@ import net.boster.particles.main.BosterParticles;
 import net.boster.particles.main.data.PlayerData;
 import net.boster.particles.main.gui.ParticlesGUI;
 import net.boster.particles.main.lib.PAPISupport;
-import net.boster.particles.main.lib.VaultSupport;
 import net.boster.particles.main.utils.item.ItemManager;
 import net.boster.particles.main.utils.sound.BosterSound;
 import net.boster.particles.main.utils.CachedSetSection;
@@ -73,7 +72,7 @@ public class ButtonItem implements GUIButton {
             } else {
                 String m = item.getString("material");
                 try {
-                    material = BosterParticles.getInstance().getLoader().getItemManager().createItem(m);
+                    material = manager.createItem(m);
                 } catch (Exception e) {
                     gui.log("Item \"&6" + item.getName() + "&7\" has invalid material type \"&c" + m + "&7\"", LogType.WARNING);
                     return null;
@@ -173,16 +172,17 @@ public class ButtonItem implements GUIButton {
     }
 
     public ItemStack prepareItem(Player p) {
+        PlayerData d = PlayerData.get(p);
         if(itemStack != null) {
             ItemStack item = itemStack.clone();
             ItemMeta meta = item.getItemMeta();
 
             if(itemName != null) {
-                meta.setDisplayName(toReplaces(p, itemName));
+                meta.setDisplayName(toReplaces(d, itemName));
             }
             if(lore != null) {
                 List<String> lr = new ArrayList<>();
-                lore.forEach(l -> lr.add(toReplaces(p, l)));
+                lore.forEach(l -> lr.add(toReplaces(d, l)));
                 meta.setLore(lr);
             }
 
@@ -202,9 +202,9 @@ public class ButtonItem implements GUIButton {
         return s.replace("%player%", p.getName());
     }
 
-    public String toReplaces(Player p, String s) {
+    public String toReplaces(PlayerData p, String s) {
         boolean b1 = permission != null && p.hasPermission(permission);
-        String r = PAPISupport.setPlaceholders(p, toSystemReplaces(p, s));
+        String r = PAPISupport.setPlaceholders(p.p, toSystemReplaces(p.p, p.setPlaceholders(s)));
         r = r.replace("%do_click%", b1 ? gui.getPlaceholders().getPlaceholder("ClickToActivate") :
                         gui.getPlaceholders().getPlaceholder("NotPermitted"))
                 .replace("%status%", b1 ? gui.getPlaceholders().getPlaceholder("AllowedStatus") :
@@ -244,12 +244,13 @@ public class ButtonItem implements GUIButton {
         }
 
         public void act(@NotNull Player p, @Nullable String... replaces) {
+            PlayerData d = PlayerData.get(p);
             if(sound != null) {
                 p.playSound(p.getLocation(), sound.sound, 1, sound.i);
             }
-            messages.forEach(s -> p.sendMessage(item.toReplaces(p, Utils.toReplaces(s, replaces))));
+            messages.forEach(s -> p.sendMessage(item.toReplaces(d, Utils.toReplaces(s, replaces))));
             commands.forEach(s -> p.chat(item.toSystemReplaces(p, Utils.toReplaces(s, replaces))));
-            announce.forEach(s -> Bukkit.broadcastMessage(item.toReplaces(p, Utils.toReplaces(s, replaces))));
+            announce.forEach(s -> Bukkit.broadcastMessage(item.toReplaces(d, Utils.toReplaces(s, replaces))));
 
             PlayerData data = PlayerData.get(p);
             boolean ld = false;
