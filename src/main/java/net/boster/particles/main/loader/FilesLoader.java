@@ -24,6 +24,7 @@ public class FilesLoader extends ALoader {
         File cf = new File(plugin.getDataFolder(), "config.yml");
         if(!ConfigUtils.hasAllStrings(cfg, YamlConfiguration.loadConfiguration(cf), Lists.newArrayList("CustomTrails"))) {
             ConfigUtils.replaceOldConfig(cf, cf, plugin.getResource("config.yml"));
+            plugin.reloadConfig();
         }
         File usage = new File(plugin.getDataFolder(), "usage_" + plugin.getDescription().getVersion() + ".txt");
         if(!usage.exists()) {

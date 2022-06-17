@@ -15,7 +15,11 @@ public class DustOptionsUtils {
         }
     }
 
-    public static @NotNull BPDustOptions create(int r, int g, int b, int amount) {
+    public static @NotNull BPDustOptions create(int r, int g, int b, float amount) {
         return provider.create(r, g, b, amount);
+    }
+
+    public static int[] fromRGB(int rgb) {
+        return new int[]{rgb >> 16 & 255, rgb >> 8 & 255, rgb & 255};
     }
 }

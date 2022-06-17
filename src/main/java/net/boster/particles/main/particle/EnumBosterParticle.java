@@ -98,7 +98,12 @@ public enum EnumBosterParticle {
     WAX_OFF(Version.v1_17_R1),
     ELECTRIC_SPARK(Version.v1_17_R1),
     SCRAPE(Version.v1_17_R1),
-    BLOCK_MARKER(Version.v1_18_R1);
+    BLOCK_MARKER(Version.v1_18_R1),
+    SONIC_BOOM(Version.v1_19_R1),
+    SCULK_SOUL(Version.v1_19_R1),
+    SCULK_CHARGE(Version.v1_19_R1),
+    SCULK_CHARGE_POP(Version.v1_19_R1),
+    SHRIEK(Version.v1_19_R1);
 
     @Getter @NotNull private final Version version;
 

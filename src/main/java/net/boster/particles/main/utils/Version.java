@@ -23,6 +23,8 @@ public enum Version {
     v1_17_R1(15),
     v1_18_R1(16),
     v1_18_R2(17),
+    v1_19_R1(18),
+    v1_19_R2(19),
     NOT_FOUND(777);
 
     private static Version currentVersion;
