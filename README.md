@@ -41,6 +41,24 @@
 
 See examples [here](https://github.com/Bosternike/BosterParticles/tree/main/examples)
 
+Maven dependency:
+```
+<repositories>
+	<repository>
+		<id>jitpack.io</id>
+		<url>https://jitpack.io</url>
+	</repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+	    <groupId>com.github.Bosternike</groupId>
+	    <artifactId>BosterParticles</artifactId>
+	    <version>1.1.5-SNAPSHOT</version>
+	</dependency>
+</dependencies>
+```
+
 <!-- CONTACT -->
 ## Contact
 
