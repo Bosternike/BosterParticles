@@ -42,21 +42,33 @@
 See examples [here](https://github.com/Bosternike/BosterParticles/tree/main/examples)
 
 Maven dependency:
-```
+```xml
 <repositories>
-	<repository>
-		<id>jitpack.io</id>
-		<url>https://jitpack.io</url>
-	</repository>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
 </repositories>
-
+```
+```xml
 <dependencies>
     <dependency>
-	    <groupId>com.github.Bosternike</groupId>
-	    <artifactId>BosterParticles</artifactId>
-	    <version>1.1.5-SNAPSHOT</version>
-	</dependency>
+        <groupId>com.github.Bosternike</groupId>
+        <artifactId>BosterParticles</artifactId>
+        <version>1.1.5-SNAPSHOT</version>
+    </dependency>
 </dependencies>
+```
+
+Gradle dependency:
+```groovy
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'com.github.Bosternike:BosterParticles:Tag'
+}
 ```
 
 <!-- CONTACT -->
