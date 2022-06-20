@@ -67,7 +67,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.Bosternike:BosterParticles:Tag'
+    implementation 'com.github.Bosternike:BosterParticles:1.1.5-SNAPSHOT'
 }
 ```
 
