@@ -25,7 +25,7 @@ public class CraftItemTrail extends CraftTrail {
     public int amount;
     public boolean pickupAble;
 
-    public CraftItemTrail(Player p, ItemStack item, int amount, int lifeTime, boolean pickupAble) {
+    public CraftItemTrail(@NotNull Player p, @NotNull ItemStack item, int amount, int lifeTime, boolean pickupAble) {
         this.item = item;
         this.amount = amount;
         this.lifeTime = lifeTime;
@@ -34,12 +34,12 @@ public class CraftItemTrail extends CraftTrail {
         this.player = p.getName();
     }
 
-    public CraftItemTrail(Player p, ItemStack item) {
+    public CraftItemTrail(@NotNull Player p, @NotNull ItemStack item) {
         this(p, item, 1, 40, false);
     }
 
-    public static void load(PlayerData data) {
-        Player p = data.p;
+    public static void load(@NotNull PlayerData data) {
+        Player p = data.getPlayer();
         FileConfiguration file = data.data;
         ConfigurationSection items = file.getConfigurationSection("Items");
         if(items != null && items.getKeys(false).size() > 0) {

@@ -16,14 +16,14 @@ public class CraftParticle extends CraftTrail {
     public final String player;
     public final BosterParticle particle;
 
-    public CraftParticle(Player p, BosterParticle particle) {
+    public CraftParticle(@NotNull Player p, @NotNull BosterParticle particle) {
         this.p = p;
         this.player = p.getName();
         this.particle = particle;
     }
 
-    public static void load(PlayerData data) {
-        Player p = data.p;
+    public static void load(@NotNull PlayerData data) {
+        Player p = data.getPlayer();
         FileConfiguration file = data.data;
         ConfigurationSection particles = file.getConfigurationSection("Particles");
         if(particles != null && particles.getKeys(false).size() > 0) {

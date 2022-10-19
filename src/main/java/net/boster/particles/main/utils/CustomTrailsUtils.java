@@ -1,13 +1,13 @@
 package net.boster.particles.main.utils;
 
 import net.boster.particles.main.BosterParticles;
+import net.boster.particles.main.data.EConfiguration;
 import net.boster.particles.main.data.PlayerData;
 import net.boster.particles.main.data.database.DataConverter;
 import net.boster.particles.main.utils.sound.BosterSound;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -31,7 +31,7 @@ public class CustomTrailsUtils {
         }
     }
 
-    public static CustomTrail get(String s) {
+    public static CustomTrail get(@NotNull String s) {
         return hash.get(s);
     }
 
@@ -61,8 +61,13 @@ public class CustomTrailsUtils {
                     section.getStringList("commands"), section.getStringList("announce"), CachedSetSection.load(section));
         }
 
-        public void act(OfflinePlayer user) {
-            Player p = Bukkit.getPlayer(user.getUniqueId());
+        public void act(@NotNull OfflinePlayer user) {
+            Player p;
+            if(user instanceof Player) {
+                p = (Player) user;
+            } else {
+                p = Bukkit.getPlayer(user.getUniqueId());
+            }
             if(p != null) {
                 if(sound != null) {
                     p.playSound(p.getLocation(), sound.sound, 1, sound.i);
@@ -73,7 +78,7 @@ public class CustomTrailsUtils {
             }
 
             PlayerData pd = PlayerData.get(p);
-            FileConfiguration file;
+            EConfiguration file;
             if(pd == null) {
                 file = BosterParticles.getInstance().getDataSetter().configuration(DataConverter.convert(user));
             } else {

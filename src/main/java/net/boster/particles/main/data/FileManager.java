@@ -2,7 +2,6 @@ package net.boster.particles.main.data;
 
 import net.boster.particles.main.BosterParticles;
 import net.boster.particles.main.files.UserFile;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -36,11 +35,11 @@ public class FileManager {
         getUserFile(name).create();
     }
 
-    public FileConfiguration getUserConfig(Player p) {
+    public @NotNull EConfiguration getUserConfig(Player p) {
         return getUserConfig(p.getName());
     }
 
-    public FileConfiguration getUserConfig(String name) {
+    public @NotNull EConfiguration getUserConfig(String name) {
         UserFile file = UserFile.get(name);
         if(file == null) {
             file = new UserFile(name);

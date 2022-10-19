@@ -1,0 +1,209 @@
+# German
+#
+# WARNUNG: ENTFERNEN SIE KEINE FELDER AUS DIESEM ABSCHNITT.
+# SIE KÖNNEN ZEILEN ZU LISTEN ENTFERNEN/HINZUFÜGEN, ABER ENTFERNEN SIE KEINE STRING-FELDER.
+Messages:
+  noPermission: "%prefix% &cSie haben keine Berechtigung, diesen Befehl zu verwenden!"
+  reload: '%prefix% &fDas Plugin wurde neu geladen!'
+  help:
+  - '&f'
+  - '&f Laden Sie das Plugin neu &7- &d/bosterparticles reload'
+  - '&f Aufführen &7- &d/bosterparticles list [classes&7/&dextensions&7/&dparticles]'
+  - '&f Legen Sie einen benutzerdefinierten Trail fest &7- &d/bosterparticles set [benutzerin] [spur]'
+  - '&f Menüs und Verwaltung auflisten &7- &d/bosterparticles menus'
+  - '&f'
+  list:
+    noSuchHelp: '%prefix% &fHilfeseite &c%name%&f konnte nicht gefunden werden.'
+    classes:
+      dot: '&7, &e'
+      format:
+      - '%prefix% &fAngemeldete Klassen&7: &e%classes%'
+    extensions:
+      dot: '&7, &d'
+      format:
+      - '%prefix% &fRegistrierte Erweiterungen&7: &d%extensions%'
+    particles:
+      dot: '&7, &b'
+      format:
+      - '%prefix% &fPartikelliste&7: &b%particles%'
+  set:
+    usage: '%prefix% &fVerwendungszweck &7- &d/bosterparticles set [benutzerin] [spur]'
+    nullTrail: '%prefix% &fPfad &c%name%&f existiert nicht.'
+    success: '%prefix% &fTrail &a%name%&f wurde für Spieler &b%player%&f gesetzt!'
+  open:
+    nullPlayer: '%prefix% &fSpieler &c%name%&f konnte nicht gefunden werden.'
+    success: '%prefix% &fGUI &a%gui%&f wurde für Spieler &d%player%&f geöffnet!'
+
+# Anything here. You can rename and do with other sections everything. You can even delete this section.
+CustomTexts:
+  GUIPlaceholders:
+    ClickToActivate: '&aKlicke um auszuwählen!'
+    NotPermitted: "&cSie haben keine Berechtigung für dieses Partikel."
+    AllowedStatus: '&aVerfügbar'
+    DeniedStatus: '&cNicht verfügbar'
+  GUIParticles-common:
+    Title: '&6Projektilspuren'
+    NoOpenPermission: "%prefix% &fSie haben keine Berechtigung, diesen Befehl zu verwenden!"
+    no_permission:
+    - "%prefix% &cSie haben keine Berechtigung für diese Projektilspur!"
+    not_enough_money:
+    - "%prefix% &cDu hast nicht genug Geld!"
+    - "%prefix% &fPreis&7: &6%cost%"
+    - "%prefix% &fDir fehlt&7: &c%need%"
+    selected:
+    - '%prefix% &fProjektilspur "%name%&f" erfolgreich aktiviert!'
+  GUIParticles:
+    cloud:
+      name: '&fWolke'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    smoke:
+      name: '&7Rauch'
+      lore:
+        - ''
+        - '&fStatus&7: %status%'
+        - ''
+        - '%do_click%'
+    crit:
+      name: '&5Krit'
+      lore:
+        - ''
+        - '&fStatus&7: %status%'
+        - ''
+        - '%do_click%'
+    spell:
+      name: '&3Fluch'
+      lore:
+        - ''
+        - '&fStatus&7: %status%'
+        - ''
+        - '%do_click%'
+    enchantment:
+      name: '&fVerzauberung'
+      lore:
+        - ''
+        - '&fStatus&7: %status%'
+        - ''
+        - '%do_click%'
+    note:
+      name: '&9Anmerkungen'
+      lore:
+        - ''
+        - '&fStatus&7: %status%'
+        - ''
+        - '%do_click%'
+    water:
+      name: '&1Wasser tropfen'
+      lore:
+        - ''
+        - '&fStatus&7: %status%'
+        - ''
+        - '%do_click%'
+    lava:
+      name: '&6Lava tropfen'
+      lore:
+        - ''
+        - '&fStatus&7: %status%'
+        - ''
+        - '%do_click%'
+    angry_villager:
+      name: '&cWütender Dorfbewohner'
+      lore:
+        - ''
+        - '&fStatus&7: %status%'
+        - ''
+        - '%do_click%'
+    happy_villager:
+      name: '&aGlücklicher Dorfbewohner'
+      lore:
+        - ''
+        - '&fStatus&7: %status%'
+        - ''
+        - '%do_click%'
+    hearts:
+      name: '&cHerzen'
+      lore:
+        - ''
+        - '&fStatus&7: %status%'
+        - ''
+        - '%do_click%'
+    redstone:
+      name: '&cRoter Staub'
+      lore:
+        - ''
+        - '&fStatus&7: %status%'
+        - ''
+        - '%do_click%'
+    magma:
+      name: '&6Magma'
+      lore:
+        - ''
+        - '&fStatus&7: %status%'
+        - ''
+        - '%do_click%'
+    flame:
+      name: '&6Flamme'
+      lore:
+        - ''
+        - '&fStatus&7: %status%'
+        - ''
+        - '%do_click%'
+    lime:
+      name: '&aKalkstaub'
+      lore:
+        - ''
+        - '&fStatus&7: %status%'
+        - ''
+        - '%do_click%'
+    gold:
+      name: '&eGoldbarren'
+      lore:
+        - ''
+        - '&fStatus&7: %status%'
+        - ''
+        - '%do_click%'
+    iron:
+      name: '&7Eisenbarren'
+      lore:
+        - ''
+        - '&fStatus&7: %status%'
+        - ''
+        - '%do_click%'
+    diamond:
+      name: '&bDiamant'
+      lore:
+        - ''
+        - '&fStatus&7: %status%'
+        - ''
+        - '%do_click%'
+    flame_and_lava:
+      name: '&6Flamme &7& &6Magma'
+      lore:
+        - ''
+        - '&fStatus&7: %status%'
+        - ''
+        - '%do_click%'
+    note_and_enchants:
+      name: '&3Notizen &7& &fVerzauberung'
+      lore:
+        - ''
+        - '&fStatus&7: %status%'
+        - ''
+        - '%do_click%'
+    emerald:
+      name: '&aSmaragd'
+      lore:
+        - ''
+        - '&fStatus&7: %status%'
+        - ''
+        - '%do_click%'
+    clearparticles:
+      name: '&cKlare Spuren'
+      lore:
+        - ''
+        - '&7Klicken Sie hier, um alle Spuren zu löschen!'
+      message:
+        - '%prefix% &fSauber!'

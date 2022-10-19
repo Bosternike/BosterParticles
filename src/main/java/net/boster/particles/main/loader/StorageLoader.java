@@ -27,6 +27,7 @@ public class StorageLoader extends ALoader {
     public void loadDataSetter() {
         if(loader.getConnectedDatabase() != null) {
             loader.getConnectedDatabase().closeConnection();
+            loader.setConnectedDatabase(null);
         }
 
         loadStorage();

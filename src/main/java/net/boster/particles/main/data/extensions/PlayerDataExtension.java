@@ -14,7 +14,7 @@ public abstract class PlayerDataExtension {
     public PlayerDataExtension(@NotNull String id, @NotNull PlayerData data) {
         this.id = id;
         this.data = data;
-        this.player = data.p;
+        this.player = data.getPlayer();
     }
 
     /**

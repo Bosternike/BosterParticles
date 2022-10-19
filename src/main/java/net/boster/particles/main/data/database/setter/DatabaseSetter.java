@@ -2,12 +2,12 @@ package net.boster.particles.main.data.database.setter;
 
 import lombok.RequiredArgsConstructor;
 import net.boster.particles.main.BosterParticles;
+import net.boster.particles.main.data.EConfiguration;
 import net.boster.particles.main.data.database.ConnectedDatabase;
 import net.boster.particles.main.utils.log.LogType;
 import net.boster.particles.main.utils.Utils;
 import org.bukkit.configuration.InvalidConfigurationException;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
+import org.jetbrains.annotations.NotNull;
 
 @RequiredArgsConstructor
 public abstract class DatabaseSetter implements DataSetter {
@@ -15,18 +15,18 @@ public abstract class DatabaseSetter implements DataSetter {
     private final ConnectedDatabase db;
 
     @Override
-    public void setUserData(String uuid, String w, String o) {
+    public void setUserData(@NotNull String uuid, @NotNull String w, String o) {
         db.setMySqlUserValue(uuid, w, o);
     }
 
     @Override
-    public String getUserData(String uuid, String value) {
+    public String getUserData(@NotNull String uuid, @NotNull String value) {
         return db.getMySqlValue(uuid, value);
     }
 
     @Override
-    public FileConfiguration configuration(String uuid) {
-        FileConfiguration c = new YamlConfiguration();
+    public @NotNull EConfiguration configuration(@NotNull String uuid) {
+        EConfiguration c = new EConfiguration();
         String data = getUserData(uuid, "data");
         if(data != null) {
             try {
@@ -39,12 +39,12 @@ public abstract class DatabaseSetter implements DataSetter {
     }
 
     @Override
-    public void save(String uuid, FileConfiguration file) {
+    public void save(@NotNull String uuid, @NotNull EConfiguration file) {
         setUserData(uuid, "data", Utils.encode(file.saveToString()));
     }
 
     @Override
-    public void deleteUser(String uuid) {
+    public void deleteUser(@NotNull String uuid) {
         db.deleteUser(uuid);
     }
 }

@@ -1,6 +1,5 @@
 package net.boster.particles.main.loader;
 
-import com.google.common.collect.Lists;
 import lombok.Getter;
 import lombok.Setter;
 import net.boster.particles.main.BosterParticles;
@@ -10,29 +9,18 @@ import net.boster.particles.main.data.EnumStorage;
 import net.boster.particles.main.data.PlayerData;
 import net.boster.particles.main.data.database.ConnectedDatabase;
 import net.boster.particles.main.data.database.DataConverter;
-import net.boster.particles.main.data.database.MySqlConnectionUtils;
-import net.boster.particles.main.data.database.SQLiteConnectionUtils;
-import net.boster.particles.main.data.database.setter.FileSetter;
-import net.boster.particles.main.data.database.setter.MySqlSetter;
-import net.boster.particles.main.data.database.setter.SQLiteSetter;
 import net.boster.particles.main.files.MenuFile;
 import net.boster.particles.main.gui.ParticlesGUI;
-import net.boster.particles.main.utils.ConfigUtils;
+import net.boster.particles.main.utils.ConfigValues;
 import net.boster.particles.main.utils.CustomTrailsUtils;
 import net.boster.particles.main.utils.log.LogType;
 import net.boster.particles.main.utils.item.ItemManager;
 import net.boster.particles.main.utils.item.ItemManagerImpl;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -63,6 +51,8 @@ public class BPLoader {
     }
 
     public void load() {
+        plugin.getLocalesManager().load();
+
         new Commands(plugin);
 
         filesLoader.loadFiles();
@@ -76,6 +66,7 @@ public class BPLoader {
 
         DataConverter.load();
         CustomTrailsUtils.load();
+        ConfigValues.load(plugin.getConfig());
 
         plugin.getServer().getScheduler().runTaskLater(plugin, this::loadPlayers, 20);
 

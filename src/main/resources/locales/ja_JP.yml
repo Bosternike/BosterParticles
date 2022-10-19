@@ -1,0 +1,209 @@
+# Japanese
+#
+# 警告: このセクションからフィールドを削除しないでください。
+# リストの行の削除/追加は自由ですが、文字列フィールドは削除しないでください。
+Messages:
+  noPermission: "%prefix% &cこのコマンドを使用する権限がありません!"
+  reload: '%prefix% &fプラグインがリロードされました！'
+  help:
+  - '&f'
+  - '&f プラグインをリロードする &7- &d/bosterparticles reload'
+  - '&f 目録 &7- &d/bosterparticles list [classes&7/&dextensions&7/&dparticles]'
+  - '&f カスタムトレイルを設定 &7- &d/bosterparticles set [ユーザー] [トレース]'
+  - '&f リストメニューと管理 &7- &d/bosterparticles menus'
+  - '&f'
+  list:
+    noSuchHelp: '%prefix% &fヘルプ ページ &c%name%&f が見つかりませんでした。'
+    classes:
+      dot: '&7, &e'
+      format:
+      - '%prefix% &f登録授業&7: &e%classes%'
+    extensions:
+      dot: '&7, &d'
+      format:
+      - '%prefix% &f登録された拡張子&7: &d%extensions%'
+    particles:
+      dot: '&7, &b'
+      format:
+      - '%prefix% &f粒子リスト&7: &b%particles%'
+  set:
+    usage: '%prefix% &f使用法 &7- &d/bosterparticles set [ユーザー] [トレース]'
+    nullTrail: '%prefix% &fトレイル &c%name%&f は存在しません。'
+    success: '%prefix% &fプレーヤー &b%player%&f のトレイル &a%name%&f が設定されました!'
+  open:
+    nullPlayer: '%prefix% &fプレーヤー &c%name%&f が見つかりませんでした。'
+    success: '%prefix% &fプレイヤー &d%player%&f の GUI &a%gui%&f が開かれました!'
+
+# Anything here. You can rename and do with other sections everything. You can even delete this section.
+CustomTexts:
+  GUIPlaceholders:
+    ClickToActivate: '&aクリックして選択！'
+    NotPermitted: "&cこのパーティクルに対する権限がありません。"
+    AllowedStatus: '&a利用可能'
+    DeniedStatus: '&c利用不可'
+  GUIParticles-common:
+    Title: '&6発射物の軌跡'
+    NoOpenPermission: "%prefix% &fこのコマンドを使用する権限がありません!"
+    no_permission:
+    - "%prefix% &cこの発射物に対する権限がありません!"
+    not_enough_money:
+    - "%prefix% &cお金が足りない！"
+    - "%prefix% &f価格&7: &6%cost%"
+    - "%prefix% &fあなたはより多くを必要とします&7: &c%need%"
+    selected:
+    - '%prefix% &f発射軌跡「%name%&f」発動成功！'
+  GUIParticles:
+    cloud:
+      name: '&fクラウド'
+      lore:
+      - ''
+      - '&f状態&7: %status%'
+      - ''
+      - '%do_click%'
+    smoke:
+      name: '&7煙'
+      lore:
+        - ''
+        - '&f状態&7: %status%'
+        - ''
+        - '%do_click%'
+    crit:
+      name: '&5クリティカル'
+      lore:
+        - ''
+        - '&f状態&7: %status%'
+        - ''
+        - '%do_click%'
+    spell:
+      name: '&3スペル'
+      lore:
+        - ''
+        - '&f状態&7: %status%'
+        - ''
+        - '%do_click%'
+    enchantment:
+      name: '&fエンチャント'
+      lore:
+        - ''
+        - '&f状態&7: %status%'
+        - ''
+        - '%do_click%'
+    note:
+      name: '&9ノート'
+      lore:
+        - ''
+        - '&f状態&7: %status%'
+        - ''
+        - '%do_click%'
+    water:
+      name: '&1ドリップウォーター'
+      lore:
+        - ''
+        - '&f状態&7: %status%'
+        - ''
+        - '%do_click%'
+    lava:
+      name: '&6滴る溶岩'
+      lore:
+        - ''
+        - '&f状態&7: %status%'
+        - ''
+        - '%do_click%'
+    angry_villager:
+      name: '&c怒っている村人'
+      lore:
+        - ''
+        - '&f状態&7: %status%'
+        - ''
+        - '%do_click%'
+    happy_villager:
+      name: '&a幸せな村人'
+      lore:
+        - ''
+        - '&f状態&7: %status%'
+        - ''
+        - '%do_click%'
+    hearts:
+      name: '&cハーツ'
+      lore:
+        - ''
+        - '&f状態&7: %status%'
+        - ''
+        - '%do_click%'
+    redstone:
+      name: '&c赤いほこり'
+      lore:
+        - ''
+        - '&f状態&7: %status%'
+        - ''
+        - '%do_click%'
+    magma:
+      name: '&6マグマ'
+      lore:
+        - ''
+        - '&f状態&7: %status%'
+        - ''
+        - '%do_click%'
+    flame:
+      name: '&6火炎'
+      lore:
+        - ''
+        - '&f状態&7: %status%'
+        - ''
+        - '%do_click%'
+    lime:
+      name: '&a石灰粉'
+      lore:
+        - ''
+        - '&f状態&7: %status%'
+        - ''
+        - '%do_click%'
+    gold:
+      name: '&e金塊'
+      lore:
+        - ''
+        - '&f状態&7: %status%'
+        - ''
+        - '%do_click%'
+    iron:
+      name: '&7鉄インゴット'
+      lore:
+        - ''
+        - '&f状態&7: %status%'
+        - ''
+        - '%do_click%'
+    diamond:
+      name: '&bダイヤモンド'
+      lore:
+        - ''
+        - '&f状態&7: %status%'
+        - ''
+        - '%do_click%'
+    flame_and_lava:
+      name: '&6フレイム&7&&6マグマ'
+      lore:
+        - ''
+        - '&f状態&7: %status%'
+        - ''
+        - '%do_click%'
+    note_and_enchants:
+      name: '&3メモ &7& &fエンチャント'
+      lore:
+        - ''
+        - '&f状態&7: %status%'
+        - ''
+        - '%do_click%'
+    emerald:
+      name: '&aエメラルド'
+      lore:
+        - ''
+        - '&f状態&7: %status%'
+        - ''
+        - '%do_click%'
+    clearparticles:
+      name: '&cクリアトレイル'
+      lore:
+        - ''
+        - '&7クリックしてすべてのトレイルをクリアしてください!'
+      message:
+        - '%prefix% &f掃除！'

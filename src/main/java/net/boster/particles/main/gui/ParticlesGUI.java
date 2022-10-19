@@ -2,17 +2,21 @@ package net.boster.particles.main.gui;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.boster.gui.CustomGUI;
+import net.boster.gui.craft.CraftCustomGUI;
 import net.boster.particles.main.BosterParticles;
 import net.boster.particles.main.commands.PGCommand;
+import net.boster.particles.main.data.PlayerData;
 import net.boster.particles.main.files.MenuFile;
 import net.boster.particles.main.gui.button.ButtonItem;
-import net.boster.particles.main.gui.craft.CraftCustomGUI;
 import net.boster.particles.main.gui.placeholders.GUIPlaceholders;
+import net.boster.particles.main.locale.LocaleReferenceProcessor;
+import net.boster.particles.main.utils.Utils;
 import net.boster.particles.main.utils.log.LogType;
 import net.boster.particles.main.utils.ReflectionUtils;
+import net.boster.particles.main.utils.reference.StringReference;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -27,18 +31,20 @@ public class ParticlesGUI {
 
     @Getter @NotNull private final MenuFile file;
     @Getter @NotNull private final String name;
+    @Getter @Setter @NotNull private StringReference<String> title;
     @Getter @NotNull private final CraftCustomGUI gui;
     @Getter @Nullable private PGCommand command;
     @Getter private final List<String> commands = new ArrayList<>();
     @Getter @NotNull private final GUIPlaceholders placeholders = new GUIPlaceholders();
     @Getter @Setter @Nullable private String permission;
-    @Getter @Setter @Nullable private String noPermissionMessage;
+    @Getter @Setter @Nullable private StringReference<String> noPermissionMessage;
 
     public ParticlesGUI(@NotNull MenuFile file) {
         this.file = file;
         this.name = file.getName();
 
-        gui = new CraftCustomGUI(BosterParticles.toColor(file.getConfig().getString("Title", "&cNo title has been set yet.")));
+        gui = new CraftCustomGUI();
+        title = LocaleReferenceProcessor.processStringReference(file.getConfig(), "Title");
 
         setSize(file.getConfig().getInt("Size", 54));
 
@@ -84,22 +90,22 @@ public class ParticlesGUI {
         }
 
         permission = file.getConfig().getString("Permission");
-        noPermissionMessage = file.getConfig().getString("NoPermission");
+        noPermissionMessage = LocaleReferenceProcessor.processStringReference(file.getConfig(), "NoPermission");
 
-        placeholders.setPlaceholder("ClickToActivate", "&aClick to activate", file.getConfig().getString("Placeholders.ClickToActivate"));
-        placeholders.setPlaceholder("NotPermitted", "&cYou do not have permission for this particle", file.getConfig().getString("Placeholders.NotPermitted"));
-        placeholders.setPlaceholder("AllowedStatus", "&aAllowed", file.getConfig().getString("Placeholders.AllowedStatus"));
-        placeholders.setPlaceholder("DeniedStatus", "&aDenied", file.getConfig().getString("Placeholders.DeniedStatus"));
+        placeholders.setPlaceholder("ClickToActivate", "&aClick to activate", LocaleReferenceProcessor.processStringReference(file.getConfig(), "Placeholders.ClickToActivate"));
+        placeholders.setPlaceholder("NotPermitted", "&cYou do not have permission for this particle", LocaleReferenceProcessor.processStringReference(file.getConfig(), "Placeholders.NotPermitted"));
+        placeholders.setPlaceholder("AllowedStatus", "&aAllowed", LocaleReferenceProcessor.processStringReference(file.getConfig(), "Placeholders.AllowedStatus"));
+        placeholders.setPlaceholder("DeniedStatus", "&aDenied", LocaleReferenceProcessor.processStringReference(file.getConfig(), "Placeholders.DeniedStatus"));
 
         hash.put(name, this);
         log("Loaded successfully!", LogType.FINE);
     }
 
-    public static ParticlesGUI get(String name) {
+    public static ParticlesGUI get(@NotNull String name) {
         return hash.get(name);
     }
 
-    public static ParticlesGUI getByCommand(String cmd) {
+    public static ParticlesGUI getByCommand(@NotNull String cmd) {
         for(ParticlesGUI gui : guis()) {
             for(String c : gui.getCommands()) {
                 if(c.equalsIgnoreCase(cmd)) return gui;
@@ -109,19 +115,13 @@ public class ParticlesGUI {
         return null;
     }
 
-    public void setTitle(@NotNull String s) {
-        gui.setTitle(s);
+    public void open(@NotNull PlayerData p) {
+        new CustomGUI(p.getPlayer(), gui).open(Utils.toColor(title.get(p.getLocale())));
     }
 
-    public void open(Player p) {
-        CustomGUI cg = new CustomGUI(p, gui);
-        cg.open();
-    }
-
-    public void log(String s, LogType log) {
+    public void log(@NotNull String s, @NotNull LogType log) {
         Bukkit.getConsoleSender().sendMessage(log.getFormat() + BosterParticles.toColor("(Menu: " + log.getColor() + name + "&7): " + s));
     }
-
 
     public void delete() {
         file.getFile().delete();
@@ -147,10 +147,6 @@ public class ParticlesGUI {
 
     public int getSize() {
         return gui.getSize();
-    }
-
-    public @NotNull String getTitle() {
-        return gui.getTitle();
     }
 
     public boolean setSize(int i) {

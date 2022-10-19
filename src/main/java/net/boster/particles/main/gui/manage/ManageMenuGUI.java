@@ -1,19 +1,23 @@
 package net.boster.particles.main.gui.manage;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
+import net.boster.gui.button.GUIButton;
+import net.boster.gui.multipage.MultiPageFunctionalEntry;
+import net.boster.gui.multipage.MultiPageGUI;
 import net.boster.particles.main.BosterParticles;
+import net.boster.particles.main.data.PlayerData;
 import net.boster.particles.main.files.MenuFile;
 import net.boster.particles.main.gui.ParticlesGUI;
-import net.boster.particles.main.gui.button.GUIButton;
 import net.boster.particles.main.gui.manage.chat.TypingUser;
 import net.boster.particles.main.gui.manage.confirmation.ConfirmationGUI;
-import net.boster.particles.main.gui.multipage.MultiPageFunctionalEntry;
-import net.boster.particles.main.gui.multipage.MultiPageGUI;
+import net.boster.particles.main.locale.LocaleReferenceProcessor;
 import net.boster.particles.main.utils.ConfigUtils;
 import net.boster.particles.main.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
@@ -36,7 +40,7 @@ public class ManageMenuGUI {
             "",
             "&9&lSECTION:");
 
-    private static final int[] slots = new int[]{10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43};
+    private static final List<Integer> slots = ImmutableList.of(10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43);
 
     static {
         MENU_ITEM = Utils.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzk0Yjc1OGNhNzU2NWFhYWVhMjcyZjkyNjExZjY0ODlmYzk3OGVhMTBlYzNhZTRkNmJlMjk4NWMxZjdjYTE3OCJ9fX0=");
@@ -92,12 +96,15 @@ public class ManageMenuGUI {
     }
 
     public static void open(@NotNull Player p, @NotNull ParticlesGUI particlesGUI) {
-        List<MultiPageFunctionalEntry> e = new ArrayList<>();
+        PlayerData d = PlayerData.get(p);
+        MultiPageGUI gui = new MultiPageGUI(p);
+        gui.setTitle(Utils.toColor("&8BosterParticles menu: &b&l" + particlesGUI.getName()));
+        gui.setSize(54);
+        gui.setSlots(slots);
         ConfigurationSection items = particlesGUI.getFile().getConfig().getConfigurationSection("Items");
         if(items != null) {
-            e.addAll(items.getKeys(false).stream().map(i -> createMenuEntry(particlesGUI, items.getConfigurationSection(i))).collect(Collectors.toList()));
+            gui.getItems().addAll(items.getKeys(false).stream().map(i -> createMenuEntry(particlesGUI, items.getConfigurationSection(i))).collect(Collectors.toList()));
         }
-        MultiPageGUI gui = new MultiPageGUI(Utils.toColor("&8BosterParticles menu: &b&l" + particlesGUI.getName()), 54, p, e, slots);
 
         for(int i : Utils.createBorder(54)) {
             gui.getButtons().put(i, new GUIButton() {
@@ -113,12 +120,12 @@ public class ManageMenuGUI {
             });
         }
 
-        addButtons(gui, particlesGUI);
+        addButtons(gui, d, particlesGUI);
 
         gui.open();
     }
 
-    private static void addButtons(MultiPageGUI gui, ParticlesGUI particlesGUI) {
+    private static void addButtons(MultiPageGUI gui, PlayerData d, ParticlesGUI particlesGUI) {
         gui.getButtons().put(46, new GUIButton() {
             @Override
             public int getSlot() {
@@ -139,7 +146,7 @@ public class ManageMenuGUI {
 
         addCreateButton(gui, particlesGUI);
         addTitleChanger(gui, particlesGUI);
-        addInfoItem(gui, particlesGUI);
+        addInfoItem(gui, d, particlesGUI);
         addPermissionChangeItem(gui, particlesGUI);
         addSizeChangeItem(gui, particlesGUI);
         addPlaceholdersButton(gui, particlesGUI);
@@ -273,13 +280,17 @@ public class ManageMenuGUI {
         });
     }
 
-    private static void addInfoItem(MultiPageGUI gui, ParticlesGUI particlesGUI) {
+    private static void addInfoItem(MultiPageGUI gui, PlayerData d, ParticlesGUI particlesGUI) {
         ItemStack item = MenusListGUI.getMenuItem();
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(Utils.toColor("&fName&7: &d" + particlesGUI.getName()));
         List<String> lore = new ArrayList<>();
+
+        String title = particlesGUI.getTitle().get(d.getLocale());
+        String ts = title = title != null ? title : "null";
+
         MenusListGUI.MENU_ITEM_LORE.forEach(s -> lore.add(Utils.toColor(s
-                .replace("%title%", particlesGUI.getTitle())
+                .replace("%title%", ts)
                 .replace("%size%", Integer.toString(particlesGUI.getGui().getSize()))
                 .replace("%permission%", "" + particlesGUI.getPermission())
                 .replace("%commands%", particlesGUI.getCommands().toString())
@@ -328,7 +339,7 @@ public class ManageMenuGUI {
 
                         particlesGUI.getFile().getConfig().set("Title", input);
                         particlesGUI.getFile().save();
-                        particlesGUI.setTitle(Utils.toColor(input));
+                        particlesGUI.setTitle(LocaleReferenceProcessor.processStringReference(particlesGUI.getFile().getConfig(), input));
 
                         p.sendMessage(Utils.toColor("%prefix% &fTitle has been changed to &a" + input + "&f!"));
                         open(p, particlesGUI);
@@ -409,37 +420,37 @@ public class ManageMenuGUI {
             }
 
             @Override
-            public void onLeftClick(MultiPageGUI mpg, Player p, int page, int slot) {
-                mpg.setClosed(true);
-                new ConfirmationGUI(p) {
-                    @Override
-                    public void onAccept() {
-                        MenuFile f = gui.getFile();
-                        f.getConfig().set("Items." + section.getName(), null);
-                        f.save();
-                        gui.clear();
-                        ParticlesGUI ng = new ParticlesGUI(f);
-                        p.sendMessage(Utils.toColor("%prefix% &fItem &a" + section.getName() + "&f has been deleted!"));
-                        setClosed(true);
-                        ManageMenuGUI.open(p, ng);
-                    }
+            public void onClick(@NotNull MultiPageGUI mpg, @NotNull InventoryClickEvent e) {
+                Player p = (Player) e.getWhoClicked();
+                if(e.isLeftClick()) {
+                    mpg.setClosed(true);
+                    new ConfirmationGUI(p) {
+                        @Override
+                        public void onAccept() {
+                            MenuFile f = gui.getFile();
+                            f.getConfig().set("Items." + section.getName(), null);
+                            f.save();
+                            gui.clear();
+                            ParticlesGUI ng = new ParticlesGUI(f);
+                            p.sendMessage(Utils.toColor("%prefix% &fItem &a" + section.getName() + "&f has been deleted!"));
+                            setClosed(true);
+                            ManageMenuGUI.open(p, ng);
+                        }
 
-                    @Override
-                    public void onDeny() {
-                        setClosed(true);
-                        mpg.open();
-                    }
+                        @Override
+                        public void onDeny() {
+                            setClosed(true);
+                            mpg.open();
+                        }
 
-                    @Override
-                    public void close() {
-                        Bukkit.getScheduler().runTaskLater(BosterParticles.getInstance(), mpg::open, 1);
-                    }
-                }.open();
-            }
-
-            @Override
-            public void onRightClick(MultiPageGUI mpg, Player p, int page, int slot) {
-                MenuSectionEditGUI.open(p, gui, section);
+                        @Override
+                        public void close() {
+                            Bukkit.getScheduler().runTaskLater(BosterParticles.getInstance(), mpg::open, 1);
+                        }
+                    }.open();
+                } else {
+                    MenuSectionEditGUI.open(p, gui, section);
+                }
             }
         };
     }

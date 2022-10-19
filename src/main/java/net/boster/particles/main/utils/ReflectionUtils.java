@@ -24,6 +24,8 @@ public class ReflectionUtils {
 
     private static SimpleCommandMap commandMap;
 
+    private static Method oldPlayerLocaleMethod;
+
     static {
         version = Version.getCurrentVersion().name();
         versionInt = Integer.parseInt(version.split("_")[1]);
@@ -33,7 +35,7 @@ public class ReflectionUtils {
             f.setAccessible(true);
             commandMap = (SimpleCommandMap) f.get(Bukkit.getServer());
 
-            if(versionInt < 17) {
+            if(versionInt < 4) {
                 classCache.put("EnumParticle", Class.forName("net.minecraft.server." + version + ".EnumParticle"));
                 classCache.put("PacketPlayOutWorldParticles", Class.forName("net.minecraft.server." + version + ".PacketPlayOutWorldParticles"));
                 classCache.put("Packet", Class.forName("net.minecraft.server." + version + ".Packet"));
@@ -50,6 +52,10 @@ public class ReflectionUtils {
         } catch (ReflectiveOperationException e) {
             e.printStackTrace();
         }
+
+        try {
+            oldPlayerLocaleMethod = Player.Spigot.class.getMethod("getLocale");
+        } catch (Throwable ignored) {}
     }
 
     public static Object getEnumParticle(@NotNull String s) {
@@ -122,5 +128,17 @@ public class ReflectionUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static String getLocale(@NotNull Player p) {
+        if(oldPlayerLocaleMethod != null) {
+            try {
+                return (String) oldPlayerLocaleMethod.invoke(p);
+            } catch (Throwable e) {
+                e.printStackTrace();
+            }
+        }
+
+        return p.getLocale();
     }
 }

@@ -1,13 +1,13 @@
-Title: '&6Projectile trails'
+Title: 'reference:CustomTexts/GUIParticles-common/Title'
 Permission: 'bosterparticles.particles.gui.open'
-NoPermission: "%prefix% &fYou don't have permission to use this command!"
+NoPermission: "reference:CustomTexts/GUIParticles-common/NoOpenPermission"
 Commands:
 - particles
 Placeholders:
-  ClickToActivate: '&aClick to activate!' # Placeholder: %do_click%
-  NotPermitted: "&cYou don't have permission for this particle." # Placeholder: %do_click%
-  AllowedStatus: '&aAble' # Placeholder: %status%
-  DeniedStatus: '&cUnable' # Placeholder: %status%
+  ClickToActivate: 'reference:CustomTexts/GUIPlaceholders/ClickToActivate' # Placeholder: %do_click%
+  NotPermitted: "reference:CustomTexts/GUIPlaceholders/NotPermitted" # Placeholder: %do_click%
+  AllowedStatus: 'reference:CustomTexts/GUIPlaceholders/AllowedStatus' # Placeholder: %status%
+  DeniedStatus: 'reference:CustomTexts/GUIPlaceholders/DeniedStatus' # Placeholder: %status%
 Size: 45
 Items:
   cloud:
@@ -32,19 +32,14 @@ Items:
     #
     # Damage: 10
     #
-    name: '&fCloud'
-    lore:
-      - ''
-      - '&fStatus&7: %status%'
-      - ''
-      - '%do_click%'
+    name: 'reference:CustomTexts/GUIParticles/cloud/name'
+    lore: 'reference:CustomTexts/GUIParticles/cloud/lore'
     success_actions:
       ClearSections:
       - 'Items'
       - 'Particles'
       sound: BLOCK_NOTE_BLOCK_PLING:1
-      message:
-      - '%prefix% &fProjectile trail "&fCloud&f" successfully activated!'
+      message: 'reference:CustomTexts/GUIParticles/cloud/selected'
       #commands:
       #- '/example command'
       #announce:
@@ -70,31 +65,22 @@ Items:
             DustOptions: none
     no_permission_actions:
       sound: ENTITY_GHAST_HURT:1
-      message:
-      - "%prefix% &cYou don't have permission for this projectile!"
+      message: 'reference:CustomTexts/GUIParticles-common/no_permission'
     not_enough_money_actions:
       sound: ENTITY_GHAST_HURT:1
-      message:
-      - "%prefix% &cYou don't have enough money!"
-      - "%prefix% &fPrice&7: &6%cost%"
-      - "%prefix% &fYou lack&7: &c%need%"
+      message: 'reference:CustomTexts/GUIParticles-common/no_permission'
   smoke:
     permission: 'bosterparticles.particles.smoke'
     slot: 11
     material: GRAY_WOOL
-    name: '&7Smoke'
-    lore:
-      - ''
-      - '&fStatus&7: %status%'
-      - ''
-      - '%do_click%'
+    name: 'reference:CustomTexts/GUIParticles/smoke/name'
+    lore: 'reference:CustomTexts/GUIParticles/smoke/lore'
     success_actions:
       ClearSections:
       - 'Items'
       - 'Particles'
       sound: BLOCK_NOTE_BLOCK_PLING:1
-      message:
-      - '%prefix% &fThis projectile trail was successfully activated!'
+      message: 'reference:CustomTexts/GUIParticles/cloud/selected'
       SetToFile:
         Particles:
           1:
@@ -103,25 +89,19 @@ Items:
             DustOptions: none
     no_permission_actions:
       sound: ENTITY_GHAST_HURT:1
-      message:
-      - "%prefix% &cYou don't have permission for this projectile!"
+      message: 'reference:CustomTexts/GUIParticles-common/no_permission'
   crit:
     permission: 'bosterparticles.particles.crit'
     slot: 12
     material: IRON_SWORD
-    name: '&5Crit'
-    lore:
-      - ''
-      - '&fStatus&7: %status%'
-      - ''
-      - '%do_click%'
+    name: 'reference:CustomTexts/GUIParticles/crit/name'
+    lore: 'reference:CustomTexts/GUIParticles/crit/lore'
     success_actions:
       ClearSections:
       - 'Items'
       - 'Particles'
       sound: BLOCK_NOTE_BLOCK_PLING:1
-      message:
-      - '%prefix% &fThis projectile trail was successfully activated!'
+      message: 'reference:CustomTexts/GUIParticles/cloud/selected'
       SetToFile:
         Particles:
           1:
@@ -130,25 +110,19 @@ Items:
             DustOptions: none
     no_permission_actions:
       sound: ENTITY_GHAST_HURT:1
-      message:
-      - "%prefix% &cYou don't have permission for this projectile!"
+      message: 'reference:CustomTexts/GUIParticles-common/no_permission'
   spell:
     permission: 'bosterparticles.particles.spell'
     slot: 13
     material: EXPERIENCE_BOTTLE
-    name: '&3Spell'
-    lore:
-      - ''
-      - '&fStatus&7: %status%'
-      - ''
-      - '%do_click%'
+    name: 'reference:CustomTexts/GUIParticles/spell/name'
+    lore: 'reference:CustomTexts/GUIParticles/spell/lore'
     success_actions:
       ClearSections:
       - 'Items'
       - 'Particles'
       sound: BLOCK_NOTE_BLOCK_PLING:1
-      message:
-      - '%prefix% &fThis projectile trail was successfully activated!'
+      message: 'reference:CustomTexts/GUIParticles/cloud/selected'
       SetToFile:
         Particles:
           1:
@@ -157,25 +131,19 @@ Items:
             DustOptions: none
     no_permission_actions:
       sound: ENTITY_GHAST_HURT:1
-      message:
-      - "%prefix% &cYou don't have permission for this projectile!"
+      message: 'reference:CustomTexts/GUIParticles-common/no_permission'
   enchantment:
     permission: 'bosterparticles.particles.enchantment'
     slot: 14
     material: ENCHANTING_TABLE
-    name: '&fEnchantment'
-    lore:
-      - ''
-      - '&fStatus&7: %status%'
-      - ''
-      - '%do_click%'
+    name: 'reference:CustomTexts/GUIParticles/enchantment/name'
+    lore: 'reference:CustomTexts/GUIParticles/enchantment/lore'
     success_actions:
       ClearSections:
       - 'Items'
       - 'Particles'
       sound: BLOCK_NOTE_BLOCK_PLING:1
-      message:
-      - '%prefix% &fThis projectile trail was successfully activated!'
+      message: 'reference:CustomTexts/GUIParticles/cloud/selected'
       SetToFile:
         Particles:
           1:
@@ -184,25 +152,19 @@ Items:
             DustOptions: none
     no_permission_actions:
       sound: ENTITY_GHAST_HURT:1
-      message:
-      - "%prefix% &cYou don't have permission for this projectile!"
+      message: 'reference:CustomTexts/GUIParticles-common/no_permission'
   note:
     permission: 'bosterparticles.particles.note'
     slot: 15
     material: NOTE_BLOCK
-    name: '&9Notes'
-    lore:
-      - ''
-      - '&fStatus&7: %status%'
-      - ''
-      - '%do_click%'
+    name: 'reference:CustomTexts/GUIParticles/note/name'
+    lore: 'reference:CustomTexts/GUIParticles/note/lore'
     success_actions:
       ClearSections:
       - 'Items'
       - 'Particles'
       sound: BLOCK_NOTE_BLOCK_PLING:1
-      message:
-      - '%prefix% &fThis projectile trail was successfully activated!'
+      message: 'reference:CustomTexts/GUIParticles/cloud/selected'
       SetToFile:
         Particles:
           1:
@@ -211,25 +173,19 @@ Items:
             DustOptions: none
     no_permission_actions:
       sound: ENTITY_GHAST_HURT:1
-      message:
-      - "%prefix% &cYou don't have permission for this projectile!"
+      message: 'reference:CustomTexts/GUIParticles-common/no_permission'
   water:
     permission: 'bosterparticles.particles.water'
     slot: 16
     material: WATER_BUCKET
-    name: '&1Drip water'
-    lore:
-      - ''
-      - '&fStatus&7: %status%'
-      - ''
-      - '%do_click%'
+    name: 'reference:CustomTexts/GUIParticles/water/name'
+    lore: 'reference:CustomTexts/GUIParticles/water/lore'
     success_actions:
       ClearSections:
       - 'Items'
       - 'Particles'
       sound: BLOCK_NOTE_BLOCK_PLING:1
-      message:
-      - '%prefix% &fThis projectile trail was successfully activated!'
+      message: 'reference:CustomTexts/GUIParticles/cloud/selected'
       SetToFile:
         Particles:
           1:
@@ -238,25 +194,19 @@ Items:
             DustOptions: none
     no_permission_actions:
       sound: ENTITY_GHAST_HURT:1
-      message:
-      - "%prefix% &cYou don't have permission for this projectile!"
+      message: 'reference:CustomTexts/GUIParticles-common/no_permission'
   lava:
     permission: 'bosterparticles.particles.lava'
     slot: 19
     material: LAVA_BUCKET
-    name: '&6Drip lava'
-    lore:
-      - ''
-      - '&fStatus&7: %status%'
-      - ''
-      - '%do_click%'
+    name: 'reference:CustomTexts/GUIParticles/lava/name'
+    lore: 'reference:CustomTexts/GUIParticles/lava/lore'
     success_actions:
       ClearSections:
       - 'Items'
       - 'Particles'
       sound: BLOCK_NOTE_BLOCK_PLING:1
-      message:
-      - '%prefix% &fThis projectile trail was successfully activated!'
+      message: 'reference:CustomTexts/GUIParticles/cloud/selected'
       SetToFile:
         Particles:
           1:
@@ -265,25 +215,19 @@ Items:
             DustOptions: none
     no_permission_actions:
       sound: ENTITY_GHAST_HURT:1
-      message:
-      - "%prefix% &cYou don't have permission for this projectile!"
+      message: 'reference:CustomTexts/GUIParticles-common/no_permission'
   angry_villager:
     permission: 'bosterparticles.particles.angry'
     slot: 20
     material: VILLAGER_SPAWN_EGG
-    name: '&cAngry villager'
-    lore:
-      - ''
-      - '&fStatus&7: %status%'
-      - ''
-      - '%do_click%'
+    name: 'reference:CustomTexts/GUIParticles/angry_villager/name'
+    lore: 'reference:CustomTexts/GUIParticles/angry_villager/lore'
     success_actions:
       ClearSections:
       - 'Items'
       - 'Particles'
       sound: BLOCK_NOTE_BLOCK_PLING:1
-      message:
-      - '%prefix% &fThis projectile trail was successfully activated!'
+      message: 'reference:CustomTexts/GUIParticles/cloud/selected'
       SetToFile:
         Particles:
           1:
@@ -292,25 +236,19 @@ Items:
             DustOptions: none
     no_permission_actions:
       sound: ENTITY_GHAST_HURT:1
-      message:
-      - "%prefix% &cYou don't have permission for this projectile!"
+      message: 'reference:CustomTexts/GUIParticles-common/no_permission'
   happy_villager:
     permission: 'bosterparticles.particles.happy'
     slot: 21
     material: WHEAT
-    name: '&aHappy villager'
-    lore:
-      - ''
-      - '&fStatus&7: %status%'
-      - ''
-      - '%do_click%'
+    name: 'reference:CustomTexts/GUIParticles/happy_villager/name'
+    lore: 'reference:CustomTexts/GUIParticles/happy_villager/lore'
     success_actions:
       ClearSections:
         - 'Items'
         - 'Particles'
       sound: BLOCK_NOTE_BLOCK_PLING:1
-      message:
-        - '%prefix% &fThis projectile trail was successfully activated!'
+      message: 'reference:CustomTexts/GUIParticles/cloud/selected'
       SetToFile:
         Particles:
           1:
@@ -319,25 +257,19 @@ Items:
             DustOptions: none
     no_permission_actions:
       sound: ENTITY_GHAST_HURT:1
-      message:
-      - "%prefix% &cYou don't have permission for this projectile!"
+      message: 'reference:CustomTexts/GUIParticles-common/no_permission'
   hearts:
     permission: 'bosterparticles.particles.hearts'
     slot: 22
     material: RED_DYE
-    name: '&cHearts'
-    lore:
-      - ''
-      - '&fStatus&7: %status%'
-      - ''
-      - '%do_click%'
+    name: 'reference:CustomTexts/GUIParticles/hearts/name'
+    lore: 'reference:CustomTexts/GUIParticles/hearts/lore'
     success_actions:
       ClearSections:
       - 'Items'
       - 'Particles'
       sound: BLOCK_NOTE_BLOCK_PLING:1
-      message:
-      - '%prefix% &fThis projectile trail was successfully activated!'
+      message: 'reference:CustomTexts/GUIParticles/cloud/selected'
       SetToFile:
         Particles:
           1:
@@ -346,25 +278,19 @@ Items:
             DustOptions: none
     no_permission_actions:
       sound: ENTITY_GHAST_HURT:1
-      message:
-      - "%prefix% &cYou don't have permission for this projectile!"
+      message: 'reference:CustomTexts/GUIParticles-common/no_permission'
   redstone:
     permission: 'bosterparticles.particles.redstone'
     slot: 23
     material: REDSTONE
-    name: '&cRed dust'
-    lore:
-      - ''
-      - '&fStatus&7: %status%'
-      - ''
-      - '%do_click%'
+    name: 'reference:CustomTexts/GUIParticles/redstone/name'
+    lore: 'reference:CustomTexts/GUIParticles/redstone/lore'
     success_actions:
       ClearSections:
       - 'Items'
       - 'Particles'
       sound: BLOCK_NOTE_BLOCK_PLING:1
-      message:
-      - '%prefix% &fThis projectile trail was successfully activated!'
+      message: 'reference:CustomTexts/GUIParticles/cloud/selected'
       SetToFile:
         Particles:
           1:
@@ -375,25 +301,19 @@ Items:
             DustOptions: 255, 0, 0, 20
     no_permission_actions:
       sound: ENTITY_GHAST_HURT:1
-      message:
-      - "%prefix% &cYou don't have permission for this projectile!"
+      message: 'reference:CustomTexts/GUIParticles-common/no_permission'
   magma:
     permission: 'bosterparticles.particles.magma'
     slot: 24
     material: MAGMA_BLOCK
-    name: '&6Magma'
-    lore:
-      - ''
-      - '&fStatus&7: %status%'
-      - ''
-      - '%do_click%'
+    name: 'reference:CustomTexts/GUIParticles/magma/name'
+    lore: 'reference:CustomTexts/GUIParticles/magma/lore'
     success_actions:
       ClearSections:
       - 'Items'
       - 'Particles'
       sound: BLOCK_NOTE_BLOCK_PLING:1
-      message:
-      - '%prefix% &fThis projectile trail was successfully activated!'
+      message: 'reference:CustomTexts/GUIParticles/cloud/selected'
       SetToFile:
         Particles:
           1:
@@ -402,25 +322,19 @@ Items:
             DustOptions: none
     no_permission_actions:
       sound: ENTITY_GHAST_HURT:1
-      message:
-      - "%prefix% &cYou don't have permission for this projectile!"
+      message: 'reference:CustomTexts/GUIParticles-common/no_permission'
   flame:
     permission: 'bosterparticles.particles.flame'
     slot: 25
     material: BLAZE_ROD
-    name: '&6Flame'
-    lore:
-      - ''
-      - '&fStatus&7: %status%'
-      - ''
-      - '%do_click%'
+    name: 'reference:CustomTexts/GUIParticles/flame/name'
+    lore: 'reference:CustomTexts/GUIParticles/flame/lore'
     success_actions:
       ClearSections:
       - 'Items'
       - 'Particles'
       sound: BLOCK_NOTE_BLOCK_PLING:1
-      message:
-      - '%prefix% &fThis projectile trail was successfully activated!'
+      message: 'reference:CustomTexts/GUIParticles/cloud/selected'
       SetToFile:
         Particles:
           1:
@@ -429,25 +343,19 @@ Items:
             DustOptions: none
     no_permission_actions:
       sound: ENTITY_GHAST_HURT:1
-      message:
-      - "%prefix% &cYou don't have permission for this projectile!"
+      message: 'reference:CustomTexts/GUIParticles-common/no_permission'
   lime:
     permission: 'bosterparticles.particles.lime'
     slot: 28
     material: LIME_STAINED_GLASS
-    name: '&aLime dust'
-    lore:
-      - ''
-      - '&fStatus&7: %status%'
-      - ''
-      - '%do_click%'
+    name: 'reference:CustomTexts/GUIParticles/lime/name'
+    lore: 'reference:CustomTexts/GUIParticles/lime/lore'
     success_actions:
       ClearSections:
       - 'Items'
       - 'Particles'
       sound: BLOCK_NOTE_BLOCK_PLING:1
-      message:
-      - '%prefix% &fThis projectile trail was successfully activated!'
+      message: 'reference:CustomTexts/GUIParticles/cloud/selected'
       SetToFile:
         Particles:
           1:
@@ -456,25 +364,19 @@ Items:
             DustOptions: 17, 255, 0, 20
     no_permission_actions:
       sound: ENTITY_GHAST_HURT:1
-      message:
-      - "%prefix% &cYou don't have permission for this projectile!"
+      message: 'reference:CustomTexts/GUIParticles-common/no_permission'
   gold:
     permission: 'bosterparticles.particles.gold'
     slot: 29
     material: GOLD_INGOT
-    name: '&eGold ingot'
-    lore:
-      - ''
-      - '&fStatus&7: %status%'
-      - ''
-      - '%do_click%'
+    name: 'reference:CustomTexts/GUIParticles/gold/name'
+    lore: 'reference:CustomTexts/GUIParticles/gold/lore'
     success_actions:
       ClearSections:
       - 'Items'
       - 'Particles'
       sound: BLOCK_NOTE_BLOCK_PLING:1
-      message:
-      - '%prefix% &fThis projectile trail was successfully activated!'
+      message: 'reference:CustomTexts/GUIParticles/cloud/selected'
       SetToFile:
         Items:
           1:
@@ -485,24 +387,18 @@ Items:
             LifeTime: 40 # Time in ticks until the item is removed. 20 ticks = 1 second.
     no_permission_actions:
       sound: ENTITY_GHAST_HURT:1
-      message:
-      - "%prefix% &cYou don't have permission for this projectile!"
+      message: 'reference:CustomTexts/GUIParticles-common/no_permission'
   iron:
     permission: 'bosterparticles.particles.iron'
     slot: 30
     material: IRON_INGOT
-    name: '&7Iron ingot'
-    lore:
-      - ''
-      - '&fStatus&7: %status%'
-      - ''
-      - '%do_click%'
+    name: 'reference:CustomTexts/GUIParticles/iron/name'
+    lore: 'reference:CustomTexts/GUIParticles/iron/lore'
     success_actions:
       ClearSections:
       - 'Particles'
       sound: BLOCK_NOTE_BLOCK_PLING:1
-      message:
-      - '%prefix% &fThis projectile trail was successfully activated!'
+      message: 'reference:CustomTexts/GUIParticles/cloud/selected'
       SetToFile:
         Items:
           1:
@@ -517,25 +413,19 @@ Items:
             LifeTime: 40 # Time in ticks until the item is removed. 20 ticks = 1 second.
     no_permission_actions:
       sound: ENTITY_GHAST_HURT:1
-      message:
-      - "%prefix% &cYou don't have permission for this projectile!"
+      message: 'reference:CustomTexts/GUIParticles-common/no_permission'
   diamond:
     permission: 'bosterparticles.particles.diamond'
     slot: 31
     material: DIAMOND
-    name: '&bDiamond'
-    lore:
-      - ''
-      - '&fStatus&7: %status%'
-      - ''
-      - '%do_click%'
+    name: 'reference:CustomTexts/GUIParticles/diamond/name'
+    lore: 'reference:CustomTexts/GUIParticles/diamond/lore'
     success_actions:
       ClearSections:
       - 'Items'
       - 'Particles'
       sound: BLOCK_NOTE_BLOCK_PLING:1
-      message:
-      - '%prefix% &fThis projectile trail was successfully activated!'
+      message: 'reference:CustomTexts/GUIParticles/cloud/selected'
       SetToFile:
         Items:
           1:
@@ -545,25 +435,19 @@ Items:
             LifeTime: 40 # Time in ticks until the item is removed. 20 ticks = 1 second.
     no_permission_actions:
       sound: ENTITY_GHAST_HURT:1
-      message:
-      - "%prefix% &cYou don't have permission for this projectile!"
+      message: 'reference:CustomTexts/GUIParticles-common/no_permission'
   flame_and_lava:
     permission: 'bosterparticles.particles.flame_and_lava'
     slot: 32
     material: OBSIDIAN
-    name: '&6Flame &7& &6Magma'
-    lore:
-      - ''
-      - '&fStatus&7: %status%'
-      - ''
-      - '%do_click%'
+    name: 'reference:CustomTexts/GUIParticles/flame_and_lava/name'
+    lore: 'reference:CustomTexts/GUIParticles/flame_and_lava/lore'
     success_actions:
       ClearSections:
       - 'Items'
       - 'Particles'
       sound: BLOCK_NOTE_BLOCK_PLING:1
-      message:
-      - '%prefix% &fThis projectile trail was successfully activated!'
+      message: 'reference:CustomTexts/GUIParticles/cloud/selected'
       SetToFile:
         Particles:
           1:
@@ -576,25 +460,19 @@ Items:
             DustOptions: none
     no_permission_actions:
       sound: ENTITY_GHAST_HURT:1
-      message:
-      - "%prefix% &cYou don't have permission for this projectile!"
+      message: 'reference:CustomTexts/GUIParticles-common/no_permission'
   note_and_enchants:
     permission: 'bosterparticles.particles.note_and_enchants'
     slot: 33
     material: MUSIC_DISC_11
-    name: '&3Notes &7& &fEnchantment'
-    lore:
-      - ''
-      - '&fStatus&7: %status%'
-      - ''
-      - '%do_click%'
+    name: 'reference:CustomTexts/GUIParticles/note_and_enchants/name'
+    lore: 'reference:CustomTexts/GUIParticles/note_and_enchants/lore'
     success_actions:
       ClearSections:
       - 'Items'
       - 'Particles'
       sound: BLOCK_NOTE_BLOCK_PLING:1
-      message:
-      - '%prefix% &fThis projectile trail was successfully activated!'
+      message: 'reference:CustomTexts/GUIParticles/cloud/selected'
       SetToFile:
         Particles:
           1:
@@ -607,25 +485,19 @@ Items:
             DustOptions: none
     no_permission_actions:
       sound: ENTITY_GHAST_HURT:1
-      message:
-      - "%prefix% &cYou don't have permission for this projectile!"
+      message: 'reference:CustomTexts/GUIParticles-common/no_permission'
   emerald:
     permission: 'bosterparticles.particles.emerald'
     slot: 34
     material: EMERALD
-    name: '&aEmerald'
-    lore:
-      - ''
-      - '&fStatus&7: %status%'
-      - ''
-      - '%do_click%'
+    name: 'reference:CustomTexts/GUIParticles/emerald/name'
+    lore: 'reference:CustomTexts/GUIParticles/emerald/lore'
     success_actions:
       ClearSections:
       - 'Items'
       - 'Particles'
       sound: BLOCK_NOTE_BLOCK_PLING:1
-      message:
-      - '%prefix% &fThis projectile trail was successfully activated!'
+      message: 'reference:CustomTexts/GUIParticles/cloud/selected'
       SetToFile:
         Items:
           1:
@@ -635,15 +507,12 @@ Items:
             LifeTime: 40
     no_permission_actions:
       sound: ENTITY_GHAST_HURT:1
-      message:
-      - "%prefix% &cYou don't have permission for this projectile!"
+      message: 'reference:CustomTexts/GUIParticles-common/no_permission'
   clearparticles:
     slot: 40
     material: REDSTONE_BLOCK
-    name: '&cClear trails'
-    lore:
-    - ''
-    - '&7Click to clear all trails!'
+    name: 'reference:CustomTexts/GUIParticles/clearparticles/name'
+    lore: 'reference:CustomTexts/GUIParticles/clearparticles/lore'
     success_actions:
       # You can use this to clear the whole file:
       # ClearFile: true
@@ -651,8 +520,7 @@ Items:
       - 'Particles'
       - 'Items'
       sound: BLOCK_COMPARATOR_CLICK:1
-      message:
-      - '%prefix% &fClean!'
+      message: 'reference:CustomTexts/GUIParticles/clearparticles/message'
   glass1:
     slots:
       - 0

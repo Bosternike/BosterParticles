@@ -1,0 +1,210 @@
+# Ukrainian
+Aliases:
+- ru_RU
+# ПОПЕРЕДЖЕННЯ: НЕ ВИДАЛЯЙТЕ НІЯКІ ПОЛЯ З ЦІЄЇ СЕКЦІІ.
+# ВИ МОЖЕТЕ ДОБАВЛЯТИ АБО/ВИДАЛЯТЬ ЛІНІЇ ЗІ СПИСКІВ, АЛЕ НЕ ВИДАЛЯЙТЕ ПОЛЯ ДЛЯ СТРОК.
+Messages:
+  noPermission: "%prefix% &cУ Вас недостатньо прав для цієї команди."
+  reload: '%prefix% &fПлагін перезавантажено!'
+  help:
+    - '&f'
+    - '&f Перезавантажити плагін &7- &d/bosterparticles reload'
+    - '&f Списки &7- &d/bosterparticles list [classes&7/&dextensions&7/&dparticles]'
+    - '&f Встановити слід для гравця &7- &d/bosterparticles set [гравець] [слід]'
+    - '&f Списки та керування &7- &d/bosterparticles menus'
+    - '&f'
+  list:
+    noSuchHelp: '%prefix% &fСторінку довідки &c%name%&f не знайдено.'
+    classes:
+      dot: '&7, &e'
+      format:
+        - '%prefix% &fЗареєстровані класси&7: &e%classes%'
+    extensions:
+      dot: '&7, &d'
+      format:
+        - '%prefix% &fЗареєстровані розширення&7: &d%extensions%'
+    particles:
+      dot: '&7, &b'
+      format:
+        - '%prefix% &fСписок частинок&7: &b%particles%'
+  set:
+    usage: '%prefix% &fВикористання &7- &d/bosterparticles set [гравець] [слід]'
+    nullTrail: '%prefix% &fСлід &c%name%&f не існує.'
+    success: '%prefix% &fСлід &a%name%&f був встановлений для гравця &b%player%&f!'
+  open:
+    nullPlayer: '%prefix% &fНе вдалося знайти гравця &c%name%&f.'
+    success: '%prefix% &fГрафічний інтерфейс &a%gui%&f відкрито для гравця &d%player%&f!'
+
+# Що завгодно тут. Ви можете перейменовувати та робити з іншими розділами все. Ви навіть можете видалити цей розділ.
+CustomTexts:
+  GUIPlaceholders:
+    ClickToActivate: '&aНатисніть, щоб вибрати!'
+    NotPermitted: "&cВи не маєте дозволу на цю частинку."
+    AllowedStatus: '&aДоступний'
+    DeniedStatus: '&cНедоступний'
+  GUIParticles-common:
+    Title: '&6Сліди снарядів'
+    NoOpenPermission: "%prefix% &fВи не маєте дозволу використовувати цю команду!"
+    no_permission:
+      - "%prefix% &cВи не маєте дозволу на цей слід снаряду!"
+    not_enough_money:
+      - "%prefix% &cВам не вистачає грошей!"
+      - "%prefix% &fЦіна&7: &6%cost%"
+      - "%prefix% &fВам бракує&7: &c%need%"
+    selected:
+      - '%prefix% &fСлід снаряда "%name%&f" успішно активовано!'
+  GUIParticles:
+    cloud:
+      name: '&fХмара'
+      lore:
+        - ''
+        - '&fСтатус&7: %status%'
+        - ''
+        - '%do_click%'
+    smoke:
+      name: '&7Дим'
+      lore:
+        - ''
+        - '&fСтатус&7: %status%'
+        - ''
+        - '%do_click%'
+    crit:
+      name: '&5Крит'
+      lore:
+        - ''
+        - '&fСтатус&7: %status%'
+        - ''
+        - '%do_click%'
+    spell:
+      name: '&3Заклинання'
+      lore:
+        - ''
+        - '&fСтатус&7: %status%'
+        - ''
+        - '%do_click%'
+    enchantment:
+      name: '&fЗачарування'
+      lore:
+        - ''
+        - '&fСтатус&7: %status%'
+        - ''
+        - '%do_click%'
+    note:
+      name: '&9Ноти'
+      lore:
+        - ''
+        - '&fСтатус&7: %status%'
+        - ''
+        - '%do_click%'
+    water:
+      name: '&1Краплі води'
+      lore:
+        - ''
+        - '&fСтатус&7: %status%'
+        - ''
+        - '%do_click%'
+    lava:
+      name: '&6Краплі лави'
+      lore:
+        - ''
+        - '&fStatus&7: %status%'
+        - ''
+        - '%do_click%'
+    angry_villager:
+      name: '&cСердитий селянин'
+      lore:
+        - ''
+        - '&fСтатус&7: %status%'
+        - ''
+        - '%do_click%'
+    happy_villager:
+      name: '&aЩасливий селянин'
+      lore:
+        - ''
+        - '&fСтатус&7: %status%'
+        - ''
+        - '%do_click%'
+    hearts:
+      name: '&cСерця'
+      lore:
+        - ''
+        - '&fStatus&7: %status%'
+        - ''
+        - '%do_click%'
+    redstone:
+      name: '&cЧервоний пил'
+      lore:
+        - ''
+        - '&fСтатус&7: %status%'
+        - ''
+        - '%do_click%'
+    magma:
+      name: '&6Магма'
+      lore:
+        - ''
+        - '&fСтатус&7: %status%'
+        - ''
+        - '%do_click%'
+    flame:
+      name: '&6Вогонь'
+      lore:
+        - ''
+        - '&fСтатус&7: %status%'
+        - ''
+        - '%do_click%'
+    lime:
+      name: '&aВапняний пил'
+      lore:
+        - ''
+        - '&fСтатус&7: %status%'
+        - ''
+        - '%do_click%'
+    gold:
+      name: '&eЗолотий злиток'
+      lore:
+        - ''
+        - '&fСтатус&7: %status%'
+        - ''
+        - '%do_click%'
+    iron:
+      name: '&7Залізний злиток'
+      lore:
+        - ''
+        - '&fСтатус&7: %status%'
+        - ''
+        - '%do_click%'
+    diamond:
+      name: '&bДіамант'
+      lore:
+        - ''
+        - '&fСтатус&7: %status%'
+        - ''
+        - '%do_click%'
+    flame_and_lava:
+      name: '&6Вогонь &7& &6Магма'
+      lore:
+        - ''
+        - '&fСтатус&7: %status%'
+        - ''
+        - '%do_click%'
+    note_and_enchants:
+      name: '&3Ноти &7& &fЗачарування'
+      lore:
+        - ''
+        - '&fСтатус&7: %status%'
+        - ''
+        - '%do_click%'
+    emerald:
+      name: '&aСмарагдовий'
+      lore:
+        - ''
+        - '&fСтатус&7: %status%'
+        - ''
+        - '%do_click%'
+    clearparticles:
+      name: '&cОчистити'
+      lore:
+        - ''
+        - '&7Натисніть, щоб очистити всі сліди!'
+      message:
+        - '%prefix% &fОчищено!'

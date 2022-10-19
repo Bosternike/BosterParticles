@@ -33,7 +33,7 @@ public class Commands extends BosterCommand {
     @Override
     public boolean execute(@NotNull CommandSender sender, @NotNull String label, @NotNull String[] args) {
         if(!sender.hasPermission("bosterparticles.commands.admin")) {
-            sender.sendMessage(BosterParticles.toColor(plugin.getConfig().getString("Messages.noPermission")));
+            sender.sendMessage(BosterParticles.toColor(getLocaleMessage(sender, "Messages.noPermission")));
             return false;
         }
 
@@ -44,7 +44,7 @@ public class Commands extends BosterCommand {
 
         if(args[0].equalsIgnoreCase("reload")) {
             plugin.getLoader().reload();
-            sender.sendMessage(BosterParticles.toColor(plugin.getConfig().getString("Messages.reload")));
+            sender.sendMessage(BosterParticles.toColor(getLocaleMessage(sender, "Messages.reload")));
             return true;
         } else if(args[0].equalsIgnoreCase("menus")) {
             if(!checkPlayer(sender)) return false;
@@ -53,7 +53,7 @@ public class Commands extends BosterCommand {
             return true;
         } else if(args[0].equalsIgnoreCase("set")) {
             if(args.length < 3) {
-                sender.sendMessage(BosterParticles.toColor(plugin.getConfig().getString("Messages.set.usage")));
+                sender.sendMessage(BosterParticles.toColor(getLocaleMessage(sender, "Messages.set.usage")));
                 return true;
             }
 
@@ -70,23 +70,23 @@ public class Commands extends BosterCommand {
 
             CustomTrailsUtils.CustomTrail t = CustomTrailsUtils.get(args[2]);
             if(t == null) {
-                sender.sendMessage(BosterParticles.toColor(plugin.getConfig().getString("Messages.set.nullTrail").replace("%name%", args[2])));
+                sender.sendMessage(BosterParticles.toColor(getLocaleMessage(sender, "Messages.set.nullTrail").replace("%name%", args[2])));
                 return true;
             }
 
             t.act(p);
-            sender.sendMessage(BosterParticles.toColor(plugin.getConfig().getString("Messages.set.success").replace("%name%", args[2]).replace("%player%", args[1])));
+            sender.sendMessage(BosterParticles.toColor(getLocaleMessage(sender, "Messages.set.success").replace("%name%", args[2]).replace("%player%", args[1])));
             return true;
         } else if(args[0].equalsIgnoreCase("list")) {
             if(args.length < 2) {
-                sender.sendMessage(Utils.toColor(plugin.getConfig().getString("Messages.list.noSuchHelp").replace("%name%", "null")));
+                sender.sendMessage(Utils.toColor(getLocaleMessage(sender, "Messages.list.noSuchHelp").replace("%name%", "null")));
                 return false;
             }
 
             if(plugin.getConfig().getConfigurationSection("Messages.list." + args[1]) != null) {
                 sendList(sender, args[1]);
             } else {
-                sender.sendMessage(Utils.toColor(plugin.getConfig().getString("Messages.list.noSuchHelp").replace("%name%", args[1])));
+                sender.sendMessage(Utils.toColor(getLocaleMessage(sender, "Messages.list.noSuchHelp").replace("%name%", args[1])));
             }
             return true;
         } else {
@@ -96,13 +96,13 @@ public class Commands extends BosterCommand {
     }
 
     public void sendHelp(CommandSender sender) {
-        for(String s : plugin.getConfig().getStringList("Messages.help")) {
+        for(String s : getLocaleMessageList(sender, "Messages.help")) {
             sender.sendMessage(BosterParticles.toColor(s));
         }
     }
 
     public void sendList(CommandSender sender, String path) {
-        String dot = plugin.getConfig().getString("Messages.list." + path + ".dot");
+        String dot = getLocaleMessage(sender, "Messages.list." + path + ".dot");
         String dt = "";
         String classes = "";
         for(Class<? extends CraftTrail> t : CraftTrail.registration) {
@@ -123,7 +123,7 @@ public class Commands extends BosterCommand {
                 dt = dot;
             }
         }
-        for(String s : plugin.getConfig().getStringList("Messages.list." + path + ".format")) {
+        for(String s : getLocaleMessageList(sender, "Messages.list." + path + ".format")) {
             sender.sendMessage(BosterParticles.toColor(s.replace("%classes%", classes)
                     .replace("%extensions%", extensions).replace("%particles%", particles)));
         }

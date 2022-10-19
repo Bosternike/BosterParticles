@@ -1,0 +1,211 @@
+# Chinese
+Aliases:
+- zh_hk
+- zh_tw
+# 警告：不要从这部分删除任何字段。
+# 你可以自由地在列表中删除/添加行，但不要删除字符串字段。
+Messages:
+  noPermission: "%prefix% &c你没有权限使用这个命令!"
+  reload: '%prefix% &f该插件已被重新加载!'
+  help:
+    - '&f'
+    - '&f 重新加载该插件 &7- &d/bosterparticles reload'
+    - '&f 列表 &7- &d/bosterparticles list [classes&7/&dextensions&7/&dparticles]'
+    - '&f 设置自定义路径 &7- &d/bosterparticles set [用户] [线索]'
+    - '&f 列表菜单和管理 &7- &d/bosterparticles menus'
+    - '&f'
+  list:
+    noSuchHelp: '%prefix% &f无法找到帮助页面&c%name%&f。'
+    classes:
+      dot: '&7, &e'
+      format:
+        - '%prefix% &f注册班级&7: &e%classes%'
+    extensions:
+      dot: '&7, &d'
+      format:
+        - '%prefix% &f注册延期&7: &d%extensions%'
+    particles:
+      dot: '&7, &b'
+      format:
+        - '%prefix% &f粒子列表&7: &b%particles%'
+  set:
+    usage: '%prefix% &f使用方法 &7- &d/bosterparticles set [用户] [线索]'
+    nullTrail: '%prefix% &f路径 "&c%name%&f" 不存在。'
+    success: '%prefix% &f路径 "&a%name%&f" 被设置为玩家 "&b%player%&f"!'
+  open:
+    nullPlayer: '%prefix% &f队员 "&c%name%&f" 无法找到。'
+    success: '%prefix% &f图形界面 "&a%gui%&f" 被开放给玩家 "&d%player%&f"!'
+
+# Anything here. You can rename and do with other sections everything. You can even delete this section.
+CustomTexts:
+  GUIPlaceholders:
+    ClickToActivate: '&a点击选择!'
+    NotPermitted: "&c你没有得到这个粒子的许可。"
+    AllowedStatus: '&a有'
+    DeniedStatus: '&c不详'
+  GUIParticles-common:
+    Title: '&6弹道轨迹'
+    NoOpenPermission: "%prefix% &f你没有权限使用这个命令!"
+    no_permission:
+      - "%prefix% &c你没有得到这个弹道的许可!"
+    not_enough_money:
+      - "%prefix% &c你没有足够的钱!"
+      - "%prefix% &f价格&7: &6%cost%"
+      - "%prefix% &f你缺乏&7: &c%need%"
+    selected:
+      - '%prefix% &f射出的痕迹 "%name%&f" 成功激活!'
+  GUIParticles:
+    cloud:
+      name: '&f云'
+      lore:
+        - ''
+        - '&f状况&7: %status%'
+        - ''
+        - '%do_click%'
+    smoke:
+      name: '&7烟雾'
+      lore:
+        - ''
+        - '&f状况&7: %status%'
+        - ''
+        - '%do_click%'
+    crit:
+      name: '&5准则'
+      lore:
+        - ''
+        - '&f状况&7: %status%'
+        - ''
+        - '%do_click%'
+    spell:
+      name: '&3咒语'
+      lore:
+        - ''
+        - '&f状况&7: %status%'
+        - ''
+        - '%do_click%'
+    enchantment:
+      name: '&f魅力'
+      lore:
+        - ''
+        - '&f状况&7: %status%'
+        - ''
+        - '%do_click%'
+    note:
+      name: '&9笔记'
+      lore:
+        - ''
+        - '&f状况&7: %status%'
+        - ''
+        - '%do_click%'
+    water:
+      name: '&1滴水不漏'
+      lore:
+        - ''
+        - '&f状况&7: %status%'
+        - ''
+        - '%do_click%'
+    lava:
+      name: '&6滴落熔岩'
+      lore:
+        - ''
+        - '&f状况&7: %status%'
+        - ''
+        - '%do_click%'
+    angry_villager:
+      name: '&c愤怒的村民'
+      lore:
+        - ''
+        - '&f状况&7: %status%'
+        - ''
+        - '%do_click%'
+    happy_villager:
+      name: '&a快乐的村民'
+      lore:
+        - ''
+        - '&f状况&7: %status%'
+        - ''
+        - '%do_click%'
+    hearts:
+      name: '&c心脏'
+      lore:
+        - ''
+        - '&f状况&7: %status%'
+        - ''
+        - '%do_click%'
+    redstone:
+      name: '&c红尘'
+      lore:
+        - ''
+        - '&f状况&7: %status%'
+        - ''
+        - '%do_click%'
+    magma:
+      name: '&6镁合金'
+      lore:
+        - ''
+        - '&f状况&7: %status%'
+        - ''
+        - '%do_click%'
+    flame:
+      name: '&6火焰'
+      lore:
+        - ''
+        - '&f状况&7: %status%'
+        - ''
+        - '%do_click%'
+    lime:
+      name: '&a石灰粉'
+      lore:
+        - ''
+        - '&f状况&7: %status%'
+        - ''
+        - '%do_click%'
+    gold:
+      name: '&e金锭'
+      lore:
+        - ''
+        - '&f状况&7: %status%'
+        - ''
+        - '%do_click%'
+    iron:
+      name: '&7铁锭'
+      lore:
+        - ''
+        - '&f状况&7: %status%'
+        - ''
+        - '%do_click%'
+    diamond:
+      name: '&b钻石'
+      lore:
+        - ''
+        - '&f状况&7: %status%'
+        - ''
+        - '%do_click%'
+    flame_and_lava:
+      name: '&6火焰 &7& &6镁合金'
+      lore:
+        - ''
+        - '&f状况&7: %status%'
+        - ''
+        - '%do_click%'
+    note_and_enchants:
+      name: '&3笔记 &7& &f魅力'
+      lore:
+        - ''
+        - '&f状况&7: %status%'
+        - ''
+        - '%do_click%'
+    emerald:
+      name: '&a绿宝石'
+      lore:
+        - ''
+        - '&f状况&7: %status%'
+        - ''
+        - '%do_click%'
+    clearparticles:
+      name: '&c清洁'
+      lore:
+        - ''
+        - '&7单击以清除所有路径!'
+      message:
+        - '%prefix% &f清洁!'

@@ -1,16 +1,13 @@
 package net.boster.particles.main.particle;
 
 import net.boster.particles.main.BosterParticles;
-import net.boster.particles.main.particle.BosterParticle;
 import org.bukkit.Location;
-import org.bukkit.Particle;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.jetbrains.annotations.NotNull;
 
 public class ParticleUtils {
 
-    public static void playCircularEffect(Location loc, BosterParticle particle) {
-        if(particle == null) return;
-
+    public static void playCircularEffect(@NotNull Location loc, @NotNull BosterParticle particle) {
         double radius = 5;
 
         for(double y = 5; y >= 0; y -= 0.007) {
@@ -34,9 +31,7 @@ public class ParticleUtils {
         }
     }
 
-    public static void spawnVerticalRing(Location loc, BosterParticle particle, double size) {
-        if(particle == null) return;
-
+    public static void spawnVerticalRing(@NotNull Location loc, @NotNull BosterParticle particle, double size) {
         Location aloc = loc.clone();
         for(double degree = 0; degree < 360; degree++) {
             double radians = Math.toRadians(degree);
@@ -50,9 +45,7 @@ public class ParticleUtils {
         }
     }
 
-    public static void spawnVerticalSkippedRing(Location loc, BosterParticle particle, double size, int skips) {
-        if(particle == null) return;
-
+    public static void spawnVerticalSkippedRing(@NotNull Location loc, @NotNull BosterParticle particle, double size, int skips) {
         Location aloc = loc.clone();
         for(double degree = 0; degree < 360; degree++) {
             double radians = Math.toRadians(degree);
@@ -67,9 +60,7 @@ public class ParticleUtils {
         }
     }
 
-    public static void spawnHorizontalSkippedRing(Location loc, BosterParticle particle, double size, int skips) {
-        if(particle == null) return;
-
+    public static void spawnHorizontalSkippedRing(@NotNull Location loc, @NotNull BosterParticle particle, double size, int skips) {
         Location aloc = loc.clone();
         for(double degree = 0; degree < 360; degree++) {
             double radians = Math.toRadians(degree);
@@ -100,7 +91,7 @@ public class ParticleUtils {
         }
     }
 
-    public static void runDampenedRadialWaves(Location location) {
+    public static void runDampenedRadialWaves(@NotNull Location location) {
         Location loc = location.clone();
         BosterParticle particle = new BosterParticle(EnumBosterParticle.FIREWORKS_SPARK);
         particle.setAmount(0);

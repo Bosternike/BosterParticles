@@ -1,8 +1,8 @@
 package net.boster.particles.main.data.database.setter;
 
 import net.boster.particles.main.BosterParticles;
+import net.boster.particles.main.data.EConfiguration;
 import net.boster.particles.main.files.UserFile;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -11,36 +11,36 @@ public class FileSetter implements DataSetter {
 
     @Override
     public @NotNull String getName() {
-        return "File";
+        return "YAML";
     }
 
     @Override
-    public void setUserData(String uuid, String w, String o) {
+    public void setUserData(@NotNull String uuid, @NotNull String w, String o) {
         BosterParticles.getInstance().getFileManager().getUserFile(uuid).getConfiguration().set(w, o);
         BosterParticles.getInstance().getFileManager().saveUserFile(uuid);
     }
 
     @Override
-    public String getUserData(String uuid, String value) {
+    public String getUserData(@NotNull String uuid, @NotNull String value) {
         return BosterParticles.getInstance().getFileManager().getUserFile(uuid).getConfiguration().getString(value);
     }
 
     @Override
-    public FileConfiguration configuration(String uuid) {
+    public @NotNull EConfiguration configuration(@NotNull String uuid) {
         return BosterParticles.getInstance().getFileManager().getUserConfig(uuid);
     }
 
     @Override
-    public void save(String uuid, FileConfiguration file) {
+    public void save(@NotNull String uuid, @NotNull EConfiguration file) {
         UserFile f = BosterParticles.getInstance().getFileManager().getUserFile(uuid);
         f.setConfiguration(file);
         f.save();
     }
 
     @Override
-    public void deleteUser(String uuid) {
+    public void deleteUser(@NotNull String uuid) {
         File f = BosterParticles.getInstance().getFileManager().getUserFile(uuid).getFile();
-        if(f != null && f.exists()) {
+        if(f.exists()) {
             f.delete();
         }
     }

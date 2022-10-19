@@ -188,7 +188,7 @@ public class Utils {
         BukkitObjectInputStream inputStream = new BukkitObjectInputStream(byteArrayInputStream);
         Object r = inputStream.readObject();
         inputStream.close();
-        if(r.getClass() == clazz) {
+        if(r.getClass().isInstance(r)) {
             return (T) r;
         } else {
             throw new ClassCastException("Class " + r.getClass().getName() + " can't be cast to " + clazz.getName());

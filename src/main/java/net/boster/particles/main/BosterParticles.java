@@ -2,6 +2,7 @@ package net.boster.particles.main;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.boster.gui.BosterGUI;
 import net.boster.particles.api.extension.BPExtension;
 import net.boster.particles.main.data.FileManager;
 import net.boster.particles.main.data.PlayerData;
@@ -11,11 +12,11 @@ import net.boster.particles.main.data.extensions.PlayerTrailExtension;
 import net.boster.particles.main.lib.PAPISupport;
 import net.boster.particles.main.lib.VaultSupport;
 import net.boster.particles.main.listeners.Events;
-import net.boster.particles.main.listeners.InventoryListener;
 import net.boster.particles.main.listeners.merge.ItemMergeListener;
 import net.boster.particles.main.listeners.pickup.NewPickupListener;
 import net.boster.particles.main.listeners.pickup.OldPickupListener;
 import net.boster.particles.main.loader.BPLoader;
+import net.boster.particles.main.locale.LocalesManager;
 import net.boster.particles.main.nms.NMSProvider;
 import net.boster.particles.main.utils.Version;
 import net.boster.particles.main.utils.log.LogType;
@@ -32,6 +33,7 @@ public class BosterParticles extends JavaPlugin {
     @Getter private static BosterParticles instance;
 
     @Getter private BPLoader loader;
+    @Getter private final LocalesManager localesManager = new LocalesManager(this);
     @Getter private FileManager fileManager;
     @Getter @Setter @NotNull private DataSetter dataSetter;
     @Getter @Nullable private BukkitTask updaterTask;
@@ -40,16 +42,17 @@ public class BosterParticles extends JavaPlugin {
         instance = this;
 
         String PREFIX = "\u00a76+\u00a7a---------------- \u00a7dBosterParticles \u00a7a------------------\u00a76+";
+        Bukkit.getConsoleSender().sendMessage(PREFIX);
 
         if(Version.getCurrentVersion() == Version.OLD_VERSION) {
-            Bukkit.getConsoleSender().sendMessage(PREFIX);
             log("Plugin could not be enabled!", LogType.ERROR);
             log("Your core version is too old!", LogType.ERROR);
-            log("Version support starts from: &a1.8", LogType.ERROR);
+            log("Version support starts with: &a1.8", LogType.ERROR);
             Bukkit.getConsoleSender().sendMessage(PREFIX);
             return;
         }
 
+        BosterGUI.setup(this);
         NMSProvider.load();
         DatabaseRunnable.enable();
         PAPISupport.load();
@@ -63,7 +66,6 @@ public class BosterParticles extends JavaPlugin {
 
         registerListeners();
 
-        Bukkit.getConsoleSender().sendMessage(PREFIX);
         loader.load();
         Bukkit.getConsoleSender().sendMessage("\u00a7d[\u00a7bBosterParticles\u00a7d] \u00a7fThe plugin has been \u00a7dEnabled\u00a7f!");
         Bukkit.getConsoleSender().sendMessage("\u00a7d[\u00a7bBosterParticles\u00a7d] \u00a7fPlugin creator: \u00a7dBosternike");
@@ -83,7 +85,6 @@ public class BosterParticles extends JavaPlugin {
 
     private void registerListeners() {
         getServer().getPluginManager().registerEvents(new Events(this), this);
-        getServer().getPluginManager().registerEvents(new InventoryListener(), this);
         if(Version.getCurrentVersion().getVersionInteger() < 8) {
             getServer().getPluginManager().registerEvents(new OldPickupListener(), this);
         } else {
@@ -102,7 +103,7 @@ public class BosterParticles extends JavaPlugin {
         UpdateChecker c = new UpdateChecker(this, 100933);
         updaterTask = getServer().getScheduler().runTaskTimer(this, () -> {
             c.getVersion(version -> {
-                if(!getDescription().getVersion().equals(version)) {
+                if(!version.contains("BETA") && !getDescription().getVersion().equals(version)) {
                     log("There is a new update available!", LogType.UPDATER);
                     log("Current version:&c " + getDescription().getVersion(), LogType.UPDATER);
                     log("New version:&b " + version, LogType.UPDATER);

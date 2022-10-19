@@ -1,10 +1,14 @@
 package net.boster.particles.main.gui.button;
 
+import net.boster.gui.button.GUIButton;
 import net.boster.particles.main.BosterParticles;
 import net.boster.particles.main.data.PlayerData;
 import net.boster.particles.main.gui.ParticlesGUI;
 import net.boster.particles.main.lib.PAPISupport;
+import net.boster.particles.main.locale.LocaleReferenceProcessor;
 import net.boster.particles.main.utils.item.ItemManager;
+import net.boster.particles.main.utils.reference.StringListReference;
+import net.boster.particles.main.utils.reference.StringReference;
 import net.boster.particles.main.utils.sound.BosterSound;
 import net.boster.particles.main.utils.CachedSetSection;
 import net.boster.particles.main.utils.log.LogType;
@@ -12,6 +16,7 @@ import net.boster.particles.main.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -20,6 +25,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ButtonItem implements GUIButton {
 
@@ -33,8 +39,8 @@ public class ButtonItem implements GUIButton {
     public final int slot;
     public @Nullable final ItemStack itemStack;
 
-    public @Nullable String itemName;
-    public @Nullable List<String> lore;
+    public @Nullable StringReference<String> itemName;
+    public @Nullable StringListReference<String> lore;
 
     public @Nullable ButtonAction successfulActions;
     public @Nullable ButtonAction noPermissionActions;
@@ -90,6 +96,8 @@ public class ButtonItem implements GUIButton {
             material.setDurability((short) damage);
         }
 
+        meta.addItemFlags(ItemFlag.values());
+
         material.setItemMeta(meta);
 
         ButtonItem b = new ButtonItem(gui, item, slot, material);
@@ -97,8 +105,8 @@ public class ButtonItem implements GUIButton {
         b.permission = item.getString("permission");
         b.price = item.getDouble("cost", -1);
 
-        b.itemName = item.getString("name");
-        b.lore = item.getStringList("lore");
+        b.itemName = LocaleReferenceProcessor.processStringReference(item, "name");
+        b.lore = LocaleReferenceProcessor.processStringListReference(item, "lore");
 
         b.successfulActions = ClickActions.load(item.getConfigurationSection("success_actions"), b);
         b.noPermissionActions = ClickActions.load(item.getConfigurationSection("no_permission_actions"), b);
@@ -172,18 +180,22 @@ public class ButtonItem implements GUIButton {
     }
 
     public ItemStack prepareItem(Player p) {
-        PlayerData d = PlayerData.get(p);
         if(itemStack != null) {
+            PlayerData d = PlayerData.get(p);
+            String locale = d.getLocale();
+
             ItemStack item = itemStack.clone();
             ItemMeta meta = item.getItemMeta();
+            if(meta == null) return item;
 
             if(itemName != null) {
-                meta.setDisplayName(toReplaces(d, itemName));
+                String s = itemName.get(locale);
+                if(s != null) {
+                    meta.setDisplayName(toReplaces(d, itemName.get(locale)));
+                }
             }
             if(lore != null) {
-                List<String> lr = new ArrayList<>();
-                lore.forEach(l -> lr.add(toReplaces(d, l)));
-                meta.setLore(lr);
+                meta.setLore(lore.get(locale).stream().map(s -> toReplaces(d, s)).collect(Collectors.toList()));
             }
 
             item.setItemMeta(meta);
@@ -203,12 +215,15 @@ public class ButtonItem implements GUIButton {
     }
 
     public String toReplaces(PlayerData p, String s) {
+        String locale = p.getLocale();
         boolean b1 = permission != null && p.hasPermission(permission);
-        String r = PAPISupport.setPlaceholders(p.p, toSystemReplaces(p.p, p.setPlaceholders(s)));
-        r = r.replace("%do_click%", b1 ? gui.getPlaceholders().getPlaceholder("ClickToActivate") :
-                        gui.getPlaceholders().getPlaceholder("NotPermitted"))
-                .replace("%status%", b1 ? gui.getPlaceholders().getPlaceholder("AllowedStatus") :
-                        gui.getPlaceholders().getPlaceholder("DeniedStatus"));
+        String r = PAPISupport.setPlaceholders(p.getPlayer(), toSystemReplaces(p.getPlayer(), p.setPlaceholders(s)));
+        r = r.replace("%do_click%", b1 ? gui.getPlaceholders().getPlaceholder("ClickToActivate", locale) :
+                        gui.getPlaceholders().getPlaceholder("NotPermitted", locale))
+                .replace("%status%", b1 ? gui.getPlaceholders().getPlaceholder("AllowedStatus", locale) :
+                        gui.getPlaceholders().getPlaceholder("DeniedStatus", locale));
+        String name = itemName != null ? itemName.get(locale) : null;
+        r = r.replace("%name%", name != null ? name : "null");
         return BosterParticles.toColor(r);
     }
 
@@ -217,13 +232,13 @@ public class ButtonItem implements GUIButton {
         public final ButtonItem item;
 
         public final BosterSound sound;
-        public final List<String> messages;
+        public final StringListReference<String> messages;
         public final List<String> commands;
-        public final List<String> announce;
+        public final StringListReference<String> announce;
 
         public final CachedSetSection set;
 
-        public ClickActions(@NotNull ButtonItem i, @Nullable BosterSound sound, @NotNull List<String> messages, @NotNull List<String> commands, @NotNull List<String> announce, @NotNull CachedSetSection set) {
+        public ClickActions(@NotNull ButtonItem i, @Nullable BosterSound sound, @Nullable StringListReference<String> messages, @NotNull List<String> commands, @Nullable StringListReference<String> announce, @NotNull CachedSetSection set) {
             this.item = i;
             this.sound = sound;
             this.messages = messages;
@@ -234,23 +249,31 @@ public class ButtonItem implements GUIButton {
 
         public static @NotNull ClickActions load(ConfigurationSection section, ButtonItem b) {
             if(section == null) {
-                return new ClickActions(b, null, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new CachedSetSection());
+                return new ClickActions(b, null, null, new ArrayList<>(), null, new CachedSetSection());
             }
 
-            return new ClickActions(b, BosterSound.load(section.getString("sound")), section.getStringList("message"),
-                    section.getStringList("commands"), section.getStringList("announce"),
+            return new ClickActions(b, BosterSound.load(section.getString("sound")),
+                    LocaleReferenceProcessor.processStringListReference(section, "message"),
+                    section.getStringList("commands"),
+                    LocaleReferenceProcessor.processStringListReference(section, "announce"),
                     CachedSetSection.load(section, "Could not load from bytes! Gui: \"&c" + b.gui.getName() + "&7\"; Item: \"&c" + b.section.getName() + "&7\"; " +
                             "Path: \"&c" + b.section.getCurrentPath() + "&7\"."));
         }
 
         public void act(@NotNull Player p, @Nullable String... replaces) {
             PlayerData d = PlayerData.get(p);
+            String locale = d.getLocale();
             if(sound != null) {
                 p.playSound(p.getLocation(), sound.sound, 1, sound.i);
             }
-            messages.forEach(s -> p.sendMessage(item.toReplaces(d, Utils.toReplaces(s, replaces))));
+
+            if(messages != null) {
+                messages.get(locale).forEach(s -> p.sendMessage(item.toReplaces(d, Utils.toReplaces(s, replaces))));
+            }
             commands.forEach(s -> p.chat(item.toSystemReplaces(p, Utils.toReplaces(s, replaces))));
-            announce.forEach(s -> Bukkit.broadcastMessage(item.toReplaces(d, Utils.toReplaces(s, replaces))));
+            if(announce != null) {
+                announce.get(locale).forEach(s -> Bukkit.broadcastMessage(item.toReplaces(d, Utils.toReplaces(s, replaces))));
+            }
 
             PlayerData data = PlayerData.get(p);
             boolean ld = false;

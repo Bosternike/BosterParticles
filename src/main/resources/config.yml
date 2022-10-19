@@ -27,6 +27,10 @@ Updater:
 
 Settings:
   Prefix: '&d&lBosterParticles &8&l|'
+  # Messages for player will be displayed in locale that they selected.
+  # For example, if I select english, messages will be displayed from "en_EN" for me.
+  # Here you can see languages and definitions: https://minecraft.fandom.com/wiki/Language
+  DefaultLocale: 'en_EN'
   RunnableDelay: 0
   # User key types:
   # - UUID
@@ -45,38 +49,9 @@ Settings:
   - INFO
   - WARNING
   - ERROR
-
-Messages:
-  noPermission: "%prefix% &cYou don't have permission to use this command!"
-  reload: '%prefix% &fThe plugin has been reloaded!'
-  help:
-  - '&f'
-  - '&f Reload the plugin &7- &d/bosterparticles reload'
-  - '&f List &7- &d/bosterparticles list [classes&7/&dextensions&7/&dparticles]'
-  - '&f Set custom trail &7- &d/bosterparticles set [user] [trail]'
-  - '&f List menus and managing them &7- &d/bosterparticles menus'
-  - '&f'
-  list:
-    noSuchHelp: '%prefix% &fHelp page &c%name% &fcould not be found.'
-    classes:
-      dot: '&7, &e'
-      format:
-      - '%prefix% &fRegistered classes&7: &e%classes%'
-    extensions:
-      dot: '&7, &d'
-      format:
-      - '%prefix% &fRegistered extensions&7: &d%extensions%'
-    particles:
-      dot: '&7, &b'
-      format:
-      - '%prefix% &fParticles list&7: &b%particles%'
-  set:
-    usage: '%prefix% &fUsage &7- &d/bosterparticles set [user] [trail]'
-    nullTrail: '%prefix% &fTrail &c%name% &fdoes not exist.'
-    success: '%prefix% &fTrail &a%name% &fwas set for player &b%player%&f!'
-  open:
-    nullPlayer: '%prefix% &fPlayer &c%name% &fcould not be found.'
-    success: '%prefix% &a%gui% &fwas opened for player &d%player%&f!'
+  # Custom trails that will be set by default.
+  Defaults:
+  - 'example' # This is the name of custom trail.
 
 # You can use these trails for command (/bosterparticles set [user] [trail])
 CustomTrails:
@@ -94,7 +69,7 @@ CustomTrails:
               - ''
               - '&eExample lore'
           Amount: 1
-          PickupAble: true
+          PickupAble: false
           LifeTime: -1
       Particles:
         1:

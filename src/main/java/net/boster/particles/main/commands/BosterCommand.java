@@ -3,6 +3,8 @@ package net.boster.particles.main.commands;
 import lombok.Getter;
 import lombok.Setter;
 import net.boster.particles.main.BosterParticles;
+import net.boster.particles.main.data.PlayerData;
+import net.boster.particles.main.utils.ConfigValues;
 import net.boster.particles.main.utils.ReflectionUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -80,5 +82,15 @@ public abstract class BosterCommand extends Command implements PluginIdentifiabl
         }
 
         return Collections.emptyList();
+    }
+
+    public String getLocaleMessage(@NotNull CommandSender sender, @NotNull String path) {
+        String l = sender instanceof Player ? PlayerData.get((Player) sender).getLocale() : ConfigValues.DEFAULT_LOCALE;
+        return plugin.getLocalesManager().getString(l, path);
+    }
+
+    public List<String> getLocaleMessageList(@NotNull CommandSender sender, @NotNull String path) {
+        String l = sender instanceof Player ? PlayerData.get((Player) sender).getLocale() : ConfigValues.DEFAULT_LOCALE;
+        return plugin.getLocalesManager().getStringList(l, path);
     }
 }

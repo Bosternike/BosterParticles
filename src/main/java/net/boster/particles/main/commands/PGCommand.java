@@ -4,6 +4,8 @@ import com.google.common.collect.Lists;
 import net.boster.particles.main.BosterParticles;
 import net.boster.particles.main.data.PlayerData;
 import net.boster.particles.main.gui.ParticlesGUI;
+import net.boster.particles.main.utils.ConfigValues;
+import net.boster.particles.main.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -37,8 +39,7 @@ public class PGCommand extends BosterCommand {
                 return false;
             }
 
-            gui.open((Player) sender);
-            return true;
+            gui.open(PlayerData.get((Player) sender));
         } else {
             if(gui.getPermission() != null && !sender.hasPermission(gui.getPermission() + ".others")) {
                 sendNoPerms(sender);
@@ -47,14 +48,14 @@ public class PGCommand extends BosterCommand {
             Player p = Bukkit.getPlayer(args[0]);
 
             if(p == null) {
-                sender.sendMessage(BosterParticles.toColor(plugin.getConfig().getString("Messages.open.nullPlayer").replace("%name%", args[0])));
+                sender.sendMessage(BosterParticles.toColor(getLocaleMessage(sender, "Messages.open.nullPlayer").replace("%name%", args[0])));
                 return false;
             }
 
-            gui.open(p);
-            sender.sendMessage(BosterParticles.toColor(plugin.getConfig().getString("Messages.open.success").replace("%gui%", gui.getName()).replace("%player%", args[0])));
-            return true;
+            gui.open(PlayerData.get(p));
+            sender.sendMessage(BosterParticles.toColor(getLocaleMessage(sender, "Messages.open.success").replace("%gui%", gui.getName()).replace("%player%", args[0])));
         }
+        return true;
     }
 
     @Override
@@ -68,7 +69,8 @@ public class PGCommand extends BosterCommand {
 
     public void sendNoPerms(CommandSender sender) {
         if(gui.getNoPermissionMessage() != null) {
-            sender.sendMessage(BosterParticles.toColor(gui.getNoPermissionMessage()));
+            PlayerData p = sender instanceof Player ? PlayerData.get((Player) sender) : null;
+            sender.sendMessage(Utils.toColor(gui.getNoPermissionMessage().get(p != null ? p.getLocale() : ConfigValues.DEFAULT_LOCALE)));
         }
     }
 }

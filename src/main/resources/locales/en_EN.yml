@@ -1,0 +1,211 @@
+# English
+Aliases:
+- en_gb
+- en_us
+# WARNING: DO NOT REMOVE ANY FIELDS FROM THIS SECTION.
+# YOU ARE FREE TO REMOVE/ADD LINES TO LISTS, BUT DON'T REMOVE STRING FIELDS.
+Messages:
+  noPermission: "%prefix% &cYou don't have permission to use this command!"
+  reload: '%prefix% &fThe plugin has been reloaded!'
+  help:
+  - '&f'
+  - '&f Reload the plugin &7- &d/bosterparticles reload'
+  - '&f List &7- &d/bosterparticles list [classes&7/&dextensions&7/&dparticles]'
+  - '&f Set custom trail &7- &d/bosterparticles set [user] [trail]'
+  - '&f List menus and management &7- &d/bosterparticles menus'
+  - '&f'
+  list:
+    noSuchHelp: '%prefix% &fHelp page &c%name%&f could not be found.'
+    classes:
+      dot: '&7, &e'
+      format:
+      - '%prefix% &fRegistered classes&7: &e%classes%'
+    extensions:
+      dot: '&7, &d'
+      format:
+      - '%prefix% &fRegistered extensions&7: &d%extensions%'
+    particles:
+      dot: '&7, &b'
+      format:
+      - '%prefix% &fParticles list&7: &b%particles%'
+  set:
+    usage: '%prefix% &fUsage &7- &d/bosterparticles set [user] [trail]'
+    nullTrail: '%prefix% &fTrail &c%name%&f does not exist.'
+    success: '%prefix% &fTrail &a%name%&f was set for player &b%player%&f!'
+  open:
+    nullPlayer: '%prefix% &fPlayer &c%name%&f could not be found.'
+    success: '%prefix% &fGUI &a%gui%&f was opened for player &d%player%&f!'
+
+# Anything here. You can rename and do with other sections everything. You can even delete this section.
+CustomTexts:
+  GUIPlaceholders:
+    ClickToActivate: '&aClick to select!'
+    NotPermitted: "&cYou don't have permission for this particle."
+    AllowedStatus: '&aAvailable'
+    DeniedStatus: '&cNot available'
+  GUIParticles-common:
+    Title: '&6Projectile trails'
+    NoOpenPermission: "%prefix% &fYou don't have permission to use this command!"
+    no_permission:
+    - "%prefix% &cYou don't have permission for this projectile trail!"
+    not_enough_money:
+    - "%prefix% &cYou don't have enough money!"
+    - "%prefix% &fPrice&7: &6%cost%"
+    - "%prefix% &fYou lack&7: &c%need%"
+    selected:
+    - '%prefix% &fProjectile trail "%name%&f" successfully activated!'
+  GUIParticles:
+    cloud:
+      name: '&fCloud'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    smoke:
+      name: '&7Smoke'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    crit:
+      name: '&5Crit'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    spell:
+      name: '&3Spell'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    enchantment:
+      name: '&fEnchantment'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    note:
+      name: '&9Notes'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    water:
+      name: '&1Drip water'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    lava:
+      name: '&6Drip lava'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    angry_villager:
+      name: '&cAngry villager'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    happy_villager:
+      name: '&aHappy villager'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    hearts:
+      name: '&cHearts'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    redstone:
+      name: '&cRed dust'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    magma:
+      name: '&6Magma'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    flame:
+      name: '&6Flame'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    lime:
+      name: '&aLime dust'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    gold:
+      name: '&eGold ingot'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    iron:
+      name: '&7Iron ingot'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    diamond:
+      name: '&bDiamond'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    flame_and_lava:
+      name: '&6Flame &7& &6Magma'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    note_and_enchants:
+      name: '&3Notes &7& &fEnchantment'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    emerald:
+      name: '&aEmerald'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    clearparticles:
+      name: '&cClear trails'
+      lore:
+      - ''
+      - '&7Click to clear all trails!'
+      message:
+      - '%prefix% &fClean!'

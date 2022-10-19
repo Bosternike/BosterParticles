@@ -43,7 +43,7 @@ public class MySqlConnectionUtils implements ConnectedDatabase {
                     e.printStackTrace();
                 }
             }
-        }.runTaskTimerAsynchronously(BosterParticles.getInstance(), 3600, 3600);
+        }.runTaskTimerAsynchronously(BosterParticles.getInstance(), 3600 * 20, 3600 * 20);
     }
 
     public void stopAntiTimeOut() {
@@ -93,11 +93,13 @@ public class MySqlConnectionUtils implements ConnectedDatabase {
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM `users` WHERE uuid = '" + key + "'");
             ResultSet rs = statement.executeQuery();
+            String r = null;
             if(rs.next()) {
-                return rs.getString(arg);
+                r = rs.getString(arg);
             }
             rs.close();
             statement.close();
+            return r;
         } catch (SQLException e) {
             e.printStackTrace();
         }

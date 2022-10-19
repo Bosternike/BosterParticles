@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
+import java.util.List;
 
 public class FilesLoader extends ALoader {
 
@@ -20,20 +21,9 @@ public class FilesLoader extends ALoader {
     }
 
     public void loadFiles() {
-        FileConfiguration cfg = YamlConfiguration.loadConfiguration(new InputStreamReader(plugin.getResource("config.yml")));
-        File cf = new File(plugin.getDataFolder(), "config.yml");
-        if(!ConfigUtils.hasAllStrings(cfg, YamlConfiguration.loadConfiguration(cf), Lists.newArrayList("CustomTrails"))) {
-            ConfigUtils.replaceOldConfig(cf, cf, plugin.getResource("config.yml"));
-            plugin.reloadConfig();
-        }
-        File usage = new File(plugin.getDataFolder(), "usage_" + plugin.getDescription().getVersion() + ".txt");
-        if(!usage.exists()) {
-            try {
-                Files.copy(plugin.getResource("usage.txt"), usage.toPath());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        processConfiguration("config.yml", Lists.newArrayList("CustomTrails"));
+        copyFile("usage.txt", "usage_" + plugin.getDescription().getVersion() + ".txt");
+
         for(File f : plugin.getDataFolder().listFiles()) {
             if(f.getName().startsWith("usage") && !f.getName().equalsIgnoreCase("usage_" + plugin.getDescription().getVersion() + ".txt")) {
                 f.delete();
@@ -41,6 +31,26 @@ public class FilesLoader extends ALoader {
         }
 
         loader.setPrefix(plugin.getConfig().getString("Settings.Prefix", "BosterParticles"));
+    }
+
+    private void processConfiguration(@NotNull String name, @NotNull List<String> skippedFields) {
+        FileConfiguration cfg = YamlConfiguration.loadConfiguration(new InputStreamReader(plugin.getResource(name)));
+        File cf = new File(plugin.getDataFolder(), name);
+        if(!ConfigUtils.hasAllStrings(cfg, YamlConfiguration.loadConfiguration(cf), skippedFields)) {
+            ConfigUtils.replaceOldConfig(cf, cf, plugin.getResource(name));
+            plugin.reloadConfig();
+        }
+    }
+
+    private void copyFile(@NotNull String name, @NotNull String toName) {
+        File file = new File(plugin.getDataFolder(), toName);
+        if(!file.exists()) {
+            try {
+                Files.copy(plugin.getResource(name), file.toPath());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void loadMenusFiles() {

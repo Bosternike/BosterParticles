@@ -1,22 +1,24 @@
 package net.boster.particles.main.gui.placeholders;
 
-import org.apache.commons.lang.Validate;
+import net.boster.particles.main.utils.reference.StringReference;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class GUIPlaceholder {
 
-    public final String notNull;
-    public String nullable;
+    @NotNull public final String notNull;
+    @Nullable public StringReference<String> nullable;
 
-    public GUIPlaceholder(String notNull) {
-        Validate.notNull(notNull);
+    public GUIPlaceholder(@NotNull String notNull) {
         this.notNull = notNull;
     }
 
-    public String get() {
+    public @NotNull String get(@NotNull String locale) {
         if(nullable == null) {
             return notNull;
         } else {
-            return nullable;
+            String s = nullable.get(locale);
+            return s != null ? s : notNull;
         }
     }
 }

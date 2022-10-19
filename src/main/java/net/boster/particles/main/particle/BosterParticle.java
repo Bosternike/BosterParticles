@@ -5,7 +5,6 @@ import lombok.Setter;
 import net.boster.particles.main.BosterParticles;
 import net.boster.particles.main.particle.blockdata.BPBlockData;
 import net.boster.particles.main.particle.dust.BPDustOptions;
-import net.boster.particles.main.utils.Utils;
 import net.boster.particles.main.utils.log.LogType;
 import net.boster.particles.main.utils.Version;
 import net.boster.particles.main.particle.blockdata.BlockDataUtils;
@@ -17,9 +16,6 @@ import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.io.IOException;
-import java.util.Objects;
 
 public class BosterParticle {
 
@@ -137,7 +133,7 @@ public class BosterParticle {
             BosterParticles.getInstance().log("&7Could not load Particle \"&c" + type + "&7\". (Section = " + particle.getName() + ")", LogType.WARNING);
             return null;
         }
-        bp.setAmount(particle.getInt("amount", 1));
+        bp.setAmount(particle.getInt("Amount", 1));
         bp.setOptions(particle.getDouble("Options", 0));
         if(dustOptions != null && !dustOptions.equalsIgnoreCase("none")) {
             try {
@@ -166,13 +162,5 @@ public class BosterParticle {
         bp.setY(particle.getDouble("Y", 0));
         bp.setZ(particle.getDouble("Z", 0));
         return bp;
-    }
-
-    public @NotNull String serialize() {
-        return Objects.requireNonNull(Utils.encode(this));
-    }
-
-    public static @NotNull BosterParticle deserialize(@NotNull String s) throws IOException, ClassNotFoundException {
-        return Utils.decode(s, BosterParticle.class);
     }
 }

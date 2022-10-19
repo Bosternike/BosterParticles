@@ -31,7 +31,7 @@ public class ConfigUtils {
         return f;
     }
 
-    public static String toSimpleName(File f) {
+    public static String toSimpleName(@NotNull File f) {
         String name;
         try {
             String[] ss = f.getName().replace(".", ",").split(",");
@@ -42,7 +42,7 @@ public class ConfigUtils {
         return name;
     }
 
-    public static boolean hasAllStrings(@NotNull ConfigurationSection instance, @NotNull ConfigurationSection toCheck, List<String> skip) {
+    public static boolean hasAllStrings(@NotNull ConfigurationSection instance, @NotNull ConfigurationSection toCheck, @NotNull List<String> skip) {
         String parent = instance.getCurrentPath() != null && !instance.getCurrentPath().isEmpty() ? instance.getCurrentPath() + "." : "";
 
         for(String k : instance.getKeys(false)) {
@@ -78,13 +78,13 @@ public class ConfigUtils {
         }
     }
 
-    public static void saveResource(@NotNull InputStream in, File outFile) throws IOException {
+    public static void saveResource(@NotNull InputStream in, @NotNull File outFile) throws IOException {
         if(!outFile.exists()) {
             outFile.getParentFile().mkdirs();
             outFile.createNewFile();
         }
 
-        OutputStream out = new FileOutputStream(outFile);
+        OutputStream out = Files.newOutputStream(outFile.toPath());
         byte[] buf = new byte[1024];
 
         int len;

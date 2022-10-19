@@ -1,12 +1,14 @@
 package net.boster.particles.main.gui.manage;
 
 import com.google.common.collect.Lists;
-import net.boster.particles.main.gui.CustomGUI;
+import net.boster.gui.CustomGUI;
+import net.boster.gui.button.GUIButton;
+import net.boster.particles.main.data.PlayerData;
 import net.boster.particles.main.gui.ParticlesGUI;
-import net.boster.particles.main.gui.button.GUIButton;
 import net.boster.particles.main.gui.manage.chat.TypingUser;
 import net.boster.particles.main.gui.manage.confirmation.ConfirmationGUI;
 import net.boster.particles.main.gui.placeholders.GUIPlaceholder;
+import net.boster.particles.main.locale.LocaleReferenceProcessor;
 import net.boster.particles.main.utils.Utils;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -31,6 +33,9 @@ public class ManagePlaceholdersGUI {
     }
 
     public static void open(@NotNull Player p, @NotNull ParticlesGUI particlesGUI) {
+        PlayerData d = PlayerData.get(p);
+        String locale = d.getLocale();
+
         CustomGUI gui = new CustomGUI(p, Utils.toColor("&8Placeholder editor: &b&l" + particlesGUI.getName()), 27);
         for(int i : Utils.createBorder(27)) {
             gui.getGui().addButton(new GUIButton() {
@@ -66,20 +71,20 @@ public class ManagePlaceholdersGUI {
 
         int slot = 10;
         for(Map.Entry<String, GUIPlaceholder> placeholder : particlesGUI.getPlaceholders().placeholders()) {
-            createPlaceholder(slot, gui, particlesGUI, placeholder.getKey());
+            createPlaceholder(slot, gui, particlesGUI, placeholder.getKey(), locale);
             slot += 2;
         }
 
         gui.open();
     }
 
-    private static void createPlaceholder(int slot, CustomGUI gui, ParticlesGUI particlesGUI, String placeholder) {
+    private static void createPlaceholder(int slot, CustomGUI gui, ParticlesGUI particlesGUI, String placeholder, String locale) {
         ItemStack item = PLACEHOLDER.clone();
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(Utils.toColor("&fName&7: &d" + placeholder));
         List<String> lore = new ArrayList<>();
         PLACEHOLDER_LORE.forEach(s -> lore.add(Utils.toColor(s
-                .replace("%text%", particlesGUI.getPlaceholders().getPlaceholder(placeholder))
+                .replace("%text%", particlesGUI.getPlaceholders().getPlaceholder(placeholder, locale))
                 .replace("%placeholder%", placeholder))));
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -110,7 +115,8 @@ public class ManagePlaceholdersGUI {
                         clear();
                         gui.clear();
 
-                        particlesGUI.getPlaceholders().setPlaceholder(placeholder, input, input);
+                        particlesGUI.getPlaceholders().setPlaceholder(placeholder, input,
+                                LocaleReferenceProcessor.processStringReference(particlesGUI.getFile().getConfig(), input));
                         particlesGUI.getFile().getConfig().set("Placeholders." + placeholder, input);
                         particlesGUI.getFile().save();
 

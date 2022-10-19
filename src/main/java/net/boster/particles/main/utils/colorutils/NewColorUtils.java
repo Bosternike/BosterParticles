@@ -17,14 +17,11 @@ public class NewColorUtils implements ColorUtils {
     @Override
     public String toColor(@NotNull String s) {
         String str = s;
-        Matcher match = pattern.matcher(str);
-
-        while(match.find()) {
-            String color = s.substring(match.start() + 1, match.end());
+        for(Matcher matcher = pattern.matcher(str); matcher.find(); matcher = pattern.matcher(str)) {
+            String color = str.substring(matcher.start() + 1, matcher.end());
             str = str.replace("&" + color, ChatColor.of(color) + "");
-            match = pattern.matcher(str);
         }
 
-        return ChatColor.translateAlternateColorCodes('&', s);
+        return ChatColor.translateAlternateColorCodes('&', str);
     }
 }

@@ -1,19 +1,20 @@
 package net.boster.particles.main.data.database.setter;
 
-import org.bukkit.configuration.file.FileConfiguration;
+import net.boster.particles.main.data.EConfiguration;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public interface DataSetter {
 
     @NotNull String getName();
 
-    void setUserData(String uuid, String w, String o);
+    void setUserData(@NotNull String uuid, @NotNull String w, @Nullable String o);
 
-    String getUserData(String uuid, String value);
+    String getUserData(@NotNull String uuid, @NotNull String value);
 
-    FileConfiguration configuration(String uuid);
+    @NotNull EConfiguration configuration(@NotNull String uuid);
 
-    void save(String uuid, FileConfiguration file);
+    void save(@NotNull String uuid, @NotNull EConfiguration file);
 
-    void deleteUser(String uuid);
+    void deleteUser(@NotNull String uuid);
 }
