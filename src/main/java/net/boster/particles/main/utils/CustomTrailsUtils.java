@@ -77,7 +77,11 @@ public class CustomTrailsUtils {
                 announce.forEach(s -> Bukkit.broadcastMessage(Utils.toColor(s.replace("%player%", p.getName()))));
             }
 
-            PlayerData pd = PlayerData.get(p);
+            applyData(user, p);
+        }
+
+        private void applyData(@NotNull OfflinePlayer user, @Nullable Player p) {
+            PlayerData pd = p != null ? PlayerData.get(p) : null;
             EConfiguration file;
             if(pd == null) {
                 file = BosterParticles.getInstance().getDataSetter().configuration(DataConverter.convert(user));

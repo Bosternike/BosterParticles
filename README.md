@@ -55,7 +55,7 @@ Maven dependency:
     <dependency>
         <groupId>com.github.Bosternike</groupId>
         <artifactId>BosterParticles</artifactId>
-        <version>1.1.5-SNAPSHOT</version>
+        <version>1.1.6-SNAPSHOT</version>
     </dependency>
 </dependencies>
 ```
@@ -67,7 +67,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.Bosternike:BosterParticles:1.1.5-SNAPSHOT'
+    implementation 'com.github.Bosternike:BosterParticles:1.1.6-SNAPSHOT'
 }
 ```
 

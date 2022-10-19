@@ -43,10 +43,13 @@ public class CraftPlayerTrail {
     public static void load(@NotNull PlayerTrailExtension data) {
         FileConfiguration file = data.getData().data;
         ConfigurationSection particles = file.getConfigurationSection("PlayerTrails");
+
         if(particles != null && particles.getKeys(false).size() > 0) {
             for(String pp : particles.getKeys(false)) {
+
                 ConfigurationSection section = particles.getConfigurationSection(pp);
                 BosterParticle bp = BosterParticle.load(section);
+
                 if(bp != null) {
                     HistoryLimiter limiter = null;
                     if(section.get("Limiter.Distance") != null) {
@@ -55,7 +58,7 @@ public class CraftPlayerTrail {
                         limiter = new LocationsLimiter(section.getInt("Limiter.Locations"));
                     }
 
-                    PlayerTrailType type = PlayerTrailType.valueOf(section.getString("Figure"));
+                    PlayerTrailType type = PlayerTrailType.valueOf(section.getString("Figure", ""));
                     if(type == null) {
                         BosterParticles.getInstance().log("&7Could not load Figure \"&c" + section.getString("Figure") + "&7\"", LogType.WARNING);
                         return;

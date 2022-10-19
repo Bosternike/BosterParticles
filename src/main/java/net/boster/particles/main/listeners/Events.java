@@ -48,7 +48,7 @@ public class Events implements Listener {
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void onChat(PlayerCommandPreprocessEvent e) {
+    public void onCommand(PlayerCommandPreprocessEvent e) {
         Player p = e.getPlayer();
         TypingUser u = TypingUser.user.get(p);
         if(u != null) {
