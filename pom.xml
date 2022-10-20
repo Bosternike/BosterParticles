@@ -7,6 +7,7 @@
     <groupId>net.boster.particles</groupId>
     <artifactId>BosterParticles</artifactId>
     <version>1.1.6-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <repositories>
         <repository>
@@ -76,8 +77,32 @@
         <dependency>
             <groupId>com.github.Bosternike</groupId>
             <artifactId>BosterGUI</artifactId>
-            <version>1.1.3</version>
+            <version>1.1.5</version>
             <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>spigot-nms-1</groupId>
+            <artifactId>spigot</artifactId>
+            <version>1_8_R1</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/libs/server_v1_8_R1.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>spigot-nms-2</groupId>
+            <artifactId>spigot</artifactId>
+            <version>1_8_R2</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/libs/server_v1_8_R2.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>spigot-nms-3</groupId>
+            <artifactId>spigot</artifactId>
+            <version>1_8_R3</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/libs/server_v1_8_R3.jar</systemPath>
         </dependency>
     </dependencies>
 

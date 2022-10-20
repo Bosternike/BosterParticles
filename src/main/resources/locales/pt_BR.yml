@@ -1,0 +1,210 @@
+# Português
+Aliases:
+- pt_PT
+# AVISO: NÃO REMOVA NENHUM CAMPO DESSA SEÇÃO.
+# VOCÊ É LIVRE PARA REMOVER/ADICIONAR LINHAS AS LISTAS, MAS NÃO REMOVA OS CAMPOS DE ESCRITA.
+Messages:
+  noPermission: "%prefix% &cVocê não tem permissão para usar esse comando!"
+  reload: '%prefix% &fO plugin foi recarregado'
+  help:
+  - '&f'
+  - '&f Recarregar o plugin &7- &d/bosterparticles reload'
+  - '&f Lista &7- &d/bosterparticles list [classes&7/&dextensions&7/&dparticles]'
+  - '&f Definir rastro personalizado &7- &d/bosterparticles set [user] [trail]'
+  - '&f Listar menus e gerenciamento &7- &d/bosterparticles menus'
+  - '&f'
+  list:
+    noSuchHelp: '%prefix% &fA página de ajuda &c%name%&f não pôde ser encontrada.'
+    classes:
+      dot: '&7, &e'
+      format:
+      - '%prefix% &fClasses registradas&7: &e%classes%'
+    extensions:
+      dot: '&7, &d'
+      format:
+      - '%prefix% &fExtensões registradas&7: &d%extensions%'
+    particles:
+      dot: '&7, &b'
+      format:
+      - '%prefix% &fLista de partículas&7: &b%particles%'
+  set:
+    usage: '%prefix% &fUse &7- &d/bosterparticles set [user] [trail]'
+    nullTrail: '%prefix% &fRastro &c%name%&f não existe.'
+    success: '%prefix% &fRastro &a%name%&f foi definido para o jogador &b%player%&f!'
+  open:
+    nullPlayer: '%prefix% &fO jogador &c%name%&f não pôde ser encontrado.'
+    success: '%prefix% &fGUI &a%gui%&f foi aberto para o player &d%player%&f!'
+
+# Tudo aqui. Você pode renomear e fazer tudo com outras seções. Você também pode deletar essa seção.
+CustomTexts:
+  GUIPlaceholders:
+    ClickToActivate: '&aClique para selecionar!'
+    NotPermitted: "&cVocê não tem permissão para essa partícula."
+    AllowedStatus: '&aDisponível'
+    DeniedStatus: '&cNão disponível'
+  GUIParticles-common:
+    Title: '&6Rastros de projétéis'
+    NoOpenPermission: "%prefix% &fVocê não tem permissão para usar esse comando!"
+    no_permission:
+    - "%prefix% &cVocê não tem permissão para usar esse rastro de projétil!"
+    not_enough_money:
+    - "%prefix% &cVocê não tem dinheiro suficiente!"
+    - "%prefix% &fPreço&7: &6%cost%"
+    - "%prefix% &fVocê não tem&7: &c%need%"
+    selected:
+    - '%prefix% &fRastro de projétil "%name%&f" ativado com sucesso!'
+  GUIParticles:
+    cloud:
+      name: '&fNuvem'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    smoke:
+      name: '&7Fumaça'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    crit:
+      name: '&5Crit'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    spell:
+      name: '&3Feitiço'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    enchantment:
+      name: '&fEncantamento'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    note:
+      name: '&9Anotações'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    water:
+      name: '&1Gota de água'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    lava:
+      name: '&6Gota de lava'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    angry_villager:
+      name: '&cVillager bravo'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    happy_villager:
+      name: '&aVillager feliz'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    hearts:
+      name: '&cCorações'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    redstone:
+      name: '&cPó vermelho'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    magma:
+      name: '&6Magma'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    flame:
+      name: '&6Chamas'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    lime:
+      name: '&aPó verde'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    gold:
+      name: '&eOuro'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    iron:
+      name: '&7Ferro'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    diamond:
+      name: '&bDiamante'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    flame_and_lava:
+      name: '&6Fogo &7& &6Magma'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    note_and_enchants:
+      name: '&3Anotações &7& &fEncantamentos'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    emerald:
+      name: '&aEsmeralda'
+      lore:
+      - ''
+      - '&fStatus&7: %status%'
+      - ''
+      - '%do_click%'
+    clearparticles:
+      name: '&cLimpar rastros'
+      lore:
+      - ''
+      - '&7Clique para limpar todos os rastros!'
+      message:
+      - '%prefix% &fLimpo!'
