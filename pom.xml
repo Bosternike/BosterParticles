@@ -6,7 +6,7 @@
 
     <groupId>net.boster.particles</groupId>
     <artifactId>BosterParticles</artifactId>
-    <version>1.1.7-SNAPSHOT</version>
+    <version>1.1.8-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <repositories>

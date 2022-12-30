@@ -133,7 +133,7 @@ public class ReflectionUtils {
     public static String getLocale(@NotNull Player p) {
         if(oldPlayerLocaleMethod != null) {
             try {
-                return (String) oldPlayerLocaleMethod.invoke(p);
+                return (String) oldPlayerLocaleMethod.invoke(p.spigot());
             } catch (Throwable e) {
                 e.printStackTrace();
             }
