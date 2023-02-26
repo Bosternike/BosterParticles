@@ -48,12 +48,12 @@ public class PGCommand extends BosterCommand {
             Player p = Bukkit.getPlayer(args[0]);
 
             if(p == null) {
-                sender.sendMessage(BosterParticles.toColor(getLocaleMessage(sender, "Messages.open.nullPlayer").replace("%name%", args[0])));
+                sender.sendMessage(Utils.toColor(getLocaleMessage(sender, "Messages.open.nullPlayer").replace("%name%", args[0])));
                 return false;
             }
 
             gui.open(PlayerData.get(p));
-            sender.sendMessage(BosterParticles.toColor(getLocaleMessage(sender, "Messages.open.success").replace("%gui%", gui.getName()).replace("%player%", args[0])));
+            sender.sendMessage(Utils.toColor(getLocaleMessage(sender, "Messages.open.success").replace("%gui%", gui.getName()).replace("%player%", args[0])));
         }
         return true;
     }

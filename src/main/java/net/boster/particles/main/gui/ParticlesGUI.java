@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import net.boster.gui.CustomGUI;
 import net.boster.gui.craft.CraftCustomGUI;
-import net.boster.particles.main.BosterParticles;
 import net.boster.particles.main.commands.PGCommand;
 import net.boster.particles.main.data.PlayerData;
 import net.boster.particles.main.files.MenuFile;
@@ -120,7 +119,7 @@ public class ParticlesGUI {
     }
 
     public void log(@NotNull String s, @NotNull LogType log) {
-        Bukkit.getConsoleSender().sendMessage(log.getFormat() + BosterParticles.toColor("(Menu: " + log.getColor() + name + "&7): " + s));
+        Bukkit.getConsoleSender().sendMessage(log.getFormat() + Utils.toColor("(Menu: " + log.getColor() + name + "&7): " + s));
     }
 
     public void delete() {

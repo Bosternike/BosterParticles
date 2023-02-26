@@ -224,7 +224,7 @@ public class ButtonItem implements GUIButton {
                         gui.getPlaceholders().getPlaceholder("DeniedStatus", locale));
         String name = itemName != null ? itemName.get(locale) : null;
         r = r.replace("%name%", name != null ? name : "null");
-        return BosterParticles.toColor(r);
+        return Utils.toColor(r);
     }
 
     public static class ClickActions implements ButtonAction {

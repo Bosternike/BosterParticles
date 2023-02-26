@@ -33,7 +33,7 @@ public class Commands extends BosterCommand {
     @Override
     public boolean execute(@NotNull CommandSender sender, @NotNull String label, @NotNull String[] args) {
         if(!sender.hasPermission("bosterparticles.commands.admin")) {
-            sender.sendMessage(BosterParticles.toColor(getLocaleMessage(sender, "Messages.noPermission")));
+            sender.sendMessage(Utils.toColor(getLocaleMessage(sender, "Messages.noPermission")));
             return false;
         }
 
@@ -44,7 +44,7 @@ public class Commands extends BosterCommand {
 
         if(args[0].equalsIgnoreCase("reload")) {
             plugin.getLoader().reload();
-            sender.sendMessage(BosterParticles.toColor(getLocaleMessage(sender, "Messages.reload")));
+            sender.sendMessage(Utils.toColor(getLocaleMessage(sender, "Messages.reload")));
             return true;
         } else if(args[0].equalsIgnoreCase("menus")) {
             if(!checkPlayer(sender)) return false;
@@ -53,7 +53,7 @@ public class Commands extends BosterCommand {
             return true;
         } else if(args[0].equalsIgnoreCase("set")) {
             if(args.length < 3) {
-                sender.sendMessage(BosterParticles.toColor(getLocaleMessage(sender, "Messages.set.usage")));
+                sender.sendMessage(Utils.toColor(getLocaleMessage(sender, "Messages.set.usage")));
                 return true;
             }
 
@@ -70,12 +70,12 @@ public class Commands extends BosterCommand {
 
             CustomTrailsUtils.CustomTrail t = CustomTrailsUtils.get(args[2]);
             if(t == null) {
-                sender.sendMessage(BosterParticles.toColor(getLocaleMessage(sender, "Messages.set.nullTrail").replace("%name%", args[2])));
+                sender.sendMessage(Utils.toColor(getLocaleMessage(sender, "Messages.set.nullTrail").replace("%name%", args[2])));
                 return true;
             }
 
             t.act(p);
-            sender.sendMessage(BosterParticles.toColor(getLocaleMessage(sender, "Messages.set.success").replace("%name%", args[2]).replace("%player%", args[1])));
+            sender.sendMessage(Utils.toColor(getLocaleMessage(sender, "Messages.set.success").replace("%name%", args[2]).replace("%player%", args[1])));
             return true;
         } else if(args[0].equalsIgnoreCase("list")) {
             if(args.length < 2) {
@@ -97,7 +97,7 @@ public class Commands extends BosterCommand {
 
     public void sendHelp(CommandSender sender) {
         for(String s : getLocaleMessageList(sender, "Messages.help")) {
-            sender.sendMessage(BosterParticles.toColor(s));
+            sender.sendMessage(Utils.toColor(s));
         }
     }
 
@@ -124,7 +124,7 @@ public class Commands extends BosterCommand {
             }
         }
         for(String s : getLocaleMessageList(sender, "Messages.list." + path + ".format")) {
-            sender.sendMessage(BosterParticles.toColor(s.replace("%classes%", classes)
+            sender.sendMessage(Utils.toColor(s.replace("%classes%", classes)
                     .replace("%extensions%", extensions).replace("%particles%", particles)));
         }
     }

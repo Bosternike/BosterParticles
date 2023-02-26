@@ -18,9 +18,9 @@ import net.boster.particles.main.listeners.pickup.OldPickupListener;
 import net.boster.particles.main.loader.BPLoader;
 import net.boster.particles.main.locale.LocalesManager;
 import net.boster.particles.main.nms.NMSProvider;
+import net.boster.particles.main.utils.Utils;
 import net.boster.particles.main.utils.Version;
 import net.boster.particles.main.utils.log.LogType;
-import net.boster.particles.main.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -28,15 +28,17 @@ import org.bukkit.scheduler.BukkitTask;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+@Getter
+@Setter
 public class BosterParticles extends JavaPlugin {
 
     @Getter private static BosterParticles instance;
 
-    @Getter private BPLoader loader;
-    @Getter private final LocalesManager localesManager = new LocalesManager(this);
-    @Getter private FileManager fileManager;
-    @Getter @Setter @NotNull private DataSetter dataSetter;
-    @Getter @Nullable private BukkitTask updaterTask;
+    private BPLoader loader;
+    private final LocalesManager localesManager = new LocalesManager(this);
+    private FileManager fileManager;
+    @NotNull private DataSetter dataSetter;
+    @Nullable private BukkitTask updaterTask;
 
     public void onEnable() {
         instance = this;
@@ -113,14 +115,10 @@ public class BosterParticles extends JavaPlugin {
         }, 0, delay * 20L);
     }
 
-    public static String toColor(String s) {
-        return Utils.toColor(s);
-    }
-
     public void log(@NotNull String s, @NotNull LogType log) {
         if(log.isToggleAble() && !loader.enabledLoggers.contains(log)) return;
 
-        Bukkit.getConsoleSender().sendMessage(log.getFormat() + log.getColor() + toColor(s));
+        Bukkit.getConsoleSender().sendMessage(log.getFormat() + log.getColor() + Utils.toColor(s));
     }
 
     public void log(@NotNull String s, @NotNull String extensionID, @NotNull BPExtension extension, @NotNull LogType log) {
@@ -130,6 +128,6 @@ public class BosterParticles extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage(log.getFormat() + "§7Provider: " + log.getColor() + extension.getPlugin().getName());
         Bukkit.getConsoleSender().sendMessage(log.getFormat() + "§7Version: " + log.getColor() + extension.getVersion());
         Bukkit.getConsoleSender().sendMessage(log.getFormat() + "§7Authors: " + log.getColor() + extension.getAuthors());
-        Bukkit.getConsoleSender().sendMessage(log.getFormat() + log.getColor() + toColor(s));
+        Bukkit.getConsoleSender().sendMessage(log.getFormat() + log.getColor() + Utils.toColor(s));
     }
 }

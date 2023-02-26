@@ -74,8 +74,7 @@ dependencies {
 <!-- CONTACT -->
 ## Contact
 
-<li>LinkedIn: <a href="https://www.linkedin.com/in/andrew-vlasov-9a37a21bb/">Andrew</a></li>
-<li>Project Link: <a href=https://github.com/Bosternike/BosterParticles>source code</a></li>
+<li>LinkedIn: <a href="https://www.linkedin.com/in/vlasov-andrii/">Andrew</a></li>
 
 [examples-url]: https://github.com/Bosternike/BosterParticles/tree/main/examples
 [awesome-shield]: https://img.shields.io/badge/AWESOME-https://github.com/Bosternike/BosterParticles/tree/main/examples-yellow
@@ -90,5 +89,5 @@ dependencies {
 [license-shield]: https://img.shields.io/github/license/Bosternike/BosterParticles.svg?style=for-the-badge
 [license-url]: https://github.com/Bosternike/BosterParticles/blob/main/LICENSE.md
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/andrew-vlasov-9a37a21bb
+[linkedin-url]: https://www.linkedin.com/in/vlasov-andrii/
 [product-screenshot]: images/BosterParticles.png
